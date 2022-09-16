@@ -21,8 +21,7 @@ public class RudderControls : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Speed = Ship.GetComponent<Rigidbody>().velocity.magnitude;
-        Speed = 5;
+        Speed = Ship.GetComponent<Rigidbody>().velocity.magnitude * 0.5f;
         if (Input.GetKey(KeyCode.A))
         {
             Ship.Rotate(0, -Speed * 0.1f, 0);

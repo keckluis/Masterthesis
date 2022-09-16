@@ -10,8 +10,9 @@ public class SailsManager : MonoBehaviour
     public float WindStrength = 1;
     public Transform Ship;
     public Transform WindIndicator;
+    public Transform FrontSailRing;
     public Transform FrontSail;
-    public Transform BackSail;
+    public Transform BackSailRing;
 
     public float WindDegrees;
     public float ShipDegrees;
@@ -19,17 +20,31 @@ public class SailsManager : MonoBehaviour
     public float BackSailDegrees;
 
     public float SheetLength = 80;
+    public int HalyardLength = 10;
 
     public float ForwardForce = 1;
 
-    [SerializeField]
     private bool WindFromFront = false;
+
+    private Vector3 FrontSailScale;
+
+    private void Start()
+    {
+        FrontSailScale = FrontSail.localScale;
+    }
 
     void FixedUpdate()
     {
+        //make sure ship never stops
         ForwardForce = 1;
+
         //clamp sheet length
         SheetLength = Mathf.Clamp(SheetLength, 0, 80);
+
+        //clamp halyard length (10-100%)
+        HalyardLength = Mathf.Clamp(HalyardLength, 10, 100);
+
+        FrontSail.localScale = new Vector3(FrontSailScale.x, FrontSailScale.y, FrontSailScale.z * HalyardLength / 100);
 
         //wind and ship rotation
         WindDegrees = (Mathf.Atan2(WindDirection.x, WindDirection.y) * 180 / Mathf.PI) + 180;
@@ -57,7 +72,7 @@ public class SailsManager : MonoBehaviour
             FrontSailDegrees = 360 + FrontSailDegrees;
 
         //rotate front sail
-        FrontSail.localEulerAngles = new Vector3(FrontSail.localEulerAngles.x, FrontSail.localEulerAngles.y, FrontSailDegrees);
+        FrontSailRing.localEulerAngles = new Vector3(FrontSailRing.localEulerAngles.x, FrontSailRing.localEulerAngles.y, FrontSailDegrees);
 
         //calculate back sail rotation and clamp to sheet length
         BackSailDegrees = WindDegrees - ShipDegrees;
@@ -71,7 +86,7 @@ public class SailsManager : MonoBehaviour
             BackSailDegrees = Mathf.Clamp(BackSailDegrees, 0, SheetLength);
 
         //rotate back sail
-        BackSail.localEulerAngles = new Vector3(-90, BackSailDegrees, 0);
+        BackSailRing.localEulerAngles = new Vector3(-90, BackSailDegrees, 0);
 
         if (!WindFromFront)
         {
@@ -80,15 +95,30 @@ public class SailsManager : MonoBehaviour
                 frontSailForce = 360 - frontSailForce;
 
             frontSailForce = (50 - frontSailForce) / 5;
-            ForwardForce += frontSailForce;
+            ForwardForce += (frontSailForce * HalyardLength / 100) * WindStrength;
+        }
+        else
+        {
+            float frontSailFactor = HalyardLength;
+            ForwardForce -= ((frontSailFactor / 100) - 0.1f) * WindStrength;
         }
 
         float shipRadians = ShipDegrees * (Mathf.PI / 180);
         Vector2 shipVector = new Vector2(-Mathf.Sin(shipRadians), -Mathf.Cos(shipRadians));
+        
+        float windShipAngle = Vector2.Angle(WindDirection, shipVector);
+
+        float backSailAngle = BackSailDegrees;
+        if (backSailAngle > 180)
+            backSailAngle = 360 - backSailAngle;
+
+        if (windShipAngle > 30)
+            ForwardForce += (10 * WindStrength) - (Mathf.Abs((windShipAngle / 180) - (backSailAngle / 80)) * 10);
+
+        if (ForwardForce < 0)
+            ForwardForce = 1;
+
+        //add force to ship
         Ship.GetComponent<Rigidbody>().AddForce(shipVector.x * ForwardForce, 0, shipVector.y * ForwardForce);
-
-
-        //TODO: back sail force (angle between wind and ship -> ideal sheet length)
-        print(Vector2.Angle(WindDirection, shipVector));
     }
 }
