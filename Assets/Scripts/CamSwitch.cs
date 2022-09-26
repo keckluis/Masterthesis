@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class CamSwitch : MonoBehaviour
 {
-    public GameObject MainCam;
-    public GameObject WheelCam;
+    public GameObject[] Cams;
+    private int current = 0;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        Cams[0].SetActive(true);
+        for (int i = 1; i < Cams.Length; i++)
+        {
+            Cams[i].SetActive(false);
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            MainCam.SetActive(!MainCam.activeSelf);
-            WheelCam.SetActive(!WheelCam.activeSelf);
+            Cams[current].SetActive(false);
+
+            if (current + 1 == Cams.Length)
+            {
+                current = 0;
+            }
+            else
+                current += 1;
+            Cams[current].SetActive(true);
         }
     }
 }

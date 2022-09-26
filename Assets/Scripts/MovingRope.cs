@@ -8,9 +8,10 @@ public class MovingRope : MonoBehaviour
     public Transform EndPoint;
     private LineRenderer LR;
 
-    void Start()
+    void Awake()
     {
         LR = GetComponent<LineRenderer>();
+        LR.enabled = true;
         LR.useWorldSpace = true;
     }
 

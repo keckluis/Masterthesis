@@ -13,12 +13,12 @@ public class HalyardControls : MonoBehaviour
 
     void ChangeHalyard()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.Q))
         {
             SailsManager.HalyardLength -= 1;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.E))
         {
             SailsManager.HalyardLength += 1;
         }

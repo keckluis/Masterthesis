@@ -7,7 +7,9 @@ public class RudderControls : MonoBehaviour
 {
     public Transform Rudder;
     public Transform SteeringWheel;
-    public Transform Ship;
+    public Rigidbody Ship;
+    public Transform Rear;
+    
     private float Speed;
 
     private Vector3 WheelStartRotation;
@@ -21,10 +23,11 @@ public class RudderControls : MonoBehaviour
 
     void FixedUpdate()
     {
-        Speed = Ship.GetComponent<Rigidbody>().velocity.magnitude * 0.5f;
+        Speed = Ship.velocity.magnitude * 0.5f;
         if (Input.GetKey(KeyCode.A))
         {
-            Ship.Rotate(0, -Speed * 0.1f, 0);
+            //Ship.Rotate(0, -Speed * 0.1f, 0);
+            Ship.AddForceAtPosition(-transform.right * Speed * 0.01f, Rear.position);
             SteeringWheel.Rotate(0, 1, 0);
 
             Rudder.Rotate(0, 0, 1);
@@ -32,7 +35,8 @@ public class RudderControls : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.D))
         {
-            Ship.Rotate(0, Speed * 0.1f, 0);
+            //Ship.Rotate(0, Speed * 0.1f, 0);
+            Ship.AddForceAtPosition(transform.right * Speed * 0.01f, Rear.position);
             SteeringWheel.Rotate(0, -1, 0);
 
             Rudder.Rotate(0, 0, -1);

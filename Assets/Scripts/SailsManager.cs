@@ -13,6 +13,7 @@ public class SailsManager : MonoBehaviour
     public Transform FrontSailRing;
     public Transform FrontSail;
     public Transform BackSailRing;
+    public Transform SheetBoom;
 
     public float WindDegrees;
     public float ShipDegrees;
@@ -134,5 +135,8 @@ public class SailsManager : MonoBehaviour
             
         //add force to ship
         Ship.GetComponent<Rigidbody>().AddForce(shipVector.x * ForwardForce, 0, shipVector.y * ForwardForce);
+
+        SheetBoom.rotation = Ship.rotation;
+        SheetBoom.Rotate(0, 90, 0);
     }
 }
