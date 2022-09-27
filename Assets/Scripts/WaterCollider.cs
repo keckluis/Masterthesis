@@ -13,7 +13,6 @@ public class WaterCollider : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        print("AAA");
         if (collision.gameObject.tag == "CannonBallPort")
         {
             HitPositionPort = collision.transform.position;
