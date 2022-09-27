@@ -20,6 +20,6 @@ public class LookAround : MonoBehaviour
         RotationX -= mouseY;
         RotationX = Mathf.Clamp(RotationX, -90, 90);
 
-        Camera.transform.localEulerAngles = new Vector3(RotationX, 180.0f, 0.0f);
+        Camera.transform.localEulerAngles = new Vector3(RotationX, 0, 0);
     }
 }

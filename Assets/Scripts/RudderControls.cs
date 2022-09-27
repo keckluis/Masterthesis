@@ -12,34 +12,25 @@ public class RudderControls : MonoBehaviour
     
     private float Speed;
 
-    private Vector3 WheelStartRotation;
-    private Vector3 RudderStartRotation;
-
-    private void Start()
-    {
-        WheelStartRotation = SteeringWheel.localEulerAngles;
-        RudderStartRotation = Rudder.localEulerAngles;
-    }
-
     void FixedUpdate()
     {
         Speed = Ship.velocity.magnitude * 0.5f;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.D))
         {
             //Ship.Rotate(0, -Speed * 0.1f, 0);
             Ship.AddForceAtPosition(-transform.right * Speed * 0.01f, Rear.position);
-            SteeringWheel.Rotate(0, 1, 0);
+            SteeringWheel.Rotate(0, 0, -1);
 
-            Rudder.Rotate(0, 0, 1);
+            Rudder.Rotate(0, -1, 0);
             
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A))
         {
             //Ship.Rotate(0, Speed * 0.1f, 0);
             Ship.AddForceAtPosition(transform.right * Speed * 0.01f, Rear.position);
-            SteeringWheel.Rotate(0, -1, 0);
+            SteeringWheel.Rotate(0, 0, 1);
 
-            Rudder.Rotate(0, 0, -1);
+            Rudder.Rotate(0, 1, 0);
         }
 
         float rudderCap = Rudder.localEulerAngles.y;
@@ -53,8 +44,8 @@ public class RudderControls : MonoBehaviour
 
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            SteeringWheel.localEulerAngles = WheelStartRotation;
-            Rudder.localEulerAngles = RudderStartRotation;
+            SteeringWheel.localEulerAngles = Vector3.zero;
+            Rudder.localEulerAngles = Vector3.zero;
         }  
     }
 }

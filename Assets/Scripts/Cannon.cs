@@ -17,9 +17,9 @@ public class Cannon : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
             RotateHorizontal(0.1f);
         if (Input.GetKey(KeyCode.UpArrow))
-            RotateVertical(0.1f);
-        if (Input.GetKey(KeyCode.DownArrow))
             RotateVertical(-0.1f);
+        if (Input.GetKey(KeyCode.DownArrow))
+            RotateVertical(0.1f);
 
         if (Input.GetKeyDown(KeyCode.Space))
             Shoot();
@@ -27,7 +27,7 @@ public class Cannon : MonoBehaviour
 
     void RotateHorizontal(float direction)
     {
-        Horizontal.Rotate(new Vector3(0, 0, direction));
+        Horizontal.Rotate(new Vector3(0, direction, 0));
     }
 
     void RotateVertical(float direction)
@@ -49,7 +49,7 @@ public class Cannon : MonoBehaviour
         GameObject cb = Instantiate(CanonBall, CanonBallsHolder);
         cb.transform.position = Vertical.position;
 
-        cb.GetComponent<Rigidbody>().AddForce(Vertical.up * 2_000);
+        cb.GetComponent<Rigidbody>().AddForce(Vertical.forward * 2_000);
         Fire.Play();
     }
 }
