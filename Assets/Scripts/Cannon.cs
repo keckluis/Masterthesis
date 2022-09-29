@@ -8,7 +8,7 @@ public class Cannon : MonoBehaviour
     public Transform Vertical;
     public Transform CanonBallsHolder;
     public GameObject CanonBall;
-    public ParticleSystem Fire;
+    //public ParticleSystem Fire;
 
     void Update()
     {
@@ -49,7 +49,7 @@ public class Cannon : MonoBehaviour
         GameObject cb = Instantiate(CanonBall, CanonBallsHolder);
         cb.transform.position = Vertical.position;
 
-        cb.GetComponent<Rigidbody>().AddForce(Vertical.forward * 2_000);
-        Fire.Play();
+        //cb.GetComponent<Rigidbody>().AddForce(Vertical.forward * 2_000);
+        //Fire.Play();
     }
 }
