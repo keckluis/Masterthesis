@@ -15,7 +15,7 @@ public class SailsManager : MonoBehaviour
     public Transform FrontSailRings;
     public Transform BackSailRing;
     public Transform BackSail;
-    public Transform SheetBoomRoll;
+    public Transform SheetRoll2;
     
     public float WindDegrees;
     public float ShipDegrees;
@@ -29,12 +29,6 @@ public class SailsManager : MonoBehaviour
 
     private bool WindFromFront = false;
 
-    private Vector3 FrontSailScale;
-
-    void Start()
-    {
-        FrontSailScale = FrontSail.localScale;
-    }
     void FixedUpdate()
     {
         //make sure ship never stops
@@ -104,7 +98,7 @@ public class SailsManager : MonoBehaviour
             float frontSailFactor = HalyardLength;
             ForwardForce -= ((frontSailFactor / 100) - 0.1f) * WindStrength;
 
-            FrontSail.localScale = new Vector3(1, FrontSail.localScale.y, -1);
+            FrontSail.localScale = new Vector3(1, FrontSail.localScale.y, 0.1f);
         }
 
         if (FrontSailRings.localScale.y != 1 + FrontSail.localScale.y && FrontSail.localScale.y < 1)
@@ -140,7 +134,7 @@ public class SailsManager : MonoBehaviour
         //rotate back sail
         BackSailRing.localEulerAngles = new Vector3(0, BackSailDegrees, 0);
 
-        SheetBoomRoll.rotation = Ship.rotation;
+        SheetRoll2.rotation = Ship.rotation;
     }
 
     private void ForwardForceCalculations()
