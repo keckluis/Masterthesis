@@ -14,11 +14,10 @@ public class RudderControls : MonoBehaviour
 
     void FixedUpdate()
     {
-        Speed = Ship.velocity.magnitude * 0.5f;
+        Speed = Ship.velocity.magnitude * 0.1f;
         if (Input.GetKey(KeyCode.D))
         {
-            //Ship.Rotate(0, -Speed * 0.1f, 0);
-            Ship.AddForceAtPosition(-transform.right * Speed * 0.01f, Rear.position);
+            Ship.AddForceAtPosition(-transform.right * Speed, Rear.position);
             SteeringWheel.Rotate(0, 0, -1);
 
             Rudder.Rotate(0, -1, 0);
@@ -26,8 +25,7 @@ public class RudderControls : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.A))
         {
-            //Ship.Rotate(0, Speed * 0.1f, 0);
-            Ship.AddForceAtPosition(transform.right * Speed * 0.01f, Rear.position);
+            Ship.AddForceAtPosition(transform.right * Speed, Rear.position);
             SteeringWheel.Rotate(0, 0, 1);
 
             Rudder.Rotate(0, 1, 0);
