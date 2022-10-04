@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class SailsManager : MonoBehaviour
 {
-    public Vector2 WindDirection = new Vector2(1, 0);
+    public WindDirectionType UseWindDirectionType = WindDirectionType.VECTOR;
+    public Vector2 WindVector = new Vector2(1, 0);
+    public float WindDegrees;
     public float WindStrength = 1;
     public Transform Ship;
     public Transform WindIndicator;
@@ -17,19 +19,21 @@ public class SailsManager : MonoBehaviour
     public Transform BackSail;
     public Transform SheetRoll2;
     
-    public float WindDegrees;
     public float ShipDegrees;
-    public float FrontSailDegrees;
-    public float BackSailDegrees;
+    private float FrontSailDegrees;
+    private float BackSailDegrees;
+    private Vector2 ShipVector;
 
     public float SheetLength = 80;
-    public int HalyardLength = 10;
+    public float HalyardLength = 10;
+
+    public bool WindFromFront = false;
+
+    public float WindShipAngle;
 
     public float ForwardForce = 1;
 
-    private bool WindFromFront = false;
-    public float WindShipAngle;
-    private Vector2 ShipVector;
+    public float ShipSpeed = 0;
 
     void FixedUpdate()
     {
@@ -46,12 +50,21 @@ public class SailsManager : MonoBehaviour
 
         FrontSailRopeRings.localPosition = new Vector3(0, FrontSail.localScale.y * -6.5f, 0);
 
-        //wind and ship rotation
-        WindDegrees = (Mathf.Atan2(WindDirection.x, WindDirection.y) * 180 / Mathf.PI);
-        ShipDegrees = Ship.eulerAngles.y;
+        //wind direction
+        if (UseWindDirectionType == WindDirectionType.VECTOR)
+        {
+            WindDegrees = (Mathf.Atan2(WindVector.x, WindVector.y) * 180 / Mathf.PI);
+        }
+        else
+        {
+            float windRadians = WindDegrees * (Mathf.PI / 180);
+            WindVector = new Vector2(Mathf.RoundToInt(Mathf.Sin(windRadians)), Mathf.RoundToInt(Mathf.Cos(windRadians)));
+        }
 
         WindDegrees = ClampDegrees(WindDegrees);
-        
+
+        ShipDegrees = Ship.eulerAngles.y;
+
         //rotate wind indicator according to wind direction
         WindIndicator.eulerAngles = new Vector3(WindIndicator.eulerAngles.x, WindDegrees, WindIndicator.eulerAngles.z);
 
@@ -60,6 +73,8 @@ public class SailsManager : MonoBehaviour
         BackSailCalculations();
 
         ForwardForceCalculations();
+
+        ShipSpeed = Ship.GetComponent<Rigidbody>().velocity.magnitude;
     }
 
     private void FrontSailCalculations()
@@ -69,10 +84,10 @@ public class SailsManager : MonoBehaviour
 
         float shipRadians = ShipDegrees * (Mathf.PI / 180);
         ShipVector = new Vector2(Mathf.Sin(shipRadians), Mathf.Cos(shipRadians));
-        WindShipAngle = Vector2.Angle(WindDirection, ShipVector);
+        WindShipAngle = Vector2.Angle(WindVector, ShipVector);
 
         //TODO: front sail behaviour when wind comes from front
-        if (ShipDegrees > 180)
+        if (WindShipAngle > 135)
         {
             WindFromFront = true;
             FrontSailDegrees = 0;
@@ -129,7 +144,11 @@ public class SailsManager : MonoBehaviour
         //front sail force
         if (!WindFromFront)
         {
-            ForwardForce += WindStrength * ((float)HalyardLength / 100);
+            ForwardForce += WindStrength * (HalyardLength / 100);
+        }
+        else
+        {
+            ForwardForce -= (WindStrength * (HalyardLength / 100)) * 0.5f;
         }
             
         //back sail force
@@ -139,17 +158,19 @@ public class SailsManager : MonoBehaviour
             backSailAngle = 360 - backSailAngle;
         }
 
-        if (WindShipAngle < 150)
+        if (WindShipAngle < 170)
         {
-
             //value = 0 -> ideal sail/wind angle
-            float sailWindRatio = 2.25f - Mathf.Abs(WindShipAngle / backSailAngle);
-            //print(sailWindRatio);
+            float sailWindRatio = 2.25f - Mathf.Abs((180 - WindShipAngle) / backSailAngle);
+
             if (sailWindRatio < 1 && sailWindRatio > -1)
             {
                 ForwardForce += WindStrength * (1 - Mathf.Abs(sailWindRatio));
             }    
         }
+
+        if (ForwardForce < 1)
+            ForwardForce = 1;
 
         //add force to ship
         Ship.GetComponent<Rigidbody>().AddForce(ShipVector.x * ForwardForce, 0, ShipVector.y * ForwardForce);
@@ -163,4 +184,10 @@ public class SailsManager : MonoBehaviour
         }
         return input;
     }
+}
+
+public enum WindDirectionType
+{
+    VECTOR,
+    DEGREES
 }
