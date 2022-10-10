@@ -7,6 +7,7 @@ public class EnemyFollowPath : MonoBehaviour
     public Transform EnemyShip;
     public Transform[] PathTargets;
     public SailsManager SailsManager;
+    public Transform Rudder;
 
     private int Current = 0;
     private Vector3 TargetRotation;
@@ -40,7 +41,15 @@ public class EnemyFollowPath : MonoBehaviour
         else 
         {
             Current = (Current + 1) % PathTargets.Length;
-            
+        }
+
+        if (EnemyShip.eulerAngles != TargetRotation)
+        {
+            Rudder.localEulerAngles = new Vector3(0, -20, 0);
+        }
+        else
+        {
+            Rudder.localEulerAngles = Vector3.zero;
         }
     }
 
