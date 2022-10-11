@@ -18,18 +18,16 @@ public class RudderControls : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             Ship.AddForceAtPosition(-transform.right * Speed, Rear.position);
-            SteeringWheel.Rotate(0, 0, -1);
-
-            Rudder.Rotate(0, -1, 0);
-            
         }
         if (Input.GetKey(KeyCode.A))
         {
             Ship.AddForceAtPosition(transform.right * Speed, Rear.position);
-            SteeringWheel.Rotate(0, 0, 1);
-
-            Rudder.Rotate(0, 1, 0);
         }
+
+        float rudderRot = (SteeringWheel.localEulerAngles.z / 180f) * 45f;
+        Rudder.localEulerAngles = new Vector3(0, rudderRot, 0);
+
+        //Ship.AddForceAtPosition(transform.right * Speed, Rear.position);
 
         float rudderCap = Rudder.localEulerAngles.y;
 
