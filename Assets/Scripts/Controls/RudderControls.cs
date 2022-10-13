@@ -14,10 +14,10 @@ public class RudderControls : MonoBehaviour
 
     void FixedUpdate()
     {
-        Speed = Ship.velocity.magnitude * 0.1f;
+        Speed = Ship.velocity.magnitude;
         if (Input.GetKey(KeyCode.D))
         {
-            Ship.AddForceAtPosition(-transform.right * Speed, Rear.position);
+            Ship.AddTorque(transform.up);
         }
         if (Input.GetKey(KeyCode.A))
         {
