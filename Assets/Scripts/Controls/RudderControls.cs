@@ -24,7 +24,7 @@ public class RudderControls : MonoBehaviour
             Ship.AddForceAtPosition(transform.right * Speed, Rear.position);
         }
 
-        float rudderRot = Mathf.Clamp(SteeringWheel.localEulerAngles.z, -45f, 45f);
+        float rudderRot = (SteeringWheel.localEulerAngles.z / 180f) * 45f;
         Rudder.localEulerAngles = new Vector3(0, rudderRot, 0);
 
         //Ship.AddForceAtPosition(transform.right * Speed, Rear.position);
