@@ -23,7 +23,6 @@ public class SailsManager : MonoBehaviour
     public Transform FrontMast;
     
     public float ShipDegrees;
-    private float FrontSailDegrees;
     private float BackSailDegrees;
     public Vector2 ShipVector;
 
@@ -106,9 +105,6 @@ public class SailsManager : MonoBehaviour
 
     private void FrontSailCalculations(Vector3 windForce)
     {
-        //calculate front sail roation and clamp it
-        FrontSailDegrees = Mathf.Clamp(WindDegrees - ShipDegrees, -40, 40);
-
         if (WindShipAngle > 135)
         {
             WindFromFront = true;
