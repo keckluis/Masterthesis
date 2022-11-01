@@ -41,8 +41,8 @@ public class EnemySails : MonoBehaviour
             WindFromFront = false;
         }
 
-        Vector3 speed = GetComponent<Rigidbody>().velocity;
-        Vector3 speedAngular = GetComponent<Rigidbody>().angularVelocity;
+        //Vector3 speed = GetComponent<Rigidbody>().velocity;
+        //Vector3 speedAngular = GetComponent<Rigidbody>().angularVelocity;
 
         BackSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, BackSailPort.position);
         BackSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, BackSailStarboard.position);
@@ -57,8 +57,8 @@ public class EnemySails : MonoBehaviour
         limits.max = frontSheet;
         hinge.limits = limits;
 
-        GetComponent<Rigidbody>().velocity = speed;
-        GetComponent<Rigidbody>().angularVelocity = speedAngular;
+        //GetComponent<Rigidbody>().velocity = speed;
+        //GetComponent<Rigidbody>().angularVelocity = speedAngular;
     }
 
     public void OnDrawGizmosSelected()

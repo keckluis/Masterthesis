@@ -31,10 +31,10 @@ public class EnemyFollowPath : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (EnemyShip.position.x != PathTargets[Current].position.x && EnemyShip.position.z != PathTargets[Current].position.z)
+        if (Vector3.Distance(EnemyShip.position, PathTargets[Current].position) > 1)
         {
-            Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, SailsManager.WindStrength);
-            EnemyShip.GetComponent<Rigidbody>().MovePosition(pos);
+            Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, SailsManager.WindStrength * 0.1f);
+            EnemyShip.position = pos;
             TargetRotation = CalculateTargetRotation();
             EnemyShip.rotation = Quaternion.RotateTowards(EnemyShip.rotation, Quaternion.Euler(TargetRotation), SailsManager.WindStrength);
         }
@@ -59,6 +59,6 @@ public class EnemyFollowPath : MonoBehaviour
         EnemyShip.LookAt(PathTargets[Current]);
         Vector3 targetRot = EnemyShip.eulerAngles;
         EnemyShip.eulerAngles = shipRot;
-        return new Vector3 (0, targetRot.y + 180, 0);
+        return new Vector3 (0, targetRot.y, 0);
     }
 }

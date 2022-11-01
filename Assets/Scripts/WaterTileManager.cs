@@ -6,7 +6,7 @@ public class WaterTileManager : MonoBehaviour
 {
     public GameObject StartTile;
 
-    public List<WaterTile> Tiles = new List<WaterTile>();
+    private List<WaterTile> Tiles = new List<WaterTile>();
     public Transform Ship;
 
     void Start()

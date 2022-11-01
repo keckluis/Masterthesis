@@ -8,7 +8,7 @@ public class Cannon : MonoBehaviour
     public Transform Vertical;
     public Transform CanonBallsHolder;
     public GameObject CanonBall;
-    public Collider Ship;
+    public Rigidbody Map;
 
     //public ParticleSystem Fire;
 
@@ -50,8 +50,8 @@ public class Cannon : MonoBehaviour
     {
         GameObject cb = Instantiate(CanonBall, CanonBallsHolder);
         cb.transform.position = Vertical.position;
-        Physics.IgnoreCollision(cb.GetComponent<Collider>(), Ship);
-        cb.GetComponent<Rigidbody>().AddForce(Vertical.forward * 2_000 + Ship.GetComponent<Rigidbody>().velocity);
+        //Physics.IgnoreCollision(cb.GetComponent<Collider>(), Map.GetComponent<Collider>());
+        cb.GetComponent<Rigidbody>().AddForce(Vertical.forward * 2_000 + Map.velocity);
         //Fire.Play();
     }
 }
