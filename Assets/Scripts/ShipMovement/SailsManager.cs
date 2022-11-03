@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class SailsManager : MonoBehaviour
 {
-    public WindDirectionType UseWindDirectionType = WindDirectionType.VECTOR;
     public Vector2 WindVector = new Vector2(1, 0);
+    public Transform Wind;
     public float WindDegrees;
     public float WindStrength = 1;
     public Transform Ship;
@@ -62,19 +62,15 @@ public class SailsManager : MonoBehaviour
         HalyardLength = Mathf.Clamp(HalyardLength, 10, 100);
 
         //wind direction
-        if (UseWindDirectionType == WindDirectionType.VECTOR)
-        {
-            WindDegrees = (Mathf.Atan2(WindVector.x, WindVector.y) * 180 / Mathf.PI);
-        }
-        else
-        {
-            float windRadians = WindDegrees * (Mathf.PI / 180);
-            WindVector = new Vector2(Mathf.RoundToInt(Mathf.Sin(windRadians)), Mathf.RoundToInt(Mathf.Cos(windRadians)));
-        }
-
-        WindDegrees = ClampDegrees(WindDegrees);
-
+        //Wind.position -= new Vector3(Wind.position.x - Map.position.x, 0, Wind.position.z - Map.position.z);
+        Vector3 windUpdate = Vector3.Normalize(Wind.position) - Vector3.zero;
+        WindVector = new Vector2(windUpdate.x, windUpdate.z);
+        WindDegrees = (Mathf.Atan2(WindVector.x, WindVector.y) * 180 / Mathf.PI);
         ShipDegrees = Map.transform.eulerAngles.y;
+        //WindDegrees += ShipDegrees;
+        //WindDegrees = ClampDegrees(WindDegrees);
+        //float windRadians = WindDegrees * (Mathf.PI / 180);
+        //WindVector = new Vector2(Mathf.RoundToInt(Mathf.Sin(windRadians)), Mathf.RoundToInt(Mathf.Cos(windRadians)));
 
         //rotate wind indicator according to wind direction
         WindIndicator.eulerAngles = new Vector3(WindIndicator.eulerAngles.x, WindDegrees, WindIndicator.eulerAngles.z);
@@ -240,10 +236,4 @@ public class SailsManager : MonoBehaviour
         Gizmos.DrawLine(new Vector3(0, 17, 0), new Vector3(WindVector.x * 3, 17, WindVector.y * 3));
         Gizmos.DrawSphere(new Vector3(WindVector.x * 3, 17, WindVector.y * 3), 0.1f);
     }
-}
-
-public enum WindDirectionType
-{
-    VECTOR,
-    DEGREES
 }
