@@ -42,7 +42,7 @@ public class SailsManager : MonoBehaviour
     private Vector3 FrontMastPos;
     private Vector3 FrontMastRot;
 
-    private bool windFromPort = false;
+    public Transform WindString;
 
     private void Start()
     {
@@ -56,7 +56,7 @@ public class SailsManager : MonoBehaviour
         ForwardForce = -1;
 
         //clamp sheet length
-        SheetLength = Mathf.Clamp(SheetLength, 0, 80);
+        SheetLength = Mathf.Clamp(SheetLength, 1, 80);
 
         //clamp halyard length (10-100%)
         HalyardLength = Mathf.Clamp(HalyardLength, 10, 100);
@@ -100,14 +100,14 @@ public class SailsManager : MonoBehaviour
         if (WindShipAngle > 135)
         {
             WindFromFront = true;
-            FrontSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, FrontSailPort.position);
-            FrontSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, FrontSailStarboard.position);
+            //FrontSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, FrontSailPort.position);
+            //FrontSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, FrontSailStarboard.position);
         }
         else
         {
             WindFromFront = false;
             
-            if (windFromPort)
+            /*if (windFromPort)
             {
                 FrontSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce * 1.5f, FrontSailPort.position);
                 FrontSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, FrontSailStarboard.position);
@@ -116,19 +116,31 @@ public class SailsManager : MonoBehaviour
             {
                 FrontSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, FrontSailPort.position);
                 FrontSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce * 1.5f, FrontSailStarboard.position);
-            }
+            }*/
         }
 
-        HingeJoint frontHinge = FrontSailRing.GetComponent<HingeJoint>();
+        /*HingeJoint frontHinge = FrontSailRing.GetComponent<HingeJoint>();
         JointLimits frontLimits = frontHinge.limits;
         float frontSheet = (WindShipAngle / 180f) * 40f;
         frontLimits.min = -frontSheet;
         frontLimits.max = frontSheet;
-        frontHinge.limits = frontLimits;
+        frontHinge.limits = frontLimits;*/
 
         //rotate front sail
         //if (!WindFromFront)
         //FrontSailRing.localEulerAngles = new Vector3(0, FrontSailDegrees, 0);
+
+        float backSailRot = BackSailRing.localEulerAngles.y;
+
+        if (backSailRot > 180)
+            backSailRot -= 360;
+
+        float frontSailRot = 80f - Mathf.Abs(backSailRot);
+       
+        if (backSailRot <= 0)
+            FrontSailRing.localEulerAngles = new Vector3(0f, frontSailRot, 0f);
+        else
+            FrontSailRing.localEulerAngles = new Vector3(0f, -frontSailRot, 0f);
 
         FrontSail.localScale = new Vector3(1, HalyardLength * 0.01f, 1);
         FrontSailRopeRings.localPosition = new Vector3(0, FrontSail.localScale.y * -6.5f, 0);
@@ -172,12 +184,10 @@ public class SailsManager : MonoBehaviour
         if (BackSailRing.localEulerAngles.y > 180)
         {
             BackSail.localScale = new Vector3(-1, 1, 1);
-            windFromPort = true;
         }
         else
         {
             BackSail.localScale = new Vector3(1, 1, 1);
-            windFromPort = false;
         }
 
         //rotate back sail
@@ -214,7 +224,15 @@ public class SailsManager : MonoBehaviour
             if (sailWindRatio < 1 && sailWindRatio > -1)
             {
                 ForwardForce -= WindStrength * (1 - Mathf.Abs(sailWindRatio));
-            }    
+                WindString.localEulerAngles = new Vector3(0, sailWindRatio * 45f, 0);
+            }
+            else
+            {
+                if (sailWindRatio > 0)
+                    WindString.localEulerAngles = new Vector3(0, +45f, 0);
+                else
+                    WindString.localEulerAngles = new Vector3(0, -45f, 0);
+            }         
         }
 
         if (ForwardForce > -1)

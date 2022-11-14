@@ -121,7 +121,7 @@ Material:
     - _Displace_Strength: 0
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _Foam_Width: 1
+    - _Foam_Width: 2.63
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -149,10 +149,10 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BottomColor: {r: 0.047388032, g: 0, b: 0.6320754, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep: {r: 0.0020024967, g: 0.2933789, b: 0.42452827, a: 1}
+    - _Deep: {r: 0.111739054, g: 0.23823865, b: 0.2924528, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Foam_Color: {r: 0.8443396, g: 1, b: 0.9944197, a: 1}
-    - _Shallow: {r: 0, g: 0.5754717, b: 0.55290425, a: 1}
+    - _Shallow: {r: 0.17086516, g: 0.35558426, b: 0.41099998, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Top_Color: {r: 0, g: 0.7423387, b: 0.8018868, a: 1}
   m_BuildTextureStacks: []

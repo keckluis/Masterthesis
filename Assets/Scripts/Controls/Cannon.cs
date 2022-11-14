@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Cannon : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class Cannon : MonoBehaviour
     public GameObject CanonBall;
     public Rigidbody Map;
 
-    //public ParticleSystem Fire;
+    public ParticleSystem MuzzleFlash;
+    public GameObject Fuse;
+
+    bool coolDown = false;
 
     void Update()
     {
@@ -48,10 +52,28 @@ public class Cannon : MonoBehaviour
 
     void Shoot()
     {
+        if (!coolDown)
+        {
+            coolDown = true;
+            StartCoroutine(WaitForShot());
+        }
+    }
+
+    IEnumerator WaitForShot()
+    {
+        Fuse.SetActive(true);
+        Fuse.GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(3);
+        Fuse.SetActive(false);
+        MuzzleFlash.Play();
+
         GameObject cb = Instantiate(CanonBall, CanonBallsHolder);
         cb.transform.position = Vertical.position;
+
         //Physics.IgnoreCollision(cb.GetComponent<Collider>(), Map.GetComponent<Collider>());
         cb.GetComponent<Rigidbody>().AddForce(Vertical.forward * 2_000 + Map.velocity);
-        //Fire.Play();
+
+        yield return new WaitForSeconds(2);
+        coolDown = false;
     }
 }

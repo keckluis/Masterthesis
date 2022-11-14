@@ -15,7 +15,7 @@ public class EnemySails : MonoBehaviour
     float ShipDegrees;
     Vector2 ShipVector;
     float WindShipAngle;
-    bool WindFromFront;
+    //bool WindFromFront;
 
     void Update()
     {
@@ -34,11 +34,11 @@ public class EnemySails : MonoBehaviour
 
         if (WindShipAngle > 135)
         {
-            WindFromFront = true;
+           // WindFromFront = true;
         }
         else
         {
-            WindFromFront = false;
+            //WindFromFront = false;
         }
 
         //Vector3 speed = GetComponent<Rigidbody>().velocity;

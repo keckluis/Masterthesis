@@ -7,11 +7,12 @@ using UnityEngine.UIElements;
 public class WaterCollider : MonoBehaviour
 {
     public GameObject SplashParticle;
-    private Vector3 HitPositionPort = Vector3.zero;
-    private Vector3 HitPositionStarboard = Vector3.zero;
+    public Transform CannonSplashHolder;
+
+    private Vector3 HitPosition = Vector3.zero;
 
     public Transform Map;
-
+   
     private void Update()
     {
         transform.position = Map.position; 
@@ -20,22 +21,20 @@ public class WaterCollider : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "CannonBallPort")
+        if (collision.gameObject.tag == "CannonBall")
         {
-            HitPositionPort = collision.transform.position;
-            GameObject splash = Instantiate(SplashParticle);
-            splash.transform.position = new Vector3(HitPositionPort.x, 1, HitPositionPort.z);
+            HitPosition = collision.transform.position;
+            GameObject splash = Instantiate(SplashParticle, CannonSplashHolder);
+            splash.transform.position = new Vector3(HitPosition.x, 1, HitPosition.z);
             splash.GetComponent<ParticleSystem>().Play();
             Destroy(collision.gameObject);
+            StartCoroutine(DestroySplash(splash));
         }
+    }
 
-        if (collision.gameObject.tag == "CannonBallStarboard")
-        {
-            HitPositionStarboard = collision.transform.position;
-            GameObject splash = Instantiate(SplashParticle);
-            splash.transform.position = new Vector3(HitPositionPort.x, 1, HitPositionPort.z);
-            splash.GetComponent<ParticleSystem>().Play();
-            Destroy(collision.gameObject);
-        }
+    IEnumerator DestroySplash(GameObject splash)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(splash);
     }
 }
