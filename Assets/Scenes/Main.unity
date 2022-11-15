@@ -6925,6 +6925,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5364381851103591879, guid: 63ae6ca90926ebb4aa30ff7bc4884922,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5537271387043449200, guid: 63ae6ca90926ebb4aa30ff7bc4884922,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -28680,7 +28685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1178735989
 Transform:
   m_ObjectHideFlags: 0
@@ -31419,7 +31424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1444248003
 Transform:
   m_ObjectHideFlags: 0
@@ -39573,7 +39578,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1890589045
 Transform:
   m_ObjectHideFlags: 0
@@ -40884,7 +40889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1988779363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46127,6 +46132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1054098eaefac9c4caeca146a6bd1e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tracker: {fileID: 0}
   Horizontal: {fileID: 1143598743}
   Vertical: {fileID: 1546175780}
   CanonBallsHolder: {fileID: 503673209}
@@ -46184,6 +46190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1054098eaefac9c4caeca146a6bd1e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tracker: {fileID: 755621021}
   Horizontal: {fileID: 219576556}
   Vertical: {fileID: 104889324}
   CanonBallsHolder: {fileID: 503673209}
@@ -47194,7 +47201,7 @@ PrefabInstance:
     - target: {fileID: 5379605945027239141, guid: e347b12cc57aa0e4ba9320b5eb5d7491,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5379605945127706720, guid: e347b12cc57aa0e4ba9320b5eb5d7491,
         type: 3}

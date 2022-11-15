@@ -5,6 +5,7 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Cannon : MonoBehaviour
 {
+    public Transform Tracker;
     public Transform Horizontal;
     public Transform Vertical;
     public Transform CanonBallsHolder;
@@ -16,19 +17,28 @@ public class Cannon : MonoBehaviour
 
     bool coolDown = false;
 
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
-            RotateHorizontal(-0.1f);
+            RotateHorizontal(-1f);
         if (Input.GetKey(KeyCode.RightArrow))
-            RotateHorizontal(0.1f);
+            RotateHorizontal(1f);
         if (Input.GetKey(KeyCode.UpArrow))
-            RotateVertical(-0.1f);
+            RotateVertical(-1f);
         if (Input.GetKey(KeyCode.DownArrow))
-            RotateVertical(0.1f);
+            RotateVertical(1f);
 
         if (Input.GetKeyDown(KeyCode.Space))
             Shoot();
+
+        if  (Tracker != null)
+        {
+            float h = Tracker.localEulerAngles.y;
+            float v = Tracker.localEulerAngles.x;
+
+            Horizontal.localEulerAngles = new Vector3(0f, h, 0f);
+            Vertical.localEulerAngles = new Vector3(v, 0f, 0f);
+        }
     }
 
     void RotateHorizontal(float direction)
