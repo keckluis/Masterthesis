@@ -44,6 +44,8 @@ public class SailsManager : MonoBehaviour
 
     public Transform WindString;
 
+    bool FrontSailSwitch = false;
+
     private void Start()
     {
         FrontMastPos = FrontMast.localPosition;
@@ -135,12 +137,42 @@ public class SailsManager : MonoBehaviour
         if (backSailRot > 180)
             backSailRot -= 360;
 
-        float frontSailRot = 80f - Mathf.Abs(backSailRot);
-       
-        if (backSailRot <= 0)
-            FrontSailRing.localEulerAngles = new Vector3(0f, frontSailRot, 0f);
+        float frontSailRot = FrontSailRing.localEulerAngles.y;
+        float frontSailRotNEW = 80f - Mathf.Abs(backSailRot);
+
+        if (frontSailRot > 180)
+            frontSailRot -= 360;
+
+        if (backSailRot < 0 && frontSailRot < 0)
+        {
+            FrontSailSwitch = true;
+            frontSailRotNEW = frontSailRot + 1f;
+        }
+        else if (backSailRot > 0 && frontSailRot > 0)
+        {
+            FrontSailSwitch = true;
+            frontSailRotNEW = frontSailRot - 1f;
+        }
         else
-            FrontSailRing.localEulerAngles = new Vector3(0f, -frontSailRot, 0f);
+        {
+            FrontSailSwitch = false;
+        }
+
+        if (!FrontSailSwitch)
+        {
+            if (backSailRot > 0)
+                frontSailRotNEW = -frontSailRotNEW;
+        }
+
+        frontSailRotNEW = Mathf.Clamp(frontSailRotNEW, -75f, 75f);
+
+        if (frontSailRot < frontSailRotNEW + 1f && frontSailRot > frontSailRotNEW - 1f)
+            FrontSailRing.localEulerAngles = new Vector3(0f, frontSailRot, 0f);
+        else if (frontSailRot > frontSailRotNEW)
+            FrontSailRing.localEulerAngles = new Vector3(0f, frontSailRot - 1f, 0f);
+        else if (frontSailRot < frontSailRotNEW)
+            FrontSailRing.localEulerAngles = new Vector3(0f, frontSailRot + 1f, 0f);
+        
 
         FrontSail.localScale = new Vector3(1, HalyardLength * 0.01f, 1);
         FrontSailRopeRings.localPosition = new Vector3(0, FrontSail.localScale.y * -6.5f, 0);
@@ -237,15 +269,6 @@ public class SailsManager : MonoBehaviour
 
         if (ForwardForce > -1)
             ForwardForce = -1;
-    }
-
-    private float ClampDegrees(float input)
-    {
-        if (input >= 360)
-        {
-            input -= 360;
-        }
-        return input;
     }
 
     void OnDrawGizmosSelected()
