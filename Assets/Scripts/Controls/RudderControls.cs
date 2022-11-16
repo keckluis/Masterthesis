@@ -39,8 +39,8 @@ public class RudderControls : MonoBehaviour
 
         Rudder.localEulerAngles = new Vector3(0, rudderDegrees, 0);
 
-        Map.transform.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.01f);
-        Wind.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.01f);
+        Map.transform.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.001f);
+        Wind.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.001f);
         //Map.AddTorque(new Vector3(0, Degrees * Speed * 100f, 0));
     }
 }
