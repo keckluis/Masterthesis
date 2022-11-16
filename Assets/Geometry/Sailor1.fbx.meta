@@ -60,11 +60,121 @@ ModelImporter:
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      bodyMask: 00000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Main_Controller
+        weight: 1
+      - path: Armature/Main_Controller/Elbow_Controller L
+        weight: 1
+      - path: Armature/Main_Controller/Elbow_Controller L/Elbow_Controller L_end
+        weight: 1
+      - path: Armature/Main_Controller/Elbow_Controller R
+        weight: 1
+      - path: Armature/Main_Controller/Elbow_Controller R/Elbow_Controller R_end
+        weight: 1
+      - path: Armature/Main_Controller/Foot_Controller L
+        weight: 1
+      - path: Armature/Main_Controller/Foot_Controller L/Foot_Controller L_end
+        weight: 1
+      - path: Armature/Main_Controller/Foot_Controller R
+        weight: 1
+      - path: Armature/Main_Controller/Foot_Controller R/Foot_Controller R_end
+        weight: 1
+      - path: Armature/Main_Controller/Hand_Controller L
+        weight: 1
+      - path: Armature/Main_Controller/Hand_Controller L/Hand_Controller L_end
+        weight: 1
+      - path: Armature/Main_Controller/Hand_Controller R
+        weight: 1
+      - path: Armature/Main_Controller/Hand_Controller R/Hand_Controller R_end
+        weight: 1
+      - path: Armature/Main_Controller/Hip
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Neck
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Neck/Head
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Neck/Head/Head_end
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder L
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder L/UpperArm L
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder L/UpperArm L/Forearm L
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder L/UpperArm L/Forearm L/Hand
+          L
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder L/UpperArm L/Forearm L/Hand
+          L/Hand L_end
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder R
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder R/UpperArm R
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder R/UpperArm R/Forearm R
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder R/UpperArm R/Forearm R/Hand
+          R
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Spine/Shoulder R/UpperArm R/Forearm R/Hand
+          R/Hand R_end
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh L
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh L/Shin L
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh L/Shin L/Ankle L
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh L/Shin L/Ankle L/Foot L
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh L/Shin L/Ankle L/Foot L/Foot L_end
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh R
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh R/Shin R
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh R/Shin R/Ankle R
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh R/Shin R/Ankle R/Foot R
+        weight: 1
+      - path: Armature/Main_Controller/Hip/Thigh R/Shin R/Ankle R/Foot R/Foot R_end
+        weight: 1
+      - path: Armature/Main_Controller/Knee_Controller L
+        weight: 1
+      - path: Armature/Main_Controller/Knee_Controller L/Knee_Controller L_end
+        weight: 1
+      - path: Armature/Main_Controller/Knee_Controller R
+        weight: 1
+      - path: Armature/Main_Controller/Knee_Controller R/Knee_Controller R_end
+        weight: 1
+      - path: Belt
+        weight: 1
+      - path: Blade
+        weight: 1
+      - path: Body
+        weight: 1
+      - path: Hat
+        weight: 1
+      - path: Hook
+        weight: 1
+      - path: Pants
+        weight: 1
+      - path: Shoes
+        weight: 1
+      - path: Sword
+        weight: 1
+      - path: Vest
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
