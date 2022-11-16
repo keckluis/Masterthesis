@@ -94,7 +94,7 @@ public class SailsManager : MonoBehaviour
 
         ForwardForceCalculations();
 
-        Map.AddForce(Ship.forward * ForwardForce);
+        Map.AddForce(Ship.forward * (ForwardForce * WindStrength));
     }
 
     private void FrontSailCalculations(Vector3 windForce)
@@ -234,11 +234,11 @@ public class SailsManager : MonoBehaviour
         //front sail force
         if (!WindFromFront)
         {
-            ForwardForce -= WindStrength * (HalyardLength / 100);
+            ForwardForce -= (HalyardLength / 100);
         }
         else
         {
-            ForwardForce += (WindStrength * (HalyardLength / 100)) * 0.5f;
+            ForwardForce += (HalyardLength / 100) * 0.5f;
         }
             
         //back sail force
@@ -255,7 +255,7 @@ public class SailsManager : MonoBehaviour
 
             if (sailWindRatio < 1 && sailWindRatio > -1)
             {
-                ForwardForce -= WindStrength * (1 - Mathf.Abs(sailWindRatio));
+                ForwardForce -= 1 - Mathf.Abs(sailWindRatio);
                 WindString.localEulerAngles = new Vector3(0, sailWindRatio * 45f, 0);
             }
             else

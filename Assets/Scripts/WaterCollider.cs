@@ -12,7 +12,12 @@ public class WaterCollider : MonoBehaviour
     private Vector3 HitPosition = Vector3.zero;
 
     public Transform Map;
-   
+
+    private void Start()
+    {
+        //Physics.IgnoreCollision(Map.GetComponent<Collider>(), GetComponent<Collider>());
+    }
+
     private void Update()
     {
         transform.position = Map.position; 
@@ -21,6 +26,7 @@ public class WaterCollider : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        print(collision.gameObject.name);
         if (collision.gameObject.tag == "CannonBall")
         {
             HitPosition = collision.transform.position;
