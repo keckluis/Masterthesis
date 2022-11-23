@@ -14,6 +14,8 @@ public class Cannon : MonoBehaviour
 
     public ParticleSystem MuzzleFlash;
     public GameObject Fuse;
+    public Transform[] FusePath = new Transform[4];
+    [SerializeField]private int currentFusePos = 0;
 
     bool coolDown = false;
 
@@ -38,6 +40,19 @@ public class Cannon : MonoBehaviour
 
             Horizontal.localEulerAngles = new Vector3(0f, h, 0f);
             Vertical.localEulerAngles = new Vector3(v, 0f, 0f);
+        }
+
+        if (Fuse.activeSelf)
+        {
+            if (currentFusePos < FusePath.Length && Fuse.transform.position != FusePath[currentFusePos].position)
+            {
+                Vector3 pos = Vector3.MoveTowards(Fuse.transform.position, FusePath[currentFusePos].position, 0.0005f);
+                Fuse.transform.position = pos;
+            } 
+            else
+            {
+                currentFusePos++;
+            }
         }
     }
 
@@ -72,6 +87,9 @@ public class Cannon : MonoBehaviour
     IEnumerator WaitForShot()
     {
         Fuse.SetActive(true);
+        Fuse.transform.position = FusePath[0].position;
+
+        currentFusePos = 0;
         Fuse.GetComponent<ParticleSystem>().Play();
         yield return new WaitForSeconds(3);
         Fuse.SetActive(false);
