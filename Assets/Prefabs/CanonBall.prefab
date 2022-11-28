@@ -89,6 +89,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f457b577afcaaa4ea0f21df5360cd52,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5f457b577afcaaa4ea0f21df5360cd52,
+        type: 3}
       propertyPath: m_TagString
       value: CannonBall
       objectReference: {fileID: 0}

@@ -14,6 +14,8 @@ public class MapGenerator : MonoBehaviour
 
     public Transform EdgeFogHolder;
 
+    public int EmptynessFactor;
+
     public void CreateMap()
     {
         //delete old objects
@@ -31,7 +33,7 @@ public class MapGenerator : MonoBehaviour
                 if (Blocked.Contains(new Vector2(x, z)))
                     continue;
 
-                int objType = Random.Range(0, Prefabs.Count + 100);
+                int objType = Random.Range(0, Prefabs.Count + EmptynessFactor);
 
                 if (objType < Prefabs.Count)
                 {
@@ -100,7 +102,15 @@ public class MapGenerator : MonoBehaviour
         {
             for (int z = -2900; z < 3000; z += 100)
             {
-                Gizmos.color = new Color(1f, 0.5f, 0f);
+                if (Blocked.Contains(new Vector2(x + 3000, z + 3000)))
+                {
+                    Gizmos.color = Color.red;
+                }
+                else
+                {
+                    Gizmos.color = Color.green;
+                }
+
                 Gizmos.DrawSphere(new Vector3(x, 0f, z), 5);
             }
         }

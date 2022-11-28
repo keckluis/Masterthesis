@@ -5,15 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - CannonBall
+  - Ship
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - EnemyShip
   - Water
   - UI
-  - 
-  - 
+  - CannonBall
+  - CannonBallEnemy
   - 
   - 
   - 
