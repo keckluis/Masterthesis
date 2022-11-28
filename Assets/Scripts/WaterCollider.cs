@@ -26,7 +26,6 @@ public class WaterCollider : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        print(collision.gameObject.name);
         if (collision.gameObject.tag == "CannonBall")
         {
             HitPosition = collision.transform.position;

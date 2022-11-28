@@ -132,7 +132,7 @@ public class SailsManager : MonoBehaviour
                 frontSailRotNEW = -frontSailRotNEW;
         }
 
-        frontSailRotNEW = Mathf.Clamp(frontSailRotNEW, -75f, 75f);
+        frontSailRotNEW = Mathf.Clamp(frontSailRotNEW, -60f, 60f);
 
         if (frontSailRot < frontSailRotNEW + 1f && frontSailRot > frontSailRotNEW - 1f)
             FrontSailRing.localEulerAngles = new Vector3(0f, frontSailRot, 0f);

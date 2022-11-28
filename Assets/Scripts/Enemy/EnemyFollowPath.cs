@@ -33,7 +33,7 @@ public class EnemyFollowPath : MonoBehaviour
     {
         if (Vector3.Distance(EnemyShip.position, PathTargets[Current].position) > 1)
         {
-            Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, SailsManager.WindStrength * 0.1f);
+            Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, SailsManager.WindStrength * 0.05f);
             EnemyShip.position = pos;
             TargetRotation = CalculateTargetRotation();
             EnemyShip.rotation = Quaternion.RotateTowards(EnemyShip.rotation, Quaternion.Euler(TargetRotation), SailsManager.WindStrength * 0.1f);
