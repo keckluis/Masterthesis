@@ -25,7 +25,7 @@ public class SailsManager : MonoBehaviour
     public Rigidbody Map;
     
     public float ShipDegrees;
-    private float BackSailDegrees;
+    [SerializeField]private float BackSailDegrees;
     public Vector2 ShipVector;
 
     public float SheetLength = 80;
@@ -181,13 +181,16 @@ public class SailsManager : MonoBehaviour
             BackSailDegrees = Mathf.Clamp(BackSailDegrees, 0, SheetLength);
         }
 
+        float sailCurvature = (359 - BackSailDegrees) / 79;
+        sailCurvature = Mathf.Clamp(sailCurvature, 0.1f, 1f);
+        
         if (BackSailRing.localEulerAngles.y > 180)
         {
-            BackSail.localScale = new Vector3(-1, 1, 1);
+            BackSail.localScale = new Vector3(-sailCurvature, 1, 1);
         }
         else
         {
-            BackSail.localScale = new Vector3(1, 1, 1);
+            BackSail.localScale = new Vector3(sailCurvature, 1, 1);
         }
 
         SheetRoll2.rotation = Ship.rotation;
