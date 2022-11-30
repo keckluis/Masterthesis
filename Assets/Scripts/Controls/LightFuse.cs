@@ -10,6 +10,7 @@ public class LightFuse : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fuse")
         {
+            Debug.Log(Cannon.gameObject.name + " fired!");
             Cannon.Shoot();
         }
     }

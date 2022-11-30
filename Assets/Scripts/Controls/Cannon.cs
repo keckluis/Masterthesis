@@ -33,14 +33,14 @@ public class Cannon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             Shoot();
 
-        /*if  (Tracker != null)
+        if  (Tracker != null)
         {
             float h = Tracker.localEulerAngles.y;
             float v = Tracker.localEulerAngles.x;
 
             Horizontal.localEulerAngles = new Vector3(0f, h, 0f);
             Vertical.localEulerAngles = new Vector3(v, 0f, 0f);
-        }*/
+        }
 
         if (Fuse.activeSelf)
         {
