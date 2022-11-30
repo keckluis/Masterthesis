@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ResetXRRig : MonoBehaviour
 {
+    public Transform ResetPosition;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            transform.position = new Vector3(1.5f, transform.position.y, -5.5f);
+            transform.position = ResetPosition.position;
         }
     }
 }
