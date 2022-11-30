@@ -46,6 +46,9 @@ public class MapGenerator : MonoBehaviour
                         z + Random.Range(-25, 25));
 
                     obj.transform.localEulerAngles = new Vector3(0f, Random.Range(0, 359), 0f);
+
+                    float scale = Random.Range(1f, 1.5f);
+                    obj.transform.localScale = new Vector3(scale, scale, scale);
                 }
             }
         }

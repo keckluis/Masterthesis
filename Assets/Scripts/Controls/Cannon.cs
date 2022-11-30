@@ -75,7 +75,7 @@ public class Cannon : MonoBehaviour
         }
     }   
 
-    void Shoot()
+    public void Shoot()
     {
         if (!coolDown)
         {
