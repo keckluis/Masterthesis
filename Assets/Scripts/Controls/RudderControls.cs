@@ -15,7 +15,7 @@ public class RudderControls : MonoBehaviour
     void FixedUpdate()
     {
         Speed = Map.velocity.magnitude;
-        if (Input.GetKey(KeyCode.D))
+        /*if (Input.GetKey(KeyCode.D))
         {
             Degrees -= 1f;
         }
@@ -29,7 +29,7 @@ public class RudderControls : MonoBehaviour
                 Degrees -= 1f;
             else if (Degrees < 0)
                 Degrees += 1f;
-        }
+        }*/
 
         Degrees = Mathf.Clamp(Degrees, -179f, 179f);
 
@@ -37,10 +37,14 @@ public class RudderControls : MonoBehaviour
 
         float rudderDegrees = (Degrees / 179f) * 45f;
 
-        Rudder.localEulerAngles = new Vector3(0, rudderDegrees, 0);
+        Rudder.localEulerAngles = new Vector3(0f, rudderDegrees, 0f);
 
-        Map.transform.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.001f);
-        Wind.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.001f);
-        //Map.AddTorque(new Vector3(0, Degrees * Speed * 100f, 0));
+        Map.transform.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.0001f);
+        Wind.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.0001f);
+    }
+
+    public void SteerTEMP(float direction)
+    {
+        Degrees += direction;
     }
 }

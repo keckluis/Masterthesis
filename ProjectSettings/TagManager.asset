@@ -7,6 +7,8 @@ TagManager:
   - CannonBall
   - Ship
   - Fuse
+  - LeftController
+  - RightController
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - CannonBall
   - CannonBallEnemy
   - Fuse
-  - 
+  - TEMP
   - 
   - 
   - 

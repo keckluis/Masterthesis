@@ -19,6 +19,8 @@ public class WindStrings : MonoBehaviour
 
     void FixedUpdate()
     {
+        float yScale = Mathf.Abs((1 /transform.parent.parent.localScale.x) * 0.02f);
+        transform.parent.localScale = new Vector3(0.2f, yScale, 0.2f);
         Vector3[] positions = new Vector3[Positions.Length];
 
         float wiggle = WiggleAmount - Mathf.PingPong(Time.time * WiggleSpeed, WiggleAmount * 2f);
