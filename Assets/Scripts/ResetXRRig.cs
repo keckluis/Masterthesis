@@ -9,7 +9,7 @@ public class ResetXRRig : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            transform.position = ResetPosition.position;
+            transform.localPosition = ResetPosition.localPosition;
         }
     }
 }
