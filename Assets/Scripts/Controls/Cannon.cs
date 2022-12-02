@@ -39,7 +39,7 @@ public class Cannon : MonoBehaviour
             float v = Tracker.localEulerAngles.x;
 
             Horizontal.localEulerAngles = new Vector3(0f, h, 0f);
-            Vertical.localEulerAngles = new Vector3(v, 0f, 0f);
+            Vertical.localEulerAngles = new Vector3(0f, 0f, v);
         }
 
         if (Fuse.activeSelf)
