@@ -8,7 +8,7 @@ public class ShipCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "CannonBall")
         {
-            print("HIT: " + gameObject.name); 
+            print("HIT: " + transform.parent.gameObject.name); 
             Destroy(collision.gameObject);
         }
     }

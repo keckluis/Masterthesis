@@ -224,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
+      maxColor: {r: 0.4811321, g: 0.46978465, b: 0.46978465, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -286,7 +286,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -602,7 +602,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 2000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -670,7 +670,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 3}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 25, y: 10, z: 10}
+    m_Scale: {x: 25, y: 50, z: 10}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1306,10 +1306,10 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.5019608}
-        key1: {r: 1, g: 1, b: 1, a: 0.85490197}
-        key2: {r: 0, g: 0, b: 0, a: 0.5529412}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.6392157}
+        key1: {r: 1, g: 1, b: 1, a: 0.9764706}
+        key2: {r: 0, g: 0, b: 0, a: 0.79607844}
+        key3: {r: 0, g: 0, b: 0, a: 0.5529412}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}

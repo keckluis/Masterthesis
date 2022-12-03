@@ -65,10 +65,8 @@ public class EnemySails : MonoBehaviour
     {
         for (int i = 0; i < Path.PathTargets.Length; i++)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(Path.PathTargets[i].position, 5);
-
             Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(Path.PathTargets[i].position, 3);
             Gizmos.DrawLine(Path.PathTargets[i].position, Path.PathTargets[(i + 1) % Path.PathTargets.Length].position);
         }
     }

@@ -10,20 +10,12 @@ public class MapGenerator : MonoBehaviour
 
     public List<Vector2> Blocked;
 
-    public GameObject EdgeFog;
-
-    public Transform EdgeFogHolder;
-
     public int EmptynessFactor;
 
     public void CreateMap()
     {
         //delete old objects
         DeleteMap();
-
-        //delete old fog
-        DeleteFog();
-
 
         //create and position map objects
         for (int x = 100; x < 6000; x += 100)
@@ -53,33 +45,7 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        Debug.Log(transform.childCount + " map objects created."); 
-
-        //create and position edge fog
-        for (int x = 0; x <= 6000; x += 100){
-            GameObject fogB = Instantiate(EdgeFog);
-            GameObject fogT = Instantiate(EdgeFog);
-
-            fogB.transform.parent = EdgeFogHolder;
-            fogT.transform.parent = EdgeFogHolder;
-
-            fogB.transform.localPosition = new Vector3(x, 0f, 0f);
-            fogT.transform.localPosition = new Vector3(x, 0f, 6000f);
-
-            fogB.transform.localEulerAngles = new Vector3(-90f, 0f, 0f);
-            fogT.transform.localEulerAngles = new Vector3(-90f, 0f, 0f);;
-        }
-
-        for (int z = 0; z <= 6000; z += 100){
-            GameObject fogL = Instantiate(EdgeFog);
-            GameObject fogR = Instantiate(EdgeFog);
-
-            fogL.transform.parent = EdgeFogHolder;
-            fogR.transform.parent = EdgeFogHolder;
-
-            fogL.transform.localPosition = new Vector3(0f, 0f, z);
-            fogR.transform.localPosition = new Vector3(6000f, 0f, z);
-        }
+        Debug.Log(transform.childCount + " map objects created.");     
     }
 
     public void DeleteMap()
@@ -88,14 +54,6 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < childCount; i++)
         {
             DestroyImmediate(transform.GetChild(0).gameObject);
-        }
-    }
-
-    public void DeleteFog(){
-        int childCount = EdgeFogHolder.childCount;
-        for (int i = 0; i < childCount; i++)
-        {
-            DestroyImmediate(EdgeFogHolder.GetChild(0).gameObject);
         }
     }
 

@@ -616,7 +616,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6649210278295415441}
-  - component: {fileID: 6649210278295415440}
   m_Layer: 0
   m_Name: WaterTiles
   m_TagString: Untagged
@@ -648,20 +647,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6649210278295415440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6649210278295415442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7863e36817382949ad1cc37d1930eea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartTile: {fileID: 5802840107249149241}
-  Ship: {fileID: 0}
 --- !u!1 &6787632919313748175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,12 +1034,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49797a5782127ad48b7ececdcdebf7a2, type: 3}
---- !u!1 &5802840107249149241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 49797a5782127ad48b7ececdcdebf7a2,
-    type: 3}
-  m_PrefabInstance: {fileID: 6649210278065248360}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6614667423050760067 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49797a5782127ad48b7ececdcdebf7a2,

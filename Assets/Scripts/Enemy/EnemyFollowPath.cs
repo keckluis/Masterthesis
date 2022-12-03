@@ -12,44 +12,80 @@ public class EnemyFollowPath : MonoBehaviour
     private int Current = 0;
     private Vector3 TargetRotation;
 
+    public EnemyCannon CannonPort;
+    public EnemyCannon CannonStarboard;
+    public Transform Forward;
+    bool followPath = true;
+
     public void OnDrawGizmosSelected()
     {
         for (int i = 0; i < PathTargets.Length; i++)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(PathTargets[i].position, 5);
-
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(PathTargets[i].position, PathTargets[(i + 1) % PathTargets.Length].position);          
+            Gizmos.DrawSphere(PathTargets[i].position, 3);
+            Gizmos.DrawLine(PathTargets[i].position, PathTargets[(i + 1) % PathTargets.Length].position);
         }
     }
 
     private void Start()
     {
+        FindClosestTarget();
         TargetRotation = CalculateTargetRotation();
     }
 
     void FixedUpdate()
     {
-        if (Vector3.Distance(EnemyShip.position, PathTargets[Current].position) > 1)
+        if (CannonPort.fightMode || CannonStarboard.fightMode)
         {
-            Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, SailsManager.WindStrength * 0.05f);
-            EnemyShip.position = pos;
-            TargetRotation = CalculateTargetRotation();
-            EnemyShip.rotation = Quaternion.RotateTowards(EnemyShip.rotation, Quaternion.Euler(TargetRotation), SailsManager.WindStrength * 0.1f);
+            followPath = false;
         }
-        else 
+        if (!CannonPort.fightMode && !CannonStarboard.fightMode && !followPath)
         {
-            Current = (Current + 1) % PathTargets.Length;
+            FindClosestTarget();
+            followPath = true;
         }
 
-        if (EnemyShip.eulerAngles != TargetRotation)
-        {
-            Rudder.localEulerAngles = new Vector3(0, -20, 0);
+        if (followPath) { 
+            if (Vector3.Distance(EnemyShip.position, PathTargets[Current].position) > 1)
+            {
+                Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, SailsManager.WindStrength * 0.05f);
+                EnemyShip.position = pos;
+                TargetRotation = CalculateTargetRotation();
+                EnemyShip.rotation = Quaternion.RotateTowards(EnemyShip.rotation, Quaternion.Euler(TargetRotation), SailsManager.WindStrength * 0.1f);
+            }
+            else
+            {
+                Current = (Current + 1) % PathTargets.Length;
+            }
+
+            if (EnemyShip.eulerAngles != TargetRotation)
+            {
+                Rudder.localEulerAngles = new Vector3(0, -20, 0);
+            }
+            else
+            {
+                Rudder.localEulerAngles = Vector3.zero;
+            }
         }
         else
         {
-            Rudder.localEulerAngles = Vector3.zero;
+            Vector3 pos = Vector3.MoveTowards(EnemyShip.position, Forward.position, SailsManager.WindStrength * 0.05f);
+            EnemyShip.position = pos;
+        }
+    }
+
+    void FindClosestTarget()
+    {
+        float minDistance = Vector3.Distance(PathTargets[0].position, EnemyShip.position);
+        for (int i = 1; i < PathTargets.Length; i++)
+        {
+            float distance = Vector3.Distance(PathTargets[i].position, EnemyShip.position);
+
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                Current = i;
+            }
         }
     }
 

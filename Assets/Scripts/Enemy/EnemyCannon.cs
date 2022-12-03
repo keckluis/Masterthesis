@@ -23,7 +23,8 @@ public class EnemyCannon : MonoBehaviour
     public bool isPort;
     public Vector2 PlayerDirection;
     bool coolDown = false;
-    bool playerInRange = false;
+    public bool playerInRange = false;
+    public bool fightMode = false;
 
     public float MaxError = 3f;
     float hError = 0f;
@@ -38,6 +39,7 @@ public class EnemyCannon : MonoBehaviour
 
         if (PlayerDirection.magnitude < SightDistance)
         {
+            fightMode = true;
             float h = Vector2.Angle(new Vector2(transform.forward.x, transform.forward.z), PlayerDirection) - 90;
 
             if (PlayerDirection.magnitude > OtherCannon.PlayerDirection.magnitude)
@@ -80,6 +82,15 @@ public class EnemyCannon : MonoBehaviour
                 Shoot();
             }      
         }
+        else
+        {
+            fightMode = false;
+        }
+    }
+
+    void AdjustCourse(bool towardsPort)
+    {
+
     }
 
     public void OnDrawGizmosSelected()
@@ -90,7 +101,7 @@ public class EnemyCannon : MonoBehaviour
             Handles.color = Color.green;
 
         Handles.DrawWireDisc(transform.position, Vector3.up,SightDistance);
-        Gizmos.DrawLine(transform.position, PlayerShip.position);
+        //Gizmos.DrawLine(transform.position, PlayerShip.position);
     }
 
     void Shoot()
