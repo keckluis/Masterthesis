@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TerrainTools;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Cannon : MonoBehaviour
@@ -19,6 +20,11 @@ public class Cannon : MonoBehaviour
 
     bool coolDown = false;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            Shoot();
+    }
     void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -29,9 +35,6 @@ public class Cannon : MonoBehaviour
             RotateVertical(-1f);
         if (Input.GetKey(KeyCode.DownArrow))
             RotateVertical(1f);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            Shoot();
 
         /*if  (Tracker != null)
         {
