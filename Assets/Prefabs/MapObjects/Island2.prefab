@@ -72,11 +72,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c3dc4f2d800e307488fdf46160a74319, type: 2}
+    - target: {fileID: -6383870249980958779, guid: 858b5161a3a1c5f4da7bacf198674077,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -4513918453526037365, guid: 858b5161a3a1c5f4da7bacf198674077,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 42000665311f8184db07ad31585f40d9, type: 2}
+    - target: {fileID: -2147642314998828177, guid: 858b5161a3a1c5f4da7bacf198674077,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -1877776859836750246, guid: 858b5161a3a1c5f4da7bacf198674077,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -87,11 +97,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Island2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 858b5161a3a1c5f4da7bacf198674077,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762929807045845498, guid: 858b5161a3a1c5f4da7bacf198674077,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6104412811160216880, guid: 858b5161a3a1c5f4da7bacf198674077,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 39074f0910e3fc647aa82bc6da286c14, type: 2}
+    - target: {fileID: 8817890845472913862, guid: 858b5161a3a1c5f4da7bacf198674077,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 858b5161a3a1c5f4da7bacf198674077, type: 3}
 --- !u!1 &8161707607488380903 stripped
@@ -100,8 +125,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9044736592266101430}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &2285609090611818879
-CapsuleCollider:
+--- !u!64 &3318216137511557378
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -110,7 +135,21 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 21.523413
-  m_Height: 7.111555
-  m_Direction: 1
-  m_Center: {x: -1.0769196, y: 1.375936, z: 1.2301111}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3951720283882819620, guid: 858b5161a3a1c5f4da7bacf198674077, type: 3}
+--- !u!114 &4609277001588849169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161707607488380903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bed3283fee3d045b238f81029888c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Particle: {fileID: 5100745571245952373, guid: 804d648b7973aa144aa52c905758eac2,
+    type: 3}

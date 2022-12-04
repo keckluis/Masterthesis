@@ -63,11 +63,14 @@ public class EnemySails : MonoBehaviour
 
     public void OnDrawGizmosSelected()
     {
-        for (int i = 0; i < Path.PathTargets.Length; i++)
+        if (Path != null)
         {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(Path.PathTargets[i].position, 3);
-            Gizmos.DrawLine(Path.PathTargets[i].position, Path.PathTargets[(i + 1) % Path.PathTargets.Length].position);
-        }
+            for (int i = 0; i < Path.PathTargets.Length; i++)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawSphere(Path.PathTargets[i].position, 3);
+                Gizmos.DrawLine(Path.PathTargets[i].position, Path.PathTargets[(i + 1) % Path.PathTargets.Length].position);
+            }
+        }    
     }
 }

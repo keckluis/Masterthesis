@@ -3588,7 +3588,7 @@ HingeJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2696390209724274072}
-  m_ConnectedBody: {fileID: 1963437526}
+  m_ConnectedBody: {fileID: 2354960218884827684}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
@@ -3668,6 +3668,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6320933787469669251}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &2354960218884827684
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569216926907737180}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!64 &1227250282
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3694,6 +3710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e3782dd2a67e24991bb10ed53e01b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Particle: {fileID: 5100745571245952373, guid: b65da47c76b19494c973a051b75cbeb0,
+    type: 3}
 --- !u!4 &5388564729849588491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7102052537988626296, guid: f539b317dfe42044e8fc83de83ddbb70,
@@ -3745,22 +3763,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6320933787469669251}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1963437526
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591332634686250706}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 1
-  m_AngularDrag: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!114 &1963437521
 MonoBehaviour:
   m_ObjectHideFlags: 0

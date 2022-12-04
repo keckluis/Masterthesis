@@ -72,6 +72,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sandbank2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d9fa6cab73e096747b0e6ecd9209e18f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9fa6cab73e096747b0e6ecd9209e18f, type: 3}
 --- !u!1 &5571628812078921358 stripped
@@ -80,8 +85,8 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4725137147374767071}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &36746390840211225
-CapsuleCollider:
+--- !u!64 &727881745744671336
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,35 +95,21 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 29.8
-  m_Height: 4.050748
-  m_Direction: 1
-  m_Center: {x: -76.2, y: -0.009217858, z: -21.329506}
---- !u!136 &4779749289505308184
-CapsuleCollider:
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6475017866730664754, guid: d9fa6cab73e096747b0e6ecd9209e18f, type: 3}
+--- !u!114 &3117878262212862376
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5571628812078921358}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 16.6
-  m_Height: 4.050748
-  m_Direction: 1
-  m_Center: {x: -143.3, y: -0.009217858, z: -60.1}
---- !u!136 &7633579738286647847
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5571628812078921358}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 46.054337
-  m_Height: 92.10867
-  m_Direction: 1
-  m_Center: {x: -2.02, y: 9.54, z: 5.7}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bed3283fee3d045b238f81029888c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Particle: {fileID: 5100745571245952373, guid: 804d648b7973aa144aa52c905758eac2,
+    type: 3}

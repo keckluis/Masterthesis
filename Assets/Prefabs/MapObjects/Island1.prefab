@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6765724992882881125}
   - component: {fileID: 4214495554860418373}
   - component: {fileID: 5624820558447850689}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Leaves.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4518323830202568025}
   - component: {fileID: 7424965071494588966}
   - component: {fileID: 2939183522949611858}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Palm.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 6422669998482900011}
   - component: {fileID: 1186388938299695210}
   - component: {fileID: 8537496023127082270}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Palm.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 5995103431687984177}
   - component: {fileID: 1525927210917012066}
   - component: {fileID: 7723393841395502543}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Palm.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 3784635991714821816}
   - component: {fileID: 3935889350496555614}
   - component: {fileID: 5393321136811484970}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Leaves.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 8451337383310420481}
   - component: {fileID: 3408860361370053912}
   - component: {fileID: 3197182172299438551}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Coconuts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,8 +514,9 @@ GameObject:
   - component: {fileID: 968814961625216482}
   - component: {fileID: 8205502379605332625}
   - component: {fileID: 679171120314952803}
-  - component: {fileID: 1667558770541607090}
-  m_Layer: 0
+  - component: {fileID: 8687028120982974177}
+  - component: {fileID: 8475001307806497566}
+  m_Layer: 10
   m_Name: Island1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,8 +592,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1667558770541607090
-CapsuleCollider:
+--- !u!64 &8687028120982974177
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -601,10 +602,24 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 20
-  m_Height: 20
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5115796548206632475, guid: 50b213e60a4a21f45b31bfd7617bfd26, type: 3}
+--- !u!114 &8475001307806497566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808837503889967824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bed3283fee3d045b238f81029888c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Particle: {fileID: 5100745571245952373, guid: 804d648b7973aa144aa52c905758eac2,
+    type: 3}
 --- !u!1 &5052775113919122893
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +631,7 @@ GameObject:
   - component: {fileID: 8915353557510513063}
   - component: {fileID: 886638858645517881}
   - component: {fileID: 1407013639469862013}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Leaves.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +714,7 @@ GameObject:
   - component: {fileID: 650175300968964128}
   - component: {fileID: 116082414860882400}
   - component: {fileID: 8667110246513299473}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Palm.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -783,7 +798,7 @@ GameObject:
   - component: {fileID: 7210788523265917105}
   - component: {fileID: 37948436954746470}
   - component: {fileID: 7704680301009059597}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,7 +881,7 @@ GameObject:
   - component: {fileID: 1827351136292559917}
   - component: {fileID: 3337558258686182706}
   - component: {fileID: 7204947125137038298}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Coconut
   m_TagString: Untagged
   m_Icon: {fileID: 0}

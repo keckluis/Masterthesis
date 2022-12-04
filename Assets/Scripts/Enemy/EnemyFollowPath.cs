@@ -51,16 +51,20 @@ public class EnemyFollowPath : MonoBehaviour
                 Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, SailsManager.WindStrength * 0.05f);
                 EnemyShip.position = pos;
                 TargetRotation = CalculateTargetRotation();
-                EnemyShip.rotation = Quaternion.RotateTowards(EnemyShip.rotation, Quaternion.Euler(TargetRotation), SailsManager.WindStrength * 0.1f);
+                EnemyShip.rotation = Quaternion.RotateTowards(EnemyShip.rotation, Quaternion.Euler(TargetRotation), SailsManager.WindStrength * 0.05f);
             }
             else
             {
                 Current = (Current + 1) % PathTargets.Length;
             }
 
-            if (EnemyShip.eulerAngles != TargetRotation)
+            if (EnemyShip.eulerAngles.y > TargetRotation.y + 1f)
             {
-                Rudder.localEulerAngles = new Vector3(0, -20, 0);
+                Rudder.localEulerAngles = new Vector3(0f, 20f, 0f);
+            }
+            else if (EnemyShip.eulerAngles.y < TargetRotation.y - 1f)
+            {
+                Rudder.localEulerAngles = new Vector3(0f, -20f, 0f);
             }
             else
             {
