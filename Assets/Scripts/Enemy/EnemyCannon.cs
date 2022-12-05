@@ -31,6 +31,7 @@ public class EnemyCannon : MonoBehaviour
     float vError = 0f;
 
     public EnemyCannon OtherCannon;
+    public Transform EnemyShip;
 
     void FixedUpdate()
     {
@@ -48,8 +49,16 @@ public class EnemyCannon : MonoBehaviour
             }
             else
             {
-                if (h < -45f || h > 45f)
+                if (h > 45f)
+                {
                     playerInRange = false;
+                    AdjustCourse(false);
+                }
+                else if (h < -45f)
+                {
+                    playerInRange = false;
+                    AdjustCourse(true);
+                }
                 else
                     playerInRange = true;
             }
@@ -90,7 +99,10 @@ public class EnemyCannon : MonoBehaviour
 
     void AdjustCourse(bool towardsPort)
     {
-
+        if (towardsPort) 
+            EnemyShip.localEulerAngles = new Vector3(0f, EnemyShip.localEulerAngles.y + 0.1f, 0f);
+        else
+            EnemyShip.localEulerAngles = new Vector3(0f, EnemyShip.localEulerAngles.y - 0.1f, 0f);
     }
 
     public void OnDrawGizmosSelected()

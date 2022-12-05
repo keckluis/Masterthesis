@@ -7,10 +7,13 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     public List<GameObject> Prefabs;
+    public List<GameObject> Colliders;
 
     public List<Vector2> Blocked;
 
     public int EmptynessFactor;
+
+    public Transform MapColliders;
 
     public void CreateMap()
     {
@@ -41,6 +44,12 @@ public class MapGenerator : MonoBehaviour
 
                     float scale = Random.Range(1f, 1.5f);
                     obj.transform.localScale = new Vector3(scale, scale, scale);
+
+                    GameObject TEST = Instantiate(Colliders[objType]);
+                    TEST.transform.parent = MapColliders;
+                    TEST.transform.position = obj.transform.position;
+                    TEST.transform.rotation = obj.transform.rotation;
+                    TEST.transform.localScale = obj.transform.localScale;
                 }
             }
         }
@@ -54,6 +63,7 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < childCount; i++)
         {
             DestroyImmediate(transform.GetChild(0).gameObject);
+            DestroyImmediate(MapColliders.GetChild(0).gameObject);
         }
     }
 
