@@ -15,7 +15,7 @@ public class RudderControls : MonoBehaviour
     void FixedUpdate()
     {
         Speed = Map.velocity.magnitude;
-        if (Input.GetKey(KeyCode.D))
+        /*if (Input.GetKey(KeyCode.D))
         {
             Degrees -= 1f;
         }
@@ -29,7 +29,7 @@ public class RudderControls : MonoBehaviour
                 Degrees -= 1f;
             else if (Degrees < 0)
                 Degrees += 1f;
-        }
+        }*/
 
         Degrees = Mathf.Clamp(Degrees, -179f, 179f);
 

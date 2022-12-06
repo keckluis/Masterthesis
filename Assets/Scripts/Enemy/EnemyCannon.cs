@@ -74,7 +74,7 @@ public class EnemyCannon : MonoBehaviour
             float v = Vector3.Magnitude(PlayerDirection);
 
             if (v > 30f)
-                v = (v / SightDistance) * 30f;
+                v = (v / SightDistance) * 25f;
             else
                 v = 0f;
 

@@ -27,7 +27,7 @@ public class Cannon : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        /*if (Input.GetKey(KeyCode.LeftArrow))
             RotateHorizontal(-1f);
         if (Input.GetKey(KeyCode.RightArrow))
             RotateHorizontal(1f);
@@ -35,6 +35,7 @@ public class Cannon : MonoBehaviour
             RotateVertical(-1f);
         if (Input.GetKey(KeyCode.DownArrow))
             RotateVertical(1f);
+        */
 
         /*if  (Tracker != null)
         {

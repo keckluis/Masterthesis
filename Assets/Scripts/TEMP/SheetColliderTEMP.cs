@@ -17,10 +17,12 @@ public class SheetColliderTEMP : MonoBehaviour
         if (Left && !Right)
         {
             SailsManager.SheetLength -= 0.1f;
+            transform.Rotate(transform.right, -1f);
         }
         else if (!Left && Right)
         {
             SailsManager.SheetLength += 0.1f;
+            transform.Rotate(transform.right, 1f);
         }
     }
 
