@@ -64,12 +64,6 @@ public class SailsManager : MonoBehaviour
         {
             SailOnPort= false;
         }
-    }
-
-    void FixedUpdate()
-    {
-        //make sure ship never stops
-        ForwardForce = -1;
 
         //clamp sheet length
         SheetLength = Mathf.Clamp(SheetLength, 1f, 80f);
@@ -77,12 +71,12 @@ public class SailsManager : MonoBehaviour
         //clamp halyard length (10-100%)
         HalyardLength = Mathf.Clamp(HalyardLength, 10f, 100f);
 
-        
+
         Vector3 windUpdate = Vector3.Normalize(Wind.position) - Vector3.zero;
         WindVector = new Vector2(windUpdate.x, windUpdate.z);
         WindDegrees = (Mathf.Atan2(WindVector.x, WindVector.y) * 180f / Mathf.PI);
         ShipDegrees = Map.transform.eulerAngles.y;
-       
+
         WindIndicator.eulerAngles = new Vector3(WindIndicator.eulerAngles.x, WindDegrees, WindIndicator.eulerAngles.z);
 
         ShipSpeed = Map.velocity.magnitude;
@@ -94,8 +88,11 @@ public class SailsManager : MonoBehaviour
         FrontSailCalculations(windForce);
 
         FrontMast.localPosition = FrontMastPos;
-        FrontMast.localEulerAngles = FrontMastRot;
+        FrontMast.localEulerAngles = FrontMastRot;      
+    }
 
+    void FixedUpdate()
+    {
         ForwardForceCalculations();
 
         Map.AddForce(Ship.forward * (ForwardForce * WindStrength));
@@ -212,6 +209,8 @@ public class SailsManager : MonoBehaviour
 
     private void ForwardForceCalculations()
     {
+        //reset force before new calculation 
+        ForwardForce = -1;
 
         //front sail force
         if (!WindFromFront)
@@ -249,6 +248,7 @@ public class SailsManager : MonoBehaviour
             }         
         }
 
+        //make sure ship never stops
         if (ForwardForce > -1f)
             ForwardForce = -1f;
     }
