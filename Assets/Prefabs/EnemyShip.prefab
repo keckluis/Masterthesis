@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartPoint: {fileID: 1819653551}
-  MiddlePoints: []
+  MiddlePoint1: {fileID: 0}
+  MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 45590881}
+  SailsManager: {fileID: 0}
 --- !u!120 &17191597
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -187,6 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 188499580}
+  - component: {fileID: 2393584989963465054}
   m_Layer: 4
   m_Name: EnemyShipAdditions
   m_TagString: Untagged
@@ -212,6 +215,26 @@ Transform:
   m_Father: {fileID: 5778908558390821992}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2393584989963465054
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188499579}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff572b7d71cc6db40a6ed908adf7b673, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &321403001
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,8 +374,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartPoint: {fileID: 1435309197}
-  MiddlePoints: []
+  MiddlePoint1: {fileID: 0}
+  MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 1772427566}
+  SailsManager: {fileID: 0}
 --- !u!120 &360442776
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -613,8 +638,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartPoint: {fileID: 346037061}
-  MiddlePoints: []
+  MiddlePoint1: {fileID: 0}
+  MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 1886517884}
+  SailsManager: {fileID: 0}
 --- !u!120 &913269736
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1034,8 +1061,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartPoint: {fileID: 321403002}
-  MiddlePoints: []
+  MiddlePoint1: {fileID: 0}
+  MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 1549681864}
+  SailsManager: {fileID: 0}
 --- !u!120 &1677967132
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3785,6 +3814,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6989282167128152099, guid: f539b317dfe42044e8fc83de83ddbb70, type: 3}
+--- !u!95 &1355586265718288484
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569216926907737180}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff572b7d71cc6db40a6ed908adf7b673, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1227250281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3804,6 +3853,7 @@ MonoBehaviour:
   CannonStarboard: {fileID: 5424274502421538618}
   PlayerShip: 0
   Health: 2
+  ShipAdditions: {fileID: 188499579}
 --- !u!4 &5388564729849588491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7102052537988626296, guid: f539b317dfe42044e8fc83de83ddbb70,
@@ -3856,20 +3906,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6320933787469669251}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1963437521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591332634686250706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad8ff452597222f4bb665aa295fbb224, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FloatingAmount: 0.1
-  FloatingSpeed: 0.05
 --- !u!114 &1963437523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3888,6 +3924,20 @@ MonoBehaviour:
   BackSailPort: {fileID: 338491199}
   BackSailStarboard: {fileID: 1702183971}
   Path: {fileID: 0}
+--- !u!114 &5030096099782553217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6591332634686250706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8ff452597222f4bb665aa295fbb224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatingAmount: 0.1
+  FloatingSpeed: 0.1
 --- !u!4 &6689701711866482823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 823859155021017860, guid: f539b317dfe42044e8fc83de83ddbb70,

@@ -12,6 +12,7 @@ public class ShipCollider : MonoBehaviour
     private bool Destroyed = false;
     private Transform Ship;
     public int Health = 2;
+    public GameObject ShipAdditions;
 
     private void FixedUpdate()
     {
@@ -36,6 +37,8 @@ public class ShipCollider : MonoBehaviour
             Health -= 1;
             GameObject ship = transform.parent.gameObject;
             print("HIT: " + ship.name);
+            GetComponent<Animator>().SetTrigger("Shake");
+            ShipAdditions.GetComponent<Animator>().SetTrigger("Shake");
             Vector3 particlePos = collision.transform.position;
             Vector3 particleDir = collision.gameObject.GetComponent<Rigidbody>().velocity;
             particleDir = new Vector3(-particleDir.x, -particleDir.y, -particleDir.z);
