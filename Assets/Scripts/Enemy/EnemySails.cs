@@ -1,22 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySails : MonoBehaviour
 {
     public SailsManager SailsManager;
-    public Transform FrontSailRing;
-    public Transform BackSailRing;
-    public Transform BackSailPort;
-    public Transform BackSailStarboard;
+    public Transform FrontSailRing, BackSailRing;
+    public Transform BackSailPort, BackSailStarboard;
+    public Transform FrontSail, BackSail, Jib;
+    public Transform FrontSailRopeRings, BackSailRopeRings;
+    private float FrontRingsY, BackRingsY;
 
     public EnemyFollowPath Path;
 
     float ShipDegrees;
     Vector2 ShipVector;
     float WindShipAngle;
-    //bool WindFromFront;
+    private Vector3 JibStartRotation;
 
+    private void Start()
+    {
+        JibStartRotation = Jib.localEulerAngles;
+        FrontRingsY = FrontSailRopeRings.localPosition.y;
+        BackRingsY = BackSailRopeRings.localPosition.y;
+    }
+
+    [System.Obsolete]
     void Update()
     {
         Vector2 windVector = SailsManager.WindVector;
@@ -32,23 +42,31 @@ public class EnemySails : MonoBehaviour
 
         Vector3 windForce = new Vector3(windVector.x * windStrength, 0, windVector.y * windStrength);
 
-        if (WindShipAngle > 135)
-        {
-           // WindFromFront = true;
-        }
-        else
-        {
-            //WindFromFront = false;
-        }
-
-        //Vector3 speed = GetComponent<Rigidbody>().velocity;
-        //Vector3 speedAngular = GetComponent<Rigidbody>().angularVelocity;
-
+      
         BackSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, BackSailPort.position);
         BackSailRing.GetComponent<Rigidbody>().AddForceAtPosition(windForce, BackSailStarboard.position);
-        //GetComponent<Rigidbody>().AddForce(windForce * -2f);
 
-        FrontSailRing.localEulerAngles = new Vector3(0, BackSailRing.localEulerAngles.y, 0);
+        float backSailRot = BackSailRing.localEulerAngles.y;
+        if (backSailRot > 180f)
+            backSailRot -= 360f;
+
+        FrontSailRing.localEulerAngles = new Vector3(0, backSailRot, 0);
+
+        Jib.localEulerAngles = JibStartRotation;
+        float jibRot = -backSailRot;
+        if (jibRot < 0)
+            jibRot = -40f - jibRot;
+        else
+            jibRot = 40f - jibRot;
+
+        Jib.Rotate(0, 0, jibRot, Space.Self);
+        float jibScale = backSailRot / 40f;
+        if (jibScale > 0 && jibScale < 0.1f)
+            jibScale = 0.1f;
+        else if (jibScale < 0 && jibScale > -0.1f)
+            jibScale = -0.1f;
+        Jib.GetChild(0).localScale = new Vector3(jibScale, 1f, 1f);
+        Jib.GetChild(0).GetChild(0).localScale = new Vector3(1f / jibScale, 1f, 1f);
 
         HingeJoint hinge = BackSailRing.GetComponent<HingeJoint>();
         JointLimits limits = hinge.limits;
@@ -56,9 +74,32 @@ public class EnemySails : MonoBehaviour
         limits.min = -frontSheet;
         limits.max = frontSheet;
         hinge.limits = limits;
+    }
 
-        //GetComponent<Rigidbody>().velocity = speed;
-        //GetComponent<Rigidbody>().angularVelocity = speedAngular;
+    private void FixedUpdate()
+    {
+        if (WindShipAngle > 135)
+        {
+            if (FrontSail.localScale.y > 0.1f)
+            {
+                FrontSail.localScale = new Vector3(1f, FrontSail.localScale.y - 0.005f, 1f);
+                FrontSailRopeRings.localPosition = new Vector3(0f, FrontSail.localScale.y * FrontRingsY, 0f);
+
+                BackSail.localScale = new Vector3(1f, BackSail.localScale.y - 0.005f, 1f);
+                BackSailRopeRings.localPosition = new Vector3(0f, BackSail.localScale.y * BackRingsY, 0f);
+            }
+        }
+        else
+        {
+            if (FrontSail.localScale.y < 1f)
+            {
+                FrontSail.localScale = new Vector3(1f, FrontSail.localScale.y + 0.005f, 1f);
+                FrontSailRopeRings.localPosition = new Vector3(0f, FrontSail.localScale.y * FrontRingsY, 0f);
+
+                BackSail.localScale = new Vector3(1f, BackSail.localScale.y + 0.005f, 1f);
+                BackSailRopeRings.localPosition = new Vector3(0f, BackSail.localScale.y * BackRingsY, 0f);
+            }
+        }
     }
 
     public void OnDrawGizmosSelected()

@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class FuseStickTransform : MonoBehaviour
 {
-    public Transform Tracker;
-
-    void Update()
+    public Transform XROrigin;
+    void LateUpdate()
     {
-        transform.position = Tracker.position;
-        transform.localEulerAngles = Tracker.localEulerAngles;
+        transform.position += XROrigin.position;
     }
 }

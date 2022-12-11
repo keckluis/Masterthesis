@@ -17,6 +17,8 @@ public class EnemyFollowPath : MonoBehaviour
     public Transform Forward;
     bool followPath = true;
 
+    public Transform BackSail;
+
     public void OnDrawGizmosSelected()
     {
         for (int i = 0; i < PathTargets.Length; i++)
@@ -48,7 +50,10 @@ public class EnemyFollowPath : MonoBehaviour
         if (followPath) { 
             if (Vector3.Distance(EnemyShip.position, PathTargets[Current].position) > 1)
             {
-                Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, SailsManager.WindStrength * 0.05f);
+                float sailSize = BackSail.localScale.y;
+                sailSize = Mathf.Clamp(sailSize, 0.5f, 1f);
+                float speed = SailsManager.WindStrength * 0.05f * sailSize;
+                Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, speed);
                 EnemyShip.position = pos;
                 TargetRotation = CalculateTargetRotation();
                 EnemyShip.rotation = Quaternion.RotateTowards(EnemyShip.rotation, Quaternion.Euler(TargetRotation), SailsManager.WindStrength * 0.05f);
