@@ -13,15 +13,21 @@ public class ShipCollider : MonoBehaviour
     private Transform Ship;
     public int Health = 2;
     public GameObject ShipAdditions;
+    public GameObject BackSailring;
 
     private void FixedUpdate()
     {
         if (Destroyed && Ship != null)
         {
+            Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<Collider>());
+            Destroy(BackSailring.GetComponent<HingeJoint>());
+            Destroy(BackSailring.GetComponent<Rigidbody>());
+            Destroy(BackSailring.GetComponent<Collider>());
             if (Ship.localEulerAngles.z < 70f)
             {
-                Ship.localEulerAngles = new Vector3(Ship.localEulerAngles.x, Ship.localEulerAngles.y, Ship.localEulerAngles.z + 1f);
-                Ship.localPosition = new Vector3(Ship.localPosition.x, Ship.localPosition.y - 0.2f, Ship.localPosition.z);
+                Ship.localEulerAngles = new Vector3(Ship.localEulerAngles.x, Ship.localEulerAngles.y, Ship.localEulerAngles.z + 0.25f);
+                Ship.localPosition = new Vector3(Ship.localPosition.x, Ship.localPosition.y - 0.05f, Ship.localPosition.z);
             }
             else
             {

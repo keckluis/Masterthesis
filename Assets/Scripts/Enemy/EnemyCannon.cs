@@ -99,10 +99,13 @@ public class EnemyCannon : MonoBehaviour
 
     void AdjustCourse(bool towardsPort)
     {
-        if (towardsPort) 
-            EnemyShip.localEulerAngles = new Vector3(0f, EnemyShip.localEulerAngles.y + 0.1f, 0f);
-        else
-            EnemyShip.localEulerAngles = new Vector3(0f, EnemyShip.localEulerAngles.y - 0.1f, 0f);
+        if (!EnemyShip.GetComponent<EnemySails>().Path.EvadingObject)
+        {
+            if (towardsPort)
+                EnemyShip.Rotate(EnemyShip.up, 0.1f);
+            else
+                EnemyShip.Rotate(EnemyShip.up, -0.1f);
+        }
     }
 
     public void OnDrawGizmosSelected()

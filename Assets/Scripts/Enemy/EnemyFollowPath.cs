@@ -19,6 +19,9 @@ public class EnemyFollowPath : MonoBehaviour
 
     public Transform BackSail;
 
+    public bool EvadingObject = false;
+    private int EvadeDirection = 0;
+
     public void OnDrawGizmosSelected()
     {
         for (int i = 0; i < PathTargets.Length; i++)
@@ -47,8 +50,9 @@ public class EnemyFollowPath : MonoBehaviour
             followPath = true;
         }
 
-        if (followPath) { 
-            if (Vector3.Distance(EnemyShip.position, PathTargets[Current].position) > 1)
+        if (followPath) {
+
+            if (Vector3.Distance(EnemyShip.position, PathTargets[Current].position) > 1f)
             {
                 float sailSize = BackSail.localScale.y;
                 sailSize = Mathf.Clamp(sailSize, 0.5f, 1f);
@@ -74,10 +78,37 @@ public class EnemyFollowPath : MonoBehaviour
             else
             {
                 Rudder.localEulerAngles = Vector3.zero;
+                
+                if (Physics.Raycast(EnemyShip.position, PathTargets[Current].position, Vector3.Distance(EnemyShip.position, PathTargets[Current].position), 13))
+                {
+                    Current = (Current + 1) % PathTargets.Length;
+                }
             }
         }
         else
         {
+            if (!EvadingObject && Physics.Raycast(EnemyShip.position, Forward.position, Vector3.Distance(EnemyShip.position, Forward.position), 13))
+            {
+                EvadingObject = true;
+                EvadeDirection = Random.Range(0, 1);
+            }
+            else
+            {
+                EvadingObject= false;
+            }
+
+            if (EvadingObject)
+            {
+                if (EvadeDirection== 0)
+                {
+                    EnemyShip.Rotate(EnemyShip.up, -0.1f);
+                }
+                else
+                {
+                    EnemyShip.Rotate(EnemyShip.up, 0.1f);
+                }
+            }
+
             Vector3 pos = Vector3.MoveTowards(EnemyShip.position, Forward.position, SailsManager.WindStrength * 0.05f);
             EnemyShip.position = pos;
         }
