@@ -7,6 +7,6 @@ public class FuseStickTransform : MonoBehaviour
     public Transform XROrigin;
     void LateUpdate()
     {
-        transform.position += XROrigin.position;
+        transform.position -= XROrigin.position;
     }
 }

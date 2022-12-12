@@ -19,6 +19,7 @@ public class Cannon : MonoBehaviour
     [SerializeField]private int currentFusePos = 0;
 
     bool coolDown = false;
+    public Animator ShakeAnimator;
 
     private void Update()
     {
@@ -98,6 +99,7 @@ public class Cannon : MonoBehaviour
         yield return new WaitForSeconds(3);
         Fuse.SetActive(false);
         MuzzleFlash.Play();
+        ShakeAnimator.SetTrigger("ShakeSmall");
 
         GameObject cb = Instantiate(CanonBall, CanonBallsHolder);
         cb.transform.position = Vertical.position;

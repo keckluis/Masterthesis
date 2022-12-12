@@ -189,7 +189,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 188499580}
-  - component: {fileID: 2393584989963465054}
   m_Layer: 4
   m_Name: EnemyShipAdditions
   m_TagString: Untagged
@@ -204,7 +203,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188499579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -212,29 +211,9 @@ Transform:
   - {fileID: 1916722250}
   - {fileID: 1157950644}
   - {fileID: 1754762820}
-  m_Father: {fileID: 5778908558390821992}
-  m_RootOrder: 0
+  m_Father: {fileID: 4503869786951041450}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2393584989963465054
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188499579}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff572b7d71cc6db40a6ed908adf7b673, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &321403001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,7 +994,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5778908558390821992}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1677967130
 GameObject:
@@ -10434,7 +10413,7 @@ PrefabInstance:
     - target: {fileID: -1641418580741316055, guid: f539b317dfe42044e8fc83de83ddbb70,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1556709120960990225, guid: f539b317dfe42044e8fc83de83ddbb70,
         type: 3}
@@ -11314,9 +11293,16 @@ MonoBehaviour:
   MaxError: 0.25
   OtherCannon: {fileID: 1110465686}
   EnemyShip: {fileID: 5778908558390821992}
+  ShakeAnimator: {fileID: 1355586265718288484}
 --- !u!4 &3876399375678280521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2129134467388968758, guid: f539b317dfe42044e8fc83de83ddbb70,
+    type: 3}
+  m_PrefabInstance: {fileID: 6320933787469669251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4503869786951041450 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1641418580741316055, guid: f539b317dfe42044e8fc83de83ddbb70,
     type: 3}
   m_PrefabInstance: {fileID: 6320933787469669251}
   m_PrefabAsset: {fileID: 0}
@@ -11395,7 +11381,6 @@ MonoBehaviour:
   CannonStarboard: {fileID: 5424274502421538618}
   PlayerShip: 0
   Health: 2
-  ShipAdditions: {fileID: 188499579}
   BackSailring: {fileID: 2696390209724274072}
 --- !u!4 &4606565095049997136 stripped
 Transform:
@@ -11443,6 +11428,7 @@ MonoBehaviour:
   MaxError: 0.25
   OtherCannon: {fileID: 1937653417}
   EnemyShip: {fileID: 5778908558390821992}
+  ShakeAnimator: {fileID: 1355586265718288484}
 --- !u!4 &5778908558390821992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f539b317dfe42044e8fc83de83ddbb70,

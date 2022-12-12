@@ -32,6 +32,7 @@ public class EnemyCannon : MonoBehaviour
 
     public EnemyCannon OtherCannon;
     public Transform EnemyShip;
+    public Animator ShakeAnimator;
 
     void FixedUpdate()
     {
@@ -133,6 +134,7 @@ public class EnemyCannon : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         MuzzleFlash.Play();
+        ShakeAnimator.SetTrigger("ShakeSmall");
 
         GameObject cb = Instantiate(CanonBall, CanonBallsHolder);
         cb.transform.position = Vertical.position;
