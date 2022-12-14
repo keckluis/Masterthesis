@@ -7,10 +7,10 @@ using UnityEngine;
 public class SailsManager : MonoBehaviour
 {
     public Vector2 WindVector = new Vector2(1f, 0f);
-    public Transform Wind;
+    //public Transform Wind;
     public float WindDegrees;
     public float WindStrength = 1;
-    public Transform Ship;
+    public Rigidbody Ship;
     public Transform WindIndicator;
     public Transform FrontSailRing, FrontSail, FrontSailRopeRings;
 
@@ -19,7 +19,7 @@ public class SailsManager : MonoBehaviour
     public Transform FrontSailPort, FrontSailStarboard;
     public Transform FrontMast;
 
-    public Rigidbody Map;
+    //public Rigidbody Map;
     
     public float ShipDegrees;
     public float BackSailDegrees;
@@ -72,15 +72,15 @@ public class SailsManager : MonoBehaviour
         HalyardLength = Mathf.Clamp(HalyardLength, 10f, 100f);
 
 
-        Vector3 windUpdate = Vector3.Normalize(Wind.position) - Vector3.zero;
-        WindVector = new Vector2(windUpdate.x, windUpdate.z);
+        //Vector3 windUpdate = Vector3.Normalize(Wind.position) - Vector3.zero;
+        //WindVector = new Vector2(windUpdate.x, windUpdate.z);
         WindDegrees = (Mathf.Atan2(WindVector.x, WindVector.y) * 180f / Mathf.PI);
-        ShipDegrees = Map.transform.eulerAngles.y;
+        ShipDegrees = Ship.transform.eulerAngles.y;
 
         WindIndicator.eulerAngles = new Vector3(WindIndicator.eulerAngles.x, WindDegrees, WindIndicator.eulerAngles.z);
 
-        ShipSpeed = Map.velocity.magnitude;
-        WindShipAngle = Vector2.Angle(WindVector, new Vector2(Ship.forward.x, Ship.forward.z));
+        ShipSpeed = Ship.velocity.magnitude;
+        WindShipAngle = Vector2.Angle(WindVector, new Vector2(Ship.transform.forward.x, Ship.transform.forward.z));
 
         Vector3 windForce = new Vector3(WindVector.x * WindStrength, 0f, WindVector.y * WindStrength);
 
@@ -95,7 +95,7 @@ public class SailsManager : MonoBehaviour
     {
         ForwardForceCalculations();
 
-        Map.AddForce(Ship.forward * (ForwardForce * WindStrength));
+        Ship.AddForce(Ship.transform.forward * (ForwardForce * WindStrength));
     }
 
     private void FrontSailCalculations(Vector3 windForce)
@@ -169,6 +169,7 @@ public class SailsManager : MonoBehaviour
     private void BackSailCalculations(Vector3 windForce)
     {  
         BackSailRing.GetComponent<Rigidbody>().AddForce(windForce);
+        Ship.AddForce(-windForce);
         HingeJoint backHinge = BackSailRing.GetComponent<HingeJoint>();
         JointLimits backLimits = backHinge.limits;
         backLimits.min = -SheetLength;
@@ -210,16 +211,16 @@ public class SailsManager : MonoBehaviour
     private void ForwardForceCalculations()
     {
         //reset force before new calculation 
-        ForwardForce = -1;
+        ForwardForce = 1f;
 
         //front sail force
         if (!WindFromFront)
         {
-            ForwardForce -= (HalyardLength / 100f);
+            ForwardForce += (HalyardLength / 100f);
         }
         else
         {
-            ForwardForce += (HalyardLength / 100f) * 0.5f;
+            ForwardForce -= (HalyardLength / 100f) * 0.5f;
         }
             
         //back sail force
@@ -236,7 +237,7 @@ public class SailsManager : MonoBehaviour
 
             if (sailWindRatio < 1f && sailWindRatio > -1f)
             {
-                ForwardForce -= 1f - Mathf.Abs(sailWindRatio);
+                ForwardForce += 1f - Mathf.Abs(sailWindRatio);
                 WindString.localEulerAngles = new Vector3(0f, sailWindRatio * 45f, 0f);
             }
             else
@@ -249,8 +250,8 @@ public class SailsManager : MonoBehaviour
         }
 
         //make sure ship never stops
-        if (ForwardForce > -1f)
-            ForwardForce = -1f;
+        if (ForwardForce < 1f)
+            ForwardForce = 1f;
     }
 
     void OnDrawGizmosSelected()

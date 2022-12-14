@@ -514,9 +514,10 @@ GameObject:
   - component: {fileID: 968814961625216482}
   - component: {fileID: 8205502379605332625}
   - component: {fileID: 679171120314952803}
-  - component: {fileID: 8687028120982974177}
   - component: {fileID: 8475001307806497566}
-  m_Layer: 10
+  - component: {fileID: 6913372609538416861}
+  - component: {fileID: 878801609555160428}
+  m_Layer: 3
   m_Name: Island1
   m_TagString: MapObject
   m_Icon: {fileID: 0}
@@ -592,20 +593,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8687028120982974177
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3808837503889967824}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5115796548206632475, guid: 50b213e60a4a21f45b31bfd7617bfd26, type: 3}
 --- !u!114 &8475001307806497566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,6 +607,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Particle: {fileID: 5100745571245952373, guid: 804d648b7973aa144aa52c905758eac2,
     type: 3}
+  CrashingShips: []
+--- !u!54 &6913372609538416861
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808837503889967824}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!64 &878801609555160428
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808837503889967824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -870077520638187916, guid: 50b213e60a4a21f45b31bfd7617bfd26, type: 3}
 --- !u!1 &5052775113919122893
 GameObject:
   m_ObjectHideFlags: 0

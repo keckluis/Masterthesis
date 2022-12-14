@@ -60,11 +60,12 @@ public class EnemySails : MonoBehaviour
             jibRot = 40f - jibRot;
 
         Jib.Rotate(0, 0, jibRot, Space.Self);
-        float jibScale = backSailRot / 40f;
-        if (jibScale > 0 && jibScale < 0.1f)
-            jibScale = 0.1f;
-        else if (jibScale < 0 && jibScale > -0.1f)
-            jibScale = -0.1f;
+        float jibScale;
+        if (backSailRot < 0)
+            jibScale = -1f;
+        else
+            jibScale = 1f;
+
         Jib.GetChild(0).localScale = new Vector3(jibScale, 1f, 1f);
         Jib.GetChild(0).GetChild(0).localScale = new Vector3(1f / jibScale, 1f, 1f);
 

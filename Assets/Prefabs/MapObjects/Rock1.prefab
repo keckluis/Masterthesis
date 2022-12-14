@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 7568994500730323435}
   - component: {fileID: 6478499571085793435}
   - component: {fileID: 3676046509993764869}
-  - component: {fileID: 4253908013317863934}
-  m_Layer: 10
+  - component: {fileID: -4671134140068243015}
+  - component: {fileID: 1171373335968965716}
+  m_Layer: 3
   m_Name: Rock1
   m_TagString: MapObject
   m_Icon: {fileID: 0}
@@ -99,7 +100,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Particle: {fileID: 5100745571245952373, guid: 57fc3fa0be8229841a69ac2687f01ee1,
     type: 3}
---- !u!64 &4253908013317863934
+  CrashingShips: []
+--- !u!54 &-4671134140068243015
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280497028625778472}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!64 &1171373335968965716
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,4 +130,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4013275331872712965, guid: 2835447db079b3c458586fa62c9ad010, type: 3}
+  m_Mesh: {fileID: 7702779526387289552, guid: faea8e9f70543df49908d303f79a47b4, type: 3}

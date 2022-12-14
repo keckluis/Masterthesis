@@ -11,7 +11,7 @@ public class Cannon : MonoBehaviour
     public Transform Vertical;
     public Transform CanonBallsHolder;
     public GameObject CanonBall;
-    public Rigidbody Map;
+    public Rigidbody Ship;
 
     public ParticleSystem MuzzleFlash;
     public GameObject Fuse;
@@ -104,7 +104,7 @@ public class Cannon : MonoBehaviour
         GameObject cb = Instantiate(CanonBall, CanonBallsHolder);
         cb.transform.position = Vertical.position;
 
-        cb.GetComponent<Rigidbody>().AddForce(Vertical.forward * 2_000 + Map.velocity);
+        cb.GetComponent<Rigidbody>().AddForce((Vertical.forward * 2_000f) + Ship.velocity);
 
         yield return new WaitForSeconds(2);
         coolDown = false;

@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d9fa6cab73e096747b0e6ecd9209e18f,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d9fa6cab73e096747b0e6ecd9209e18f,
         type: 3}
@@ -90,7 +90,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4725137147374767071}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &727881745744671336
+--- !u!54 &4910864441634688001
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5571628812078921358}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!64 &-5136444553596285544
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +119,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -6475017866730664754, guid: d9fa6cab73e096747b0e6ecd9209e18f, type: 3}
+  m_Mesh: {fileID: -1978791552676052434, guid: d9fa6cab73e096747b0e6ecd9209e18f, type: 3}
 --- !u!114 &3117878262212862376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,3 +134,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Particle: {fileID: 5100745571245952373, guid: 804d648b7973aa144aa52c905758eac2,
     type: 3}
+  CrashingShips: []

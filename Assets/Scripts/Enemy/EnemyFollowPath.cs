@@ -79,19 +79,6 @@ public class EnemyFollowPath : MonoBehaviour
             else
             {
                 Rudder.localEulerAngles = Vector3.zero;
-
-                RaycastHit hit;
-                Vector3 from = new Vector3(EnemyShip.position.x, EnemyShip.position.y + 2f, EnemyShip.position.z);
-                Vector3 to = new Vector3(PathTargets[Current].position.x, PathTargets[Current].position.y + 2f, PathTargets[Current].position.z);
-                Debug.DrawLine(from, to);
-                if (Physics.Raycast(from, to, out hit, Vector3.Distance(from, to)))
-                {
-                    if (hit.transform.gameObject.tag == "MapObject")
-                    {
-                        print(hit.transform.name);
-                        Current = (Current + 1) % PathTargets.Length;
-                    }    
-                }
             }
         }
         else
@@ -102,7 +89,7 @@ public class EnemyFollowPath : MonoBehaviour
             Debug.DrawLine(from, to);
             if (Physics.Raycast(from, to, out hit, Vector3.Distance(from, to)))
             {
-                if (hit.transform.gameObject.tag == "MapCollider" || hit.transform.gameObject.tag == "MapObject")
+                if (hit.transform.gameObject.tag == "MapObject")
                 {
                     if (!EvadingObject)
                     {

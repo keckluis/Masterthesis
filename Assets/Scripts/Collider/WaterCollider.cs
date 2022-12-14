@@ -11,17 +11,9 @@ public class WaterCollider : MonoBehaviour
 
     private Vector3 HitPosition = Vector3.zero;
 
-    public Transform Map;
-
-    private void Update()
+    void OnTriggerEnter(Collider collision)
     {
-        transform.position = Map.position; 
-        transform.rotation = Map.rotation;
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "CannonBall")
+        if (collision.gameObject.tag == "CannonBall" || collision.gameObject.tag == "CannonBallEnemy")
         {
             HitPosition = collision.transform.position;
             GameObject splash = Instantiate(SplashParticle, CannonSplashHolder);

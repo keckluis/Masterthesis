@@ -7,19 +7,21 @@ public class RudderControls : MonoBehaviour
 {
     public Transform Rudder;
     public Transform SteeringWheel;
-    public Rigidbody Map;
+    //public Rigidbody Map;
+    public Rigidbody Ship;
     public Transform Wind;
     private float Speed;
     public float Degrees = 0;
 
     void FixedUpdate()
     {
-        Speed = Map.velocity.magnitude;
-        if (Input.GetKey(KeyCode.D))
+        //Speed = Map.velocity.magnitude;
+        Speed = Ship.velocity.magnitude;
+        if (Input.GetKey(KeyCode.A))
         {
             Degrees -= 1f;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.D))
         {
             Degrees += 1f;
         }
@@ -33,14 +35,15 @@ public class RudderControls : MonoBehaviour
 
         Degrees = Mathf.Clamp(Degrees, -179f, 179f);
 
-        SteeringWheel.localEulerAngles = new Vector3(0f, 0f, Degrees);
+        SteeringWheel.localEulerAngles = new Vector3(0f, 0f, -Degrees);
 
-        float rudderDegrees = (Degrees / 179f) * 45f;
+        float rudderDegrees = (-Degrees / 179f) * 45f;
 
         Rudder.localEulerAngles = new Vector3(0f, rudderDegrees, 0f);
 
-        Map.transform.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.0001f);
-        Wind.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.0001f);
+        //Map.transform.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.0001f);
+        Ship.transform.Rotate(Ship.transform.up, Degrees * Speed * 0.0001f);
+        //Wind.RotateAround(Vector3.zero, transform.up, Degrees * Speed * 0.0001f);
     }
 
     public void SteerTEMP(float direction)

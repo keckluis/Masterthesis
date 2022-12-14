@@ -7,7 +7,6 @@ using UnityEngine;
 public class MapGenerator : MonoBehaviour
 {
     public List<GameObject> Prefabs;
-    public List<GameObject> Colliders;
 
     public List<Vector2> Blocked;
 
@@ -45,13 +44,6 @@ public class MapGenerator : MonoBehaviour
 
                     float scale = Random.Range(1f, 1.5f);
                     obj.transform.localScale = new Vector3(scale, scale, scale);
-
-                    GameObject col = PrefabUtility.InstantiatePrefab(Colliders[objType]) as GameObject;
-                    col.name = col.name + " (" + x / 100 + ", " + z / 100 + ")";
-                    col.transform.parent = MapColliders;
-                    col.transform.position = obj.transform.position;
-                    col.transform.rotation = obj.transform.rotation;
-                    col.transform.localScale = obj.transform.localScale;
                 }
             }
         }
@@ -65,30 +57,9 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < childCount; i++)
         {
             DestroyImmediate(transform.GetChild(0).gameObject);
-            DestroyImmediate(MapColliders.GetChild(0).gameObject);
         }
     }
-
-    public void OnDrawGizmosSelected()
-    {
-        for (int x = -2900; x < 3000; x += 100)
-        {
-            for (int z = -2900; z < 3000; z += 100)
-            {
-                if (Blocked.Contains(new Vector2(x + 3000, z + 3000)))
-                {
-                    Gizmos.color = Color.red;
-                }
-                else
-                {
-                    Gizmos.color = Color.green;
-                }
-
-                Gizmos.DrawSphere(new Vector3(x, 0f, z), 5);
-            }
-        }
-    }
-
+   
     [CustomEditor(typeof(MapGenerator))]
     public class MapInspector : Editor
     {

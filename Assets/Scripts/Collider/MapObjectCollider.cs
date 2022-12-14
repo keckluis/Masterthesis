@@ -7,31 +7,25 @@ public class MapObjectCollider : MonoBehaviour
 {
     public GameObject Particle;
     private Transform CannonBallsHolder;
+    public List<Transform> CrashingShips = new List<Transform>();
 
     private void Start()
     {
         CannonBallsHolder = GameObject.Find("CannonBallsHolder").transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (CannonBallsHolder.childCount > 0)
+        foreach (Transform cs in CrashingShips)
         {
-            List<GameObject> cannonBalls = new List<GameObject>();
-
-            for (int i = 0; i < CannonBallsHolder.childCount; i++)
-            {
-                //Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), CannonBallsHolder.GetChild(i).GetComponent<Collider>());
-            }
-            
-        } 
+            cs.Rotate(cs.up, 1f);
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "CannonBall")
+        if (collision.gameObject.tag == "CannonBall" || collision.gameObject.tag == "CannonBallEnemy")
         {
-            Debug.Log("HIT: " + collision.gameObject.name);
             Vector3 particlePos = collision.transform.position;
             Vector3 particleDir = collision.gameObject.GetComponent<Rigidbody>().velocity;
             particleDir = new Vector3(-particleDir.x, -particleDir.y, -particleDir.z);
@@ -47,25 +41,21 @@ public class MapObjectCollider : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerEnter(Collider collider)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collider.gameObject.tag == "CannonBall")
+        if(collision.gameObject.tag == "Ship")
         {
-            Debug.Log("HIT: " + gameObject.name);
-            Vector3 particlePos = collider.transform.position;
-            Vector3 particleDir = collider.gameObject.GetComponent<Rigidbody>().velocity;
-            particleDir = new Vector3(-particleDir.x, -particleDir.y, -particleDir.z);
-
-            Destroy(collider.gameObject);
-
-            GameObject particle = Instantiate(Particle);
-            particle.transform.position = particlePos;
-            particle.transform.rotation = Quaternion.Euler(particleDir);
-
-            particle.GetComponent<ParticleSystem>().Play();
-            StartCoroutine(DestroyParticle(particle));
+            CrashingShips.Add(collision.transform);
         }
-    }*/
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ship")
+        {
+            CrashingShips.Remove(collision.transform);
+        }
+    }
 
     IEnumerator DestroyParticle(GameObject particle)
     {

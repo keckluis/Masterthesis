@@ -15,7 +15,7 @@ public class EnemyCannon : MonoBehaviour
 
     public Transform CanonBallsHolder;
     public GameObject CanonBall;
-    public Rigidbody Map;
+    public Rigidbody EnemyShip;
 
     public ParticleSystem MuzzleFlash;
 
@@ -31,7 +31,6 @@ public class EnemyCannon : MonoBehaviour
     float vError = 0f;
 
     public EnemyCannon OtherCannon;
-    public Transform EnemyShip;
     public Animator ShakeAnimator;
 
     void FixedUpdate()
@@ -100,12 +99,12 @@ public class EnemyCannon : MonoBehaviour
 
     void AdjustCourse(bool towardsPort)
     {
-        if (!EnemyShip.GetComponent<EnemySails>().Path.EvadingObject)
+        if (!EnemyShip.transform.parent.GetComponent<EnemySails>().Path.EvadingObject)
         {
             if (towardsPort)
-                EnemyShip.Rotate(EnemyShip.up, 0.1f);
+                EnemyShip.transform.Rotate(EnemyShip.transform.up, 0.1f);
             else
-                EnemyShip.Rotate(EnemyShip.up, -0.1f);
+                EnemyShip.transform.Rotate(EnemyShip.transform.up, -0.1f);
         }
     }
 
@@ -117,7 +116,6 @@ public class EnemyCannon : MonoBehaviour
             Handles.color = Color.green;
 
         Handles.DrawWireDisc(transform.position, Vector3.up,SightDistance);
-        //Gizmos.DrawLine(transform.position, PlayerShip.position);
     }
 
     void Shoot()
@@ -140,9 +138,9 @@ public class EnemyCannon : MonoBehaviour
         cb.transform.position = Vertical.position;
 
         if (isPort)
-            cb.GetComponent<Rigidbody>().AddForce(-Vertical.right * 2_000 + Map.velocity);
+            cb.GetComponent<Rigidbody>().AddForce(-Vertical.right * 2_000 + EnemyShip.velocity);
         else
-            cb.GetComponent<Rigidbody>().AddForce(Vertical.right * 2_000 + Map.velocity);
+            cb.GetComponent<Rigidbody>().AddForce(Vertical.right * 2_000 + EnemyShip.velocity);
 
         yield return new WaitForSeconds(2);
 

@@ -90,12 +90,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5f457b577afcaaa4ea0f21df5360cd52,
         type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5f457b577afcaaa4ea0f21df5360cd52,
         type: 3}
       propertyPath: m_TagString
-      value: CannonBall
+      value: CannonBallEnemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f457b577afcaaa4ea0f21df5360cd52, type: 3}
@@ -129,7 +129,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4930838721638824396}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.003, y: 0.003, z: 0.003}

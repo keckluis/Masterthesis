@@ -12,22 +12,23 @@ TagManager:
   - EnemyShip
   - MapObject
   - MapCollider
+  - CannonBallEnemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - EnemyShip
+  - MapObject
   - Water
   - UI
-  - CannonBall
-  - CannonBallEnemy
-  - Fuse
-  - TEMP
-  - MapObject
   - Ship
+  - CannonBall
+  - Fuse
   - Sail
-  - ShipCollider
+  - CannonBallEnemy
+  - EnemyShip
   - Rain
+  - TEMP
+  - 
   - 
   - 
   - 
