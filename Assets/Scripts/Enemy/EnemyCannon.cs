@@ -11,7 +11,7 @@ public class EnemyCannon : MonoBehaviour
     public Transform Vertical;
     public Transform PlayerShip;
 
-    public float SightDistance = 150f;
+    private float SightDistance = 135f;
 
     public Transform CanonBallsHolder;
     public GameObject CanonBall;
@@ -71,13 +71,8 @@ public class EnemyCannon : MonoBehaviour
 
             Horizontal.localEulerAngles = new Vector3(0f, h, 0f);
 
-            float v = Vector3.Magnitude(PlayerDirection);
-
-            if (v > 30f)
-                v = (v / SightDistance) * 25f;
-            else
-                v = 0f;
-
+            float v = (Vector3.Magnitude(PlayerDirection) / SightDistance) * 30f;
+            v -= 5f;
             v += vError;
             v = Mathf.Clamp(v, -30f, 30f);
 
@@ -138,9 +133,9 @@ public class EnemyCannon : MonoBehaviour
         cb.transform.position = Vertical.position;
 
         if (isPort)
-            cb.GetComponent<Rigidbody>().AddForce(-Vertical.right * 2_000 + EnemyShip.velocity);
+            cb.GetComponent<Rigidbody>().velocity = (-Vertical.right * 40f) + EnemyShip.velocity;
         else
-            cb.GetComponent<Rigidbody>().AddForce(Vertical.right * 2_000 + EnemyShip.velocity);
+            cb.GetComponent<Rigidbody>().velocity = (Vertical.right * 40f) + EnemyShip.velocity;
 
         yield return new WaitForSeconds(2);
 

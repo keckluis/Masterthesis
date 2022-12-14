@@ -4807,7 +4807,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -4910,6 +4910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d85cc55bac4248408763de737fc7abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PulseSpeed: 100
 --- !u!1 &5283452087312628555
 GameObject:
   m_ObjectHideFlags: 0
@@ -9713,7 +9714,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}

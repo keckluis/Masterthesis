@@ -4,32 +4,47 @@ using UnityEngine;
 
 public class SeagullSpawner : MonoBehaviour
 {
-    public GameObject Seagulls;
     public int Height = 40;
     public float Speed = 0.1f;
 
+    Vector3 From;
+
+    private void Start()
+    {
+        int axis = Random.Range(0, 4);
+
+        if (axis == 0)
+        {
+            From = new Vector3(-3000f, Height, Random.Range(-3000f, 3000f));
+            transform.localEulerAngles = new Vector3(0f, Random.Range(45f, 135f));
+
+        }
+        else if (axis == 1)
+        {
+            From = new Vector3(3000f, Height, Random.Range(-3000f, 3000f));
+            transform.localEulerAngles = new Vector3(0f, Random.Range(225f, 315f));
+        }
+        else if (axis == 2)
+        {
+            From = new Vector3(Random.Range(-3000f, 3000f), Height, 3000f);
+            transform.localEulerAngles = new Vector3(0f, Random.Range(135f, 235f));
+        }
+        else if (axis == 3)
+        {
+            From = new Vector3(Random.Range(-3000f, 3000f), Height, -3000f);
+            transform.localEulerAngles = new Vector3(0f, Random.Range(-45f, 45f));
+        }
+
+        transform.position = From;
+    }
+
     void FixedUpdate()
     {
-        if (transform.childCount == 0)
+        transform.Translate(Vector3.forward * Speed, Space.Self);
+
+        if (Mathf.Abs(transform.localPosition.x) > 3000f || Mathf.Abs(transform.localPosition.z) > 3000f)
         {
-            GameObject gulls = Instantiate(Seagulls);
-            gulls.transform.parent = transform;
-
-            transform.localPosition = new Vector3(0f, Height, 0f);
-            transform.localEulerAngles = new Vector3(0, Random.Range(0, 359), 0);
-
-            gulls.transform.localPosition = new Vector3(-4250f, 0f, 0f);  
-            gulls.transform.LookAt(transform.position); 
-        }
-        else
-        {
-            Transform gulls = transform.GetChild(0);
-            gulls.localPosition = new Vector3(gulls.localPosition.x + Speed, 0f, 0f);
-
-            if (gulls.localPosition.x > 4250f)
-            {
-                Destroy(gulls.gameObject);
-            }
+            Start();
         }
     }
 }

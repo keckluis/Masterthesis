@@ -104,7 +104,7 @@ public class Cannon : MonoBehaviour
         GameObject cb = Instantiate(CanonBall, CanonBallsHolder);
         cb.transform.position = Vertical.position;
 
-        cb.GetComponent<Rigidbody>().AddForce((Vertical.forward * 2_000f) + Ship.velocity);
+        cb.GetComponent<Rigidbody>().velocity = (Vertical.forward * 40f) + Ship.velocity;
 
         yield return new WaitForSeconds(2);
         coolDown = false;
