@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3008778771604164722}
   m_Layer: 13
   m_Name: Sandbank1Collider
-  m_TagString: Untagged
+  m_TagString: MapCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

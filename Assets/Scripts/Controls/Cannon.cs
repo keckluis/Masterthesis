@@ -28,7 +28,7 @@ public class Cannon : MonoBehaviour
     }
     void FixedUpdate()
     {
-        /*if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
             RotateHorizontal(-1f);
         if (Input.GetKey(KeyCode.RightArrow))
             RotateHorizontal(1f);
@@ -36,16 +36,16 @@ public class Cannon : MonoBehaviour
             RotateVertical(-1f);
         if (Input.GetKey(KeyCode.DownArrow))
             RotateVertical(1f);
-        */
+        
 
-        if  (Tracker != null)
+        /*if  (Tracker != null)
         {
             float h = Tracker.localEulerAngles.z;
             float v = Tracker.localEulerAngles.x;
 
             Horizontal.localEulerAngles = new Vector3(0f, h, 0f);
             Vertical.localEulerAngles = new Vector3(v, 0f, 0f);
-        }
+        }*/
 
         if (Fuse.activeSelf)
         {

@@ -32,7 +32,7 @@ public class WindStrings : MonoBehaviour
 
         for (int i = 0; i < positions.Length; i++)
         {
-            positions[i] = Positions[i].position;   
+            positions[i] = Positions[i].localPosition;   
         }
 
         LR.SetPositions(positions);

@@ -32,7 +32,8 @@ public class MapGenerator : MonoBehaviour
 
                 if (objType < Prefabs.Count)
                 {
-                    GameObject obj = Instantiate(Prefabs[objType]);
+                    GameObject obj = PrefabUtility.InstantiatePrefab(Prefabs[objType]) as GameObject;
+                    obj.name = obj.name + " ("+ x / 100 + ", " + z / 100 + ")";
                     obj.transform.parent = gameObject.transform;
                     
                     obj.transform.localPosition = new Vector3(
@@ -45,11 +46,12 @@ public class MapGenerator : MonoBehaviour
                     float scale = Random.Range(1f, 1.5f);
                     obj.transform.localScale = new Vector3(scale, scale, scale);
 
-                    GameObject TEST = Instantiate(Colliders[objType]);
-                    TEST.transform.parent = MapColliders;
-                    TEST.transform.position = obj.transform.position;
-                    TEST.transform.rotation = obj.transform.rotation;
-                    TEST.transform.localScale = obj.transform.localScale;
+                    GameObject col = PrefabUtility.InstantiatePrefab(Colliders[objType]) as GameObject;
+                    col.name = col.name + " (" + x / 100 + ", " + z / 100 + ")";
+                    col.transform.parent = MapColliders;
+                    col.transform.position = obj.transform.position;
+                    col.transform.rotation = obj.transform.rotation;
+                    col.transform.localScale = obj.transform.localScale;
                 }
             }
         }

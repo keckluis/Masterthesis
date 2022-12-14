@@ -56,11 +56,12 @@ public class EnemyFollowPath : MonoBehaviour
             {
                 float sailSize = BackSail.localScale.y;
                 sailSize = Mathf.Clamp(sailSize, 0.5f, 1f);
+
                 float speed = SailsManager.WindStrength * 0.05f * sailSize;
-                Vector3 pos = Vector3.MoveTowards(EnemyShip.position, PathTargets[Current].position, speed);
+                Vector3 pos = Vector3.MoveTowards(EnemyShip.position, Forward.position, speed);
                 EnemyShip.position = pos;
                 TargetRotation = CalculateTargetRotation();
-                EnemyShip.rotation = Quaternion.RotateTowards(EnemyShip.rotation, Quaternion.Euler(TargetRotation), SailsManager.WindStrength * 0.05f);
+                EnemyShip.rotation = Quaternion.RotateTowards(EnemyShip.rotation, Quaternion.Euler(TargetRotation), SailsManager.WindStrength * 0.1f);
             }
             else
             {
@@ -78,19 +79,37 @@ public class EnemyFollowPath : MonoBehaviour
             else
             {
                 Rudder.localEulerAngles = Vector3.zero;
-                
-                if (Physics.Raycast(EnemyShip.position, PathTargets[Current].position, Vector3.Distance(EnemyShip.position, PathTargets[Current].position), 13))
+
+                RaycastHit hit;
+                Vector3 from = new Vector3(EnemyShip.position.x, EnemyShip.position.y + 2f, EnemyShip.position.z);
+                Vector3 to = new Vector3(PathTargets[Current].position.x, PathTargets[Current].position.y + 2f, PathTargets[Current].position.z);
+                Debug.DrawLine(from, to);
+                if (Physics.Raycast(from, to, out hit, Vector3.Distance(from, to)))
                 {
-                    Current = (Current + 1) % PathTargets.Length;
+                    if (hit.transform.gameObject.tag == "MapObject")
+                    {
+                        print(hit.transform.name);
+                        Current = (Current + 1) % PathTargets.Length;
+                    }    
                 }
             }
         }
         else
         {
-            if (!EvadingObject && Physics.Raycast(EnemyShip.position, Forward.position, Vector3.Distance(EnemyShip.position, Forward.position), 13))
+            RaycastHit hit;
+            Vector3 from = EnemyShip.position;
+            Vector3 to = Forward.position;
+            Debug.DrawLine(from, to);
+            if (Physics.Raycast(from, to, out hit, Vector3.Distance(from, to)))
             {
-                EvadingObject = true;
-                EvadeDirection = Random.Range(0, 1);
+                if (hit.transform.gameObject.tag == "MapCollider" || hit.transform.gameObject.tag == "MapObject")
+                {
+                    if (!EvadingObject)
+                    {
+                        EvadingObject = true;
+                        EvadeDirection = Random.Range(0, 1);
+                    }
+                }
             }
             else
             {
@@ -101,11 +120,11 @@ public class EnemyFollowPath : MonoBehaviour
             {
                 if (EvadeDirection== 0)
                 {
-                    EnemyShip.Rotate(EnemyShip.up, -0.1f);
+                    EnemyShip.Rotate(EnemyShip.up, -0.5f);
                 }
                 else
                 {
-                    EnemyShip.Rotate(EnemyShip.up, 0.1f);
+                    EnemyShip.Rotate(EnemyShip.up, 0.5f);
                 }
             }
 

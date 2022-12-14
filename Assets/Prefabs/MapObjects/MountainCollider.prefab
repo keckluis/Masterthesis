@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2685265931279506461}
   m_Layer: 13
   m_Name: MountainCollider
-  m_TagString: Untagged
+  m_TagString: MapCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
