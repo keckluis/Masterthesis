@@ -517,6 +517,7 @@ GameObject:
   - component: {fileID: 8475001307806497566}
   - component: {fileID: 6913372609538416861}
   - component: {fileID: 878801609555160428}
+  - component: {fileID: -5487366270620962449}
   m_Layer: 3
   m_Name: Island1
   m_TagString: MapObject
@@ -638,6 +639,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -870077520638187916, guid: 50b213e60a4a21f45b31bfd7617bfd26, type: 3}
+--- !u!208 &-5487366270620962449
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808837503889967824}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 27.846, y: 8.543, z: 27.846}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.67700005, y: -10.6, z: 1.0910001}
+  m_TimeToStationary: 0.5
 --- !u!1 &5052775113919122893
 GameObject:
   m_ObjectHideFlags: 0

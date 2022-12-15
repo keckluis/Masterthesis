@@ -12,8 +12,6 @@ public class EnemySails : MonoBehaviour
     public Transform FrontSailRopeRings, BackSailRopeRings;
     private float FrontRingsY, BackRingsY;
 
-    public EnemyFollowPath Path;
-
     float ShipDegrees;
     Vector2 ShipVector;
     float WindShipAngle;
@@ -101,18 +99,5 @@ public class EnemySails : MonoBehaviour
                 BackSailRopeRings.localPosition = new Vector3(0f, BackSail.localScale.y * BackRingsY, 0f);
             }
         }
-    }
-
-    public void OnDrawGizmosSelected()
-    {
-        if (Path != null)
-        {
-            for (int i = 0; i < Path.PathTargets.Length; i++)
-            {
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawSphere(Path.PathTargets[i].position, 3);
-                Gizmos.DrawLine(Path.PathTargets[i].position, Path.PathTargets[(i + 1) % Path.PathTargets.Length].position);
-            }
-        }    
     }
 }

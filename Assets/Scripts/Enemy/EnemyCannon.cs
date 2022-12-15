@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class EnemyCannon : MonoBehaviour
@@ -15,7 +16,7 @@ public class EnemyCannon : MonoBehaviour
 
     public Transform CanonBallsHolder;
     public GameObject CanonBall;
-    public Rigidbody EnemyShip;
+    public NavMeshAgent EnemyShipAgent;
 
     public ParticleSystem MuzzleFlash;
 
@@ -24,7 +25,7 @@ public class EnemyCannon : MonoBehaviour
     public Vector2 PlayerDirection;
     bool coolDown = false;
     public bool playerInRange = false;
-    public bool fightMode = false;
+    public bool FightMode = false;
 
     public float MaxError = 3f;
     float hError = 0f;
@@ -40,7 +41,7 @@ public class EnemyCannon : MonoBehaviour
 
         if (PlayerDirection.magnitude < SightDistance)
         {
-            fightMode = true;
+            FightMode = true;
             float h = Vector2.Angle(new Vector2(transform.forward.x, transform.forward.z), PlayerDirection) - 90;
 
             if (PlayerDirection.magnitude > OtherCannon.PlayerDirection.magnitude)
@@ -88,19 +89,16 @@ public class EnemyCannon : MonoBehaviour
         }
         else
         {
-            fightMode = false;
+            FightMode = false;
         }
     }
 
     void AdjustCourse(bool towardsPort)
     {
-        if (!EnemyShip.transform.parent.GetComponent<EnemySails>().Path.EvadingObject)
-        {
-            if (towardsPort)
-                EnemyShip.transform.Rotate(EnemyShip.transform.up, 0.1f);
-            else
-                EnemyShip.transform.Rotate(EnemyShip.transform.up, -0.1f);
-        }
+        if (towardsPort)
+            EnemyShipAgent.transform.Rotate(EnemyShipAgent.transform.up, 0.1f);
+        else
+            EnemyShipAgent.transform.Rotate(EnemyShipAgent.transform.up, -0.1f);    
     }
 
     public void OnDrawGizmosSelected()
@@ -133,9 +131,9 @@ public class EnemyCannon : MonoBehaviour
         cb.transform.position = Vertical.position;
 
         if (isPort)
-            cb.GetComponent<Rigidbody>().velocity = (-Vertical.right * 40f) + EnemyShip.velocity;
+            cb.GetComponent<Rigidbody>().velocity = (-Vertical.right * 40f) + EnemyShipAgent.velocity;
         else
-            cb.GetComponent<Rigidbody>().velocity = (Vertical.right * 40f) + EnemyShip.velocity;
+            cb.GetComponent<Rigidbody>().velocity = (Vertical.right * 40f) + EnemyShipAgent.velocity;
 
         yield return new WaitForSeconds(2);
 

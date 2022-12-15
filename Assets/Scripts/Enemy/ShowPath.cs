@@ -6,6 +6,6 @@ public class ShowPath : MonoBehaviour
 {
     public void OnDrawGizmosSelected()
     {
-        transform.parent.GetComponent<EnemyFollowPath>().OnDrawGizmosSelected();
+        transform.GetChild(0).GetComponent<EnemyAI>().OnDrawGizmosSelected();
     }
 }

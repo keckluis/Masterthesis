@@ -135,3 +135,19 @@ MonoBehaviour:
   Particle: {fileID: 5100745571245952373, guid: 804d648b7973aa144aa52c905758eac2,
     type: 3}
   CrashingShips: []
+--- !u!208 &4889585878833422555
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6721982040291747042}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 94.48501, y: 10.950001, z: 140.48001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 7.9500003, y: -8.934, z: 25.175001}
+  m_TimeToStationary: 0.5

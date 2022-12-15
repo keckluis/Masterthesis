@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyShipCollider : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class EnemyShipCollider : MonoBehaviour
             }
             else
             {
-                Destroy(Ship.gameObject);
+                Destroy(Ship.transform.parent.gameObject);
             }
         }
     }
@@ -57,10 +58,10 @@ public class EnemyShipCollider : MonoBehaviour
             if (Health <= 0)
             {
                 Fire.SetActive(false);
-                if (ship.GetComponent<EnemySails>().Path != null)
-                    Destroy(ship.GetComponent<EnemySails>().Path.gameObject);
                 Destroy(ship.GetComponent<EnemySails>());
                 Destroy(ship.GetComponent<Floating>());
+                Destroy(ship.GetComponent<EnemyAI>().Agent.gameObject);
+                Destroy(ship.GetComponent<EnemyAI>());
                 Destroy(CannonPort.GetComponent<EnemyCannon>());
                 Destroy(CannonStarboard.GetComponent<EnemyCannon>());
                 Ship = ship.transform;

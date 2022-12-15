@@ -9928,7 +9928,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f539b317dfe42044e8fc83de83ddbb70,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.84571713
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f539b317dfe42044e8fc83de83ddbb70,
         type: 3}
@@ -9938,7 +9938,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f539b317dfe42044e8fc83de83ddbb70,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.5336314
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f539b317dfe42044e8fc83de83ddbb70,
         type: 3}
@@ -11280,7 +11280,6 @@ MonoBehaviour:
   Horizontal: {fileID: 526751152264739875}
   Vertical: {fileID: 2146645910475513412}
   PlayerShip: {fileID: 0}
-  SightDistance: 150
   CanonBallsHolder: {fileID: 0}
   CanonBall: {fileID: 4930838721638824396, guid: e5fbf2a280a14d347b5519cb2523005c,
     type: 3}
@@ -11289,7 +11288,7 @@ MonoBehaviour:
   isPort: 1
   PlayerDirection: {x: 0, y: 0}
   playerInRange: 0
-  fightMode: 0
+  FightMode: 0
   MaxError: 0.25
   OtherCannon: {fileID: 1110465686}
   ShakeAnimator: {fileID: 1355586265718288484}
@@ -11378,7 +11377,6 @@ MonoBehaviour:
   Horizontal: {fileID: 6927263157672292356}
   Vertical: {fileID: 6689701711866482823}
   PlayerShip: {fileID: 0}
-  SightDistance: 150
   CanonBallsHolder: {fileID: 0}
   CanonBall: {fileID: 4930838721638824396, guid: e5fbf2a280a14d347b5519cb2523005c,
     type: 3}
@@ -11387,7 +11385,7 @@ MonoBehaviour:
   isPort: 0
   PlayerDirection: {x: 0, y: 0}
   playerInRange: 0
-  fightMode: 0
+  FightMode: 0
   MaxError: 0.25
   OtherCannon: {fileID: 1937653417}
   ShakeAnimator: {fileID: 1355586265718288484}
@@ -11448,20 +11446,6 @@ MonoBehaviour:
   FrontSailRopeRings: {fileID: 3239741881295644296}
   BackSailRopeRings: {fileID: 3876399375678280521}
   Path: {fileID: 0}
---- !u!114 &5030096099782553217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591332634686250706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad8ff452597222f4bb665aa295fbb224, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FloatingAmount: 0.1
-  FloatingSpeed: 0.1
 --- !u!114 &2177870870526913930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11481,6 +11465,20 @@ MonoBehaviour:
   CannonStarboard: {fileID: 5424274502421538618}
   Health: 2
   BackSailring: {fileID: 2696390209724274072}
+--- !u!114 &5030096099782553217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6591332634686250706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad8ff452597222f4bb665aa295fbb224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatingAmount: 0.1
+  FloatingSpeed: 0.1
 --- !u!4 &6689701711866482823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 823859155021017860, guid: f539b317dfe42044e8fc83de83ddbb70,

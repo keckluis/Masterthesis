@@ -71,9 +71,6 @@ public class SailsManager : MonoBehaviour
         //clamp halyard length (10-100%)
         HalyardLength = Mathf.Clamp(HalyardLength, 10f, 100f);
 
-
-        //Vector3 windUpdate = Vector3.Normalize(Wind.position) - Vector3.zero;
-        //WindVector = new Vector2(windUpdate.x, windUpdate.z);
         WindDegrees = (Mathf.Atan2(WindVector.x, WindVector.y) * 180f / Mathf.PI);
         ShipDegrees = Ship.transform.eulerAngles.y;
 
@@ -88,13 +85,9 @@ public class SailsManager : MonoBehaviour
         FrontSailCalculations(windForce);
 
         FrontMast.localPosition = FrontMastPos;
-        FrontMast.localEulerAngles = FrontMastRot;      
-    }
+        FrontMast.localEulerAngles = FrontMastRot;
 
-    void FixedUpdate()
-    {
         ForwardForceCalculations();
-
         Ship.AddForce(Ship.transform.forward * (ForwardForce * WindStrength));
     }
 
