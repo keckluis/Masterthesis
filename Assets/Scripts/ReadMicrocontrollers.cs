@@ -15,7 +15,7 @@ public class ReadMicrocontrollers : MonoBehaviour
     {
         foreach(string name in SerialPort.GetPortNames())
         {
-           SPs.Add(new SerialPort("\\\\.\\" + name, 9600));
+           SPs.Add(new SerialPort(name, 9600));
         }
     }
 
