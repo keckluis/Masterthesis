@@ -23,6 +23,11 @@ public class ReadMicrocontrollers : MonoBehaviour
                 SPs.Add(new SerialPort(name, 9600));
             }
         }
+
+        foreach(SerialPort sp in SPs)
+        {
+            sp.ReadTimeOut = 1;
+        }
     }
 
     void Update()
@@ -41,15 +46,15 @@ public class ReadMicrocontrollers : MonoBehaviour
                 mc.SerialPort.Open();
             try
             {
-                string input = mc.SerialPort.ReadLine();
-                string value = input.Remove(0, 1);
+                if (mc.SerialPort.BytesToRead > 0)
+                {
+                    string input = mc.SerialPort.ReadLine();
+                    string value = input.Remove(0, 1);
 
-                mc.Value = float.Parse(value) - mc.Offset;
+                    mc.Value = float.Parse(value) - mc.Offset;
+                }
             }
-            catch (Exception e)
-            {
-                Debug.LogException(e);
-            }
+            catch (TimeoutException e) {}
 
             switch(mc.Name)
             {
@@ -75,34 +80,37 @@ public class ReadMicrocontrollers : MonoBehaviour
             if (!sp.IsOpen)
                 sp.Open();
 
-            string input = sp.ReadLine();
-            string value = input.Remove(0, 1);
-
-            if (input[0] == 'W' || input[0] == 'S' || input[0] == 'H')
+            if (sp.BytesToRead > 0)
             {
-                bool alreadyFound = false;
-                foreach (Microcontroller mc in MicroControllers)
-                {
-                    if (mc.Name == input[0])
-                        alreadyFound = true;
-                }
+                string input = sp.ReadLine();
+                string value = input.Remove(0, 1);
 
-                if (!alreadyFound)
+                if (input[0] == 'W' || input[0] == 'S' || input[0] == 'H')
                 {
-                    MicroControllers.Add(new Microcontroller(input[0], sp, 0f, float.Parse(value)));
-                }
+                    bool alreadyFound = false;
+                    foreach (Microcontroller mc in MicroControllers)
+                    {
+                        if (mc.Name == input[0])
+                            alreadyFound = true;
+                    }
 
-                if (MicroControllers.Count == 3)
-                {
-                    FoundAllMicrocontrollers = true;
+                    if (!alreadyFound)
+                    {
+                        MicroControllers.Add(new Microcontroller(input[0], sp, 0f, float.Parse(value)));
+                    }
+
+                    if (MicroControllers.Count == 3)
+                    {
+                        FoundAllMicrocontrollers = true;
+                        return;
+                    }
                 }
+                else
+                    sp.Close();
             }
             sp.Close();
         }
-        catch (Exception e)
-        {
-            Debug.LogException(e);
-        }
+        catch (TimeoutException e) { }
     }
 }
            
