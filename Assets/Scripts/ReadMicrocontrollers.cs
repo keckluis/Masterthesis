@@ -34,38 +34,36 @@ public class ReadMicrocontrollers : MonoBehaviour
                 LookForMicroController(sp);
             }
         }
-        else
+        
+        foreach(Microcontroller mc in MicroControllers)
         {
-            foreach(Microcontroller mc in MicroControllers)
+            if (!mc.SerialPort.IsOpen)
+                mc.SerialPort.Open();
+            try
             {
-                if (!mc.SerialPort.IsOpen)
-                    mc.SerialPort.Open();
-                try
-                {
-                    string input = mc.SerialPort.ReadLine();
-                    string value = input.Remove(0, 1);
+                string input = mc.SerialPort.ReadLine();
+                string value = input.Remove(0, 1);
 
-                    mc.Value = float.Parse(value) - mc.Offset;
-                }
-                catch (Exception e)
-                {
-                    Debug.LogException(e);
-                }
+                mc.Value = float.Parse(value) - mc.Offset;
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
 
-                switch(mc.Name)
-                {
-                    case 'W':
-                        Wheel= mc.Value; 
-                        break;
-                    case 'S':
-                        Sheet = mc.Value;
-                        break;
-                    case 'H':
-                        Halyard = mc.Value;
-                        break;
-                    default: 
-                        break;
-                }
+            switch(mc.Name)
+            {
+                case 'W':
+                    Wheel= mc.Value; 
+                    break;
+                case 'S':
+                    Sheet = mc.Value;
+                    break;
+                case 'H':
+                    Halyard = mc.Value;
+                    break;
+                default: 
+                    break;
             }
         }
     }
