@@ -9,6 +9,7 @@ public class ReadMicrocontrollers : MonoBehaviour
     List<Microcontroller> MicroControllers = new List<Microcontroller>();
 
     public SailsManager SailsManager;
+    public RudderControls RudderControls;
     public float Wheel = 0f, Sheet = 0f, Halyard = 0f;
 
     bool FoundAllMicrocontrollers = false;
@@ -26,7 +27,7 @@ public class ReadMicrocontrollers : MonoBehaviour
 
         foreach(SerialPort sp in SPs)
         {
-            sp.ReadTimeOut = 1;
+            sp.ReadTimeout = 1;
         }
     }
 
@@ -46,27 +47,48 @@ public class ReadMicrocontrollers : MonoBehaviour
                 mc.SerialPort.Open();
             try
             {
-                if (mc.SerialPort.BytesToRead > 0)
-                {
-                    string input = mc.SerialPort.ReadLine();
-                    string value = input.Remove(0, 1);
+                string input = mc.SerialPort.ReadLine();
+                string value = input.Remove(0, 1);
 
-                    mc.Value = float.Parse(value) - mc.Offset;
-                }
+                mc.Value = float.Parse(value);
             }
             catch (TimeoutException e) {}
 
             switch(mc.Name)
             {
                 case 'W':
-                    Wheel= mc.Value; 
+                    
+                    if (mc.Value > 6000f)
+                    {
+                        if (mc.Value - 6000f > mc.OffsetPos)
+                            mc.OffsetPos = mc.Value - 6000f;
+                        Wheel = mc.Value - mc.OffsetPos;
+                    }
+                    else if (mc.Value < -6000f)
+                    {
+                        if (mc.Value + 6000f < mc.OffsetNeg)
+                            mc.OffsetNeg = mc.Value + 6000f;
+                        Wheel = mc.Value - mc.OffsetNeg;
+                    }
+                    else 
+                    {
+                        Wheel = mc.Value;  
+                        mc.OffsetNeg = 0f;
+                        mc.OffsetPos = 0f; 
+                    }
+
+                    RudderControls.Degrees = -((Wheel / 6000f) * 179f);
+                        
                     break;
+
                 case 'S':
                     Sheet = mc.Value;
                     break;
+
                 case 'H':
                     Halyard = mc.Value;
                     break;
+
                 default: 
                     break;
             }
@@ -80,34 +102,33 @@ public class ReadMicrocontrollers : MonoBehaviour
             if (!sp.IsOpen)
                 sp.Open();
 
-            if (sp.BytesToRead > 0)
+            string input = sp.ReadLine();
+            string value = input.Remove(0, 1);
+
+            if (input[0] == 'W' || input[0] == 'S' || input[0] == 'H')
             {
-                string input = sp.ReadLine();
-                string value = input.Remove(0, 1);
-
-                if (input[0] == 'W' || input[0] == 'S' || input[0] == 'H')
+                bool alreadyFound = false;
+                foreach (Microcontroller mc in MicroControllers)
                 {
-                    bool alreadyFound = false;
-                    foreach (Microcontroller mc in MicroControllers)
-                    {
-                        if (mc.Name == input[0])
-                            alreadyFound = true;
-                    }
-
-                    if (!alreadyFound)
-                    {
-                        MicroControllers.Add(new Microcontroller(input[0], sp, 0f, float.Parse(value)));
-                    }
-
-                    if (MicroControllers.Count == 3)
-                    {
-                        FoundAllMicrocontrollers = true;
-                        return;
-                    }
+                    if (mc.Name == input[0])
+                        alreadyFound = true;
                 }
-                else
-                    sp.Close();
+
+                if (!alreadyFound)
+                {
+                    MicroControllers.Add(new Microcontroller(input[0], sp, 0f, 0f, 0f));
+                    Debug.Log(sp.PortName + " is input " + input[0]);
+                }
+
+                if (MicroControllers.Count == 3)
+                {
+                    FoundAllMicrocontrollers = true;
+                    return;
+                }
             }
+            else
+                sp.Close();
+            
             sp.Close();
         }
         catch (TimeoutException e) { }
@@ -119,13 +140,15 @@ public class Microcontroller
     public char Name;
     public SerialPort SerialPort;
     public float Value;
-    public float Offset;
+    public float OffsetPos;
+    public float OffsetNeg;
 
-    public Microcontroller(char name, SerialPort serialPort, float value, float offset)
+    public Microcontroller(char name, SerialPort serialPort, float value, float offsetPos, float offsetNeg)
     {
         Name = name;
         SerialPort = serialPort;
         Value = value;
-        Offset = offset;
+        OffsetPos = offsetPos;
+        OffsetNeg = offsetNeg;
     }
 }
