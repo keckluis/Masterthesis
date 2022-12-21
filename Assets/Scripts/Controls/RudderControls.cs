@@ -9,12 +9,12 @@ public class RudderControls : MonoBehaviour
     public Transform SteeringWheel;
     public Rigidbody Ship;
     private float Speed;
-    public float Degrees = 0;
+    public float Degrees = 0f;
 
     void FixedUpdate()
     {
         Speed = Ship.velocity.magnitude;
-        if (Input.GetKey(KeyCode.A))
+        /*if (Input.GetKey(KeyCode.A))
         {
             Degrees -= 1f;
         }
@@ -24,15 +24,15 @@ public class RudderControls : MonoBehaviour
         }
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            if (Degrees > 0)
+            if (Degrees > 0f)
                 Degrees -= 1f;
-            else if (Degrees < 0)
+            else if (Degrees < 0f)
                 Degrees += 1f;
-        }
+        }*/
 
         Degrees = Mathf.Clamp(Degrees, -45f, 45f);
 
-        Rudder.localEulerAngles = new Vector3(0f, Degrees, 0f);
+        Rudder.localEulerAngles = new Vector3(0f, -Degrees, 0f);
 
         Ship.transform.Rotate(Ship.transform.up, Degrees * Speed * 0.001f);
     }

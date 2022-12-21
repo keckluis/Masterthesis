@@ -57,30 +57,44 @@ public class ReadMicrocontrollers : MonoBehaviour
             try
             {
                 string input = mc.SerialPort.ReadLine();
-                string value = input.Remove(0, 1);
 
-                mc.Value = float.Parse(value);
+                if (input.Length > 1)
+                {
+                    string value = input.Remove(0, 1);
+                    mc.Value = float.Parse(value);
+                }
+                   
             }
-            catch (TimeoutException) { }
+            catch (Exception) { }
 
             switch(mc.Name)
             {
                 case 'W':
-                    Wheel = CalculateInputValues(mc, 5);
-                    RudderControls.Degrees = -((Wheel / 6_000f) * 179f);
+                    if (Wheel > mc.Value)
+                        RudderControls.Degrees += 0.25f;
+                    else if (Wheel < mc.Value)
+                        RudderControls.Degrees -= 0.25f;
+                    Wheel = mc.Value;
+                    RudderControls.Degrees = Mathf.Clamp(RudderControls.Degrees, -45f, 45f);
                     RudderControls.SteeringWheel.localEulerAngles = new Vector3(0f, 0f, (mc.Value / 1_200f) * 360f);
                     break;
 
                 case 'S':
-                    Sheet = CalculateInputValues(mc, 10);
-                    SailsManager.SheetLength = ((Sheet / 12_000f) * 40f) + 40f;
+                    if (Sheet > mc.Value)
+                        SailsManager.SheetLength += 0.05f;
+                    else if (Sheet < mc.Value)
+                        SailsManager.SheetLength -= 0.05f;
+                    Sheet = mc.Value;
                     SailsManager.SheetLength = Mathf.Clamp(SailsManager.SheetLength, 1f, 80f);
-                    SheetRoll.localEulerAngles = new Vector3((mc.Value / 1_200f) * 360f, 0f, 0f);
+                    SheetRoll.localEulerAngles = new Vector3(-((mc.Value / 1_200f) * 360f), 0f, 0f);
                     break;
 
                 case 'H':
-                    Halyard = CalculateInputValues(mc, 10);
-                    SailsManager.HalyardLength = ((Halyard / 12_000f) * 45f) + 55f;
+                    if (Halyard > mc.Value)
+                        SailsManager.HalyardLength += 0.5f;
+                    else if (Halyard < mc.Value)
+                        SailsManager.HalyardLength -= 0.5f;
+                    Halyard = mc.Value;
                     SailsManager.HalyardLength = Mathf.Clamp(SailsManager.HalyardLength, 10f, 100f);
                     break;
 
@@ -88,32 +102,6 @@ public class ReadMicrocontrollers : MonoBehaviour
                     break;
             }
         }
-    }
-
-    float CalculateInputValues(Microcontroller mc, int rotations)
-    {
-        float minmax = 1_200f * rotations;
-        float output;
-        if (mc.Value > minmax)
-        {
-            if (mc.Value - minmax > mc.OffsetPos)
-                mc.OffsetPos = mc.Value - minmax;
-            output = mc.Value - mc.OffsetPos;
-        }
-        else if (mc.Value < -minmax)
-        {
-            if (mc.Value + minmax < mc.OffsetNeg)
-                mc.OffsetNeg = mc.Value + minmax;
-            output = mc.Value - mc.OffsetNeg;
-        }
-        else
-        {
-            output = mc.Value;
-            mc.OffsetNeg = 0f;
-            mc.OffsetPos = 0f;
-        }
-
-        return output;
     }
 
     void LookForMicroController(SerialPort sp)
@@ -124,7 +112,9 @@ public class ReadMicrocontrollers : MonoBehaviour
                 sp.Open();
                 
             string input = sp.ReadLine();
-            string value = input.Remove(0, 1);
+
+            if(input.Length < 1)
+                return;
 
             if (input[0] == 'W' || input[0] == 'S' || input[0] == 'H')
             {
@@ -148,7 +138,7 @@ public class ReadMicrocontrollers : MonoBehaviour
                 }
             }        
         }
-        catch (TimeoutException) {}
+        catch (Exception) {}
     }
 }
            
