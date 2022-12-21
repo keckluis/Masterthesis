@@ -61,34 +61,11 @@ public class ReadMicrocontrollers : MonoBehaviour
 
                 mc.Value = float.Parse(value);
             }
-            catch (TimeoutException e) 
-            {
-                Debug.Log(e.ToString());
-            }
+            catch (TimeoutException) { }
 
             switch(mc.Name)
             {
                 case 'W':
-
-                    /*if (mc.Value > 6000f)
-                    {
-                        if (mc.Value - 6000f > mc.OffsetPos)
-                            mc.OffsetPos = mc.Value - 6000f;
-                        Wheel = mc.Value - mc.OffsetPos;
-                    }
-                    else if (mc.Value < -6000f)
-                    {
-                        if (mc.Value + 6000f < mc.OffsetNeg)
-                            mc.OffsetNeg = mc.Value + 6000f;
-                        Wheel = mc.Value - mc.OffsetNeg;
-                    }
-                    else 
-                    {
-                        Wheel = mc.Value;  
-                        mc.OffsetNeg = 0f;
-                        mc.OffsetPos = 0f; 
-                    }*/
-
                     Wheel = CalculateInputValues(mc, 5);
                     RudderControls.Degrees = -((Wheel / 6_000f) * 179f);
                     RudderControls.SteeringWheel.localEulerAngles = new Vector3(0f, 0f, (mc.Value / 1_200f) * 360f);
@@ -145,7 +122,7 @@ public class ReadMicrocontrollers : MonoBehaviour
         {
             if (!sp.IsOpen)
                 sp.Open();
-
+                
             string input = sp.ReadLine();
             string value = input.Remove(0, 1);
 
@@ -162,7 +139,6 @@ public class ReadMicrocontrollers : MonoBehaviour
                 {
                     MicroControllers.Add(new Microcontroller(input[0], sp, 0f, 0f, 0f));
                     Debug.Log(sp.PortName + " is input " + input[0]);
-                    SPs.Remove(sp);
                 }
 
                 if (MicroControllers.Count == 3)
@@ -172,10 +148,7 @@ public class ReadMicrocontrollers : MonoBehaviour
                 }
             }        
         }
-        catch (TimeoutException e) 
-        {
-            Debug.Log(e.ToString());
-        }
+        catch (TimeoutException) {}
     }
 }
            
