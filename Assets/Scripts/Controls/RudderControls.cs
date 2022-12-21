@@ -30,15 +30,11 @@ public class RudderControls : MonoBehaviour
                 Degrees += 1f;
         }
 
-        Degrees = Mathf.Clamp(Degrees, -179f, 179f);
+        Degrees = Mathf.Clamp(Degrees, -45f, 45f);
 
-        SteeringWheel.localEulerAngles = new Vector3(0f, 0f, -Degrees);
+        Rudder.localEulerAngles = new Vector3(0f, Degrees, 0f);
 
-        float rudderDegrees = (-Degrees / 179f) * 45f;
-
-        Rudder.localEulerAngles = new Vector3(0f, rudderDegrees, 0f);
-
-        Ship.transform.Rotate(Ship.transform.up, Degrees * Speed * 0.0001f);
+        Ship.transform.Rotate(Ship.transform.up, Degrees * Speed * 0.001f);
     }
 
     public void SteerTEMP(float direction)

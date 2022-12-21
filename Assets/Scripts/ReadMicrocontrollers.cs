@@ -10,6 +10,7 @@ public class ReadMicrocontrollers : MonoBehaviour
 
     public SailsManager SailsManager;
     public RudderControls RudderControls;
+    public Transform SheetRoll;
     public float Wheel = 0f, Sheet = 0f, Halyard = 0f;
 
     bool FoundAllMicrocontrollers = false;
@@ -89,15 +90,15 @@ public class ReadMicrocontrollers : MonoBehaviour
                     }*/
 
                     Wheel = CalculateInputValues(mc, 5);
-
                     RudderControls.Degrees = -((Wheel / 6_000f) * 179f);
-                        
+                    RudderControls.SteeringWheel.localEulerAngles = new Vector3(0f, 0f, (mc.Value / 1_200f) * 360f);
                     break;
 
                 case 'S':
                     Sheet = CalculateInputValues(mc, 10);
                     SailsManager.SheetLength = ((Sheet / 12_000f) * 40f) + 40f;
                     SailsManager.SheetLength = Mathf.Clamp(SailsManager.SheetLength, 1f, 80f);
+                    SheetRoll.localEulerAngles = new Vector3((mc.Value / 1_200f) * 360f, 0f, 0f);
                     break;
 
                 case 'H':
