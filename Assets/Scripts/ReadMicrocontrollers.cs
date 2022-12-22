@@ -12,6 +12,7 @@ public class ReadMicrocontrollers : MonoBehaviour
     public RudderControls RudderControls;
     public Transform SheetRoll;
     public float Wheel = 0f, Sheet = 0f, Halyard = 0f;
+    public float WheelSpeed = 0.25f, SheetSpeed = 0.1f, HalyardSpeed = 0.5f;
 
     bool FoundAllMicrocontrollers = false;
 
@@ -70,30 +71,30 @@ public class ReadMicrocontrollers : MonoBehaviour
             switch(mc.Name)
             {
                 case 'W':
-                    if (Wheel > mc.Value)
-                        RudderControls.Degrees += 0.25f;
-                    else if (Wheel < mc.Value)
-                        RudderControls.Degrees -= 0.25f;
+                    if (Wheel > mc.Value + 2f)
+                        RudderControls.Degrees += WheelSpeed;
+                    else if (Wheel < mc.Value - 2f)
+                        RudderControls.Degrees -= WheelSpeed;
                     Wheel = mc.Value;
                     RudderControls.Degrees = Mathf.Clamp(RudderControls.Degrees, -45f, 45f);
                     RudderControls.SteeringWheel.localEulerAngles = new Vector3(0f, 0f, (mc.Value / 1_200f) * 360f);
                     break;
 
                 case 'S':
-                    if (Sheet > mc.Value)
-                        SailsManager.SheetLength += 0.05f;
-                    else if (Sheet < mc.Value)
-                        SailsManager.SheetLength -= 0.05f;
+                    if (Sheet > mc.Value + 2f)
+                        SailsManager.SheetLength += SheetSpeed;
+                    else if (Sheet < mc.Value - 2f)
+                        SailsManager.SheetLength -= SheetSpeed;
                     Sheet = mc.Value;
                     SailsManager.SheetLength = Mathf.Clamp(SailsManager.SheetLength, 1f, 80f);
                     SheetRoll.localEulerAngles = new Vector3(-((mc.Value / 1_200f) * 360f), 0f, 0f);
                     break;
 
                 case 'H':
-                    if (Halyard > mc.Value)
-                        SailsManager.HalyardLength += 0.5f;
-                    else if (Halyard < mc.Value)
-                        SailsManager.HalyardLength -= 0.5f;
+                    if (Halyard > mc.Value + 2f)
+                        SailsManager.HalyardLength += HalyardSpeed;
+                    else if (Halyard < mc.Value - 2f)
+                        SailsManager.HalyardLength -= HalyardSpeed;
                     Halyard = mc.Value;
                     SailsManager.HalyardLength = Mathf.Clamp(SailsManager.HalyardLength, 10f, 100f);
                     break;

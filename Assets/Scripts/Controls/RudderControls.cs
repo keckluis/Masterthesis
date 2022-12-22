@@ -14,27 +14,17 @@ public class RudderControls : MonoBehaviour
     void FixedUpdate()
     {
         Speed = Ship.velocity.magnitude;
-        /*if (Input.GetKey(KeyCode.A))
-        {
-            Degrees -= 1f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            Degrees += 1f;
-        }
-        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
-        {
-            if (Degrees > 0f)
-                Degrees -= 1f;
-            else if (Degrees < 0f)
-                Degrees += 1f;
-        }*/
-
+    
         Degrees = Mathf.Clamp(Degrees, -45f, 45f);
 
         Rudder.localEulerAngles = new Vector3(0f, -Degrees, 0f);
 
-        Ship.transform.Rotate(Ship.transform.up, Degrees * Speed * 0.001f);
+        Ship.transform.Rotate(Ship.transform.up, Degrees * Speed * 0.0005f);
+
+        if (Degrees > 0f)
+            Degrees -= GetComponent<ReadMicrocontrollers>().WheelSpeed * 0.5f;
+        else if (Degrees < 0f)
+            Degrees += GetComponent<ReadMicrocontrollers>().WheelSpeed * 0.5f;
     }
 
     public void SteerTEMP(float direction)
