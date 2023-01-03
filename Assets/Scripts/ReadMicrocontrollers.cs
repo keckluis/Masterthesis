@@ -94,7 +94,7 @@ public class ReadMicrocontrollers : MonoBehaviour
                     if (Halyard > mc.Value + 2f)
                         SailsManager.HalyardLength += HalyardSpeed;
                     else if (Halyard < mc.Value - 2f)
-                        SailsManager.HalyardLength -= HalyardSpeed;
+                        SailsManager.HalyardLength -= HalyardSpeed * 0.75f;
                     Halyard = mc.Value;
                     SailsManager.HalyardLength = Mathf.Clamp(SailsManager.HalyardLength, 10f, 100f);
                     break;

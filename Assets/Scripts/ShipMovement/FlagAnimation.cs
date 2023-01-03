@@ -6,6 +6,6 @@ public class FlagAnimation : MonoBehaviour
 {
     void Update()
     {
-        transform.localScale = new Vector3(1 - Mathf.PingPong(3 * Time.time, 2), 1, 1);
+        transform.localScale = new Vector3(1 - Mathf.PingPong(5 * Time.time, 2), 1, 1);
     }
 }
