@@ -24,6 +24,8 @@ public class ShipCollider : MonoBehaviour
 
             particle.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DestroyParticle(particle));
+
+            GetComponent<AudioSource>().Play();
         }
 
         IEnumerator DestroyParticle(GameObject particle)

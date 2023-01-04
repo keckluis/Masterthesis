@@ -96,6 +96,8 @@ public class Cannon : MonoBehaviour
 
         currentFusePos = 0;
         Fuse.GetComponent<ParticleSystem>().Play();
+        if(Fuse.transform.parent.GetComponent<AudioSource>())
+            Fuse.transform.parent.GetComponent<AudioSource>().enabled = true;
         yield return new WaitForSeconds(3);
         Fuse.SetActive(false);
         MuzzleFlash.Play();
@@ -105,6 +107,11 @@ public class Cannon : MonoBehaviour
         cb.transform.position = Vertical.position;
 
         cb.GetComponent<Rigidbody>().velocity = (Vertical.forward * 40f) + Ship.velocity;
+
+        if(GetComponent<AudioSource>())
+            GetComponent<AudioSource>().Play();
+        if (Fuse.transform.parent.GetComponent<AudioSource>())
+            Fuse.transform.parent.GetComponent<AudioSource>().enabled = false;
 
         yield return new WaitForSeconds(2);
         coolDown = false;

@@ -54,6 +54,7 @@ public class EnemyShipCollider : MonoBehaviour
             particle.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DestroyParticle(particle));
 
+            GetComponent<AudioSource>().Play();
             
             if (Health <= 0)
             {

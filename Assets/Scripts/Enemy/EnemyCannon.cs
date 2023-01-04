@@ -135,6 +135,8 @@ public class EnemyCannon : MonoBehaviour
         else
             cb.GetComponent<Rigidbody>().velocity = (Vertical.right * 40f) + EnemyShipAgent.velocity;
 
+        GetComponent<AudioSource>().Play();
+
         yield return new WaitForSeconds(2);
 
         hError = Random.Range(-MaxError, MaxError);

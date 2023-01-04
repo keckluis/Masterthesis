@@ -19,6 +19,7 @@ public class WaterCollider : MonoBehaviour
             GameObject splash = Instantiate(SplashParticle, CannonSplashHolder);
             splash.transform.position = new Vector3(HitPosition.x, 1, HitPosition.z);
             splash.GetComponent<ParticleSystem>().Play();
+            splash.GetComponent<AudioSource>().Play();
             Destroy(collision.gameObject);
             StartCoroutine(DestroySplash(splash));
         }
