@@ -16,6 +16,8 @@ public class ReadMicrocontrollers : MonoBehaviour
 
     bool FoundAllMicrocontrollers = false;
 
+    float sheetPrev = 0;
+
     void Start()
     {
         foreach (string name in SerialPort.GetPortNames())
@@ -88,6 +90,13 @@ public class ReadMicrocontrollers : MonoBehaviour
                     Sheet = mc.Value;
                     SailsManager.SheetLength = Mathf.Clamp(SailsManager.SheetLength, 1f, 80f);
                     SheetRoll.localEulerAngles = new Vector3(-((mc.Value / 1_200f) * 360f), 0f, 0f);
+
+                    if (Mathf.Abs(SheetRoll.localEulerAngles.x - sheetPrev) > 0.1f)
+                        SheetRoll.GetComponent<AudioSource>().enabled = true;
+                    else
+                        SheetRoll.GetComponent<AudioSource>().enabled = false;
+
+                    sheetPrev = SheetRoll.localEulerAngles.x;
                     break;
 
                 case 'H':

@@ -45,6 +45,8 @@ public class SailsManager : MonoBehaviour
     public Transform Port, BackBoom, Starboard;
     public bool SailOnPort = false;
 
+    float backSailRingPrev = 0f;
+
     private void Start()
     {
         FrontMastPos = FrontMast.localPosition;
@@ -199,6 +201,16 @@ public class SailsManager : MonoBehaviour
         }
 
         SheetRoll2.rotation = Ship.rotation;
+
+        if (Mathf.Abs(BackSailRing.localEulerAngles.y - backSailRingPrev) > 0.1f)
+        {
+            BackSailRing.GetComponent<AudioSource>().enabled = true;
+        }
+        else
+        {
+            BackSailRing.GetComponent<AudioSource>().enabled = true;
+        }
+        backSailRingPrev = BackSailRing.localEulerAngles.y;
     }
 
     private void ForwardForceCalculations()
