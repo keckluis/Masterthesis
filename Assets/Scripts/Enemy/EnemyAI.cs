@@ -89,6 +89,7 @@ public class EnemyAI : MonoBehaviour
         transform.rotation = Agent.transform.rotation;
     }
 
+#if UNITY_EDITOR
     public void OnDrawGizmosSelected()
     {
         if (TargetParent != null)
@@ -111,4 +112,5 @@ public class EnemyAI : MonoBehaviour
         }
            
     }
+#endif
 }

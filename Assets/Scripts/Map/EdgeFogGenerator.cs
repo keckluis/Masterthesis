@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -50,6 +51,7 @@ public class EdgeFogGenerator : MonoBehaviour
         }
     }
 
+
     [CustomEditor(typeof(EdgeFogGenerator))]
     public class EdgeFogInspector : Editor
     {
@@ -70,3 +72,4 @@ public class EdgeFogGenerator : MonoBehaviour
         }
     }
 }
+#endif

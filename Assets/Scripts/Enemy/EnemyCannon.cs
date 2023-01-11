@@ -101,6 +101,7 @@ public class EnemyCannon : MonoBehaviour
             EnemyShipAgent.transform.Rotate(EnemyShipAgent.transform.up, -0.1f);    
     }
 
+#if UNITY_EDITOR
     public void OnDrawGizmosSelected()
     {
         if (isPort)
@@ -110,6 +111,7 @@ public class EnemyCannon : MonoBehaviour
 
         Handles.DrawWireDisc(transform.position, Vector3.up,SightDistance);
     }
+#endif
 
     void Shoot()
     {

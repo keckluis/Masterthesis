@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
@@ -59,7 +60,8 @@ public class MapGenerator : MonoBehaviour
             DestroyImmediate(transform.GetChild(0).gameObject);
         }
     }
-   
+
+
     [CustomEditor(typeof(MapGenerator))]
     public class MapInspector : Editor
     {
@@ -80,3 +82,4 @@ public class MapGenerator : MonoBehaviour
         }
     }
 }
+#endif

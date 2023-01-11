@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor.Experimental.GraphView;
+#endif
 using UnityEngine;
 
 public class SailsManager : MonoBehaviour
@@ -259,10 +261,12 @@ public class SailsManager : MonoBehaviour
             ForwardForce = 1f;
     }
 
+#if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(new Vector3(0f, 17f, 0f), new Vector3(WindVector.x * 3f, 17f, WindVector.y * 3f));
         Gizmos.DrawSphere(new Vector3(WindVector.x * 3f, 17f, WindVector.y * 3f), 0.1f);
     }
+#endif
 }
