@@ -92,6 +92,7 @@ public class SailsManager : MonoBehaviour
         FrontMast.localEulerAngles = FrontMastRot;
 
         ForwardForceCalculations();
+        
         Ship.AddForce(Ship.transform.forward * (ForwardForce * WindStrength));
     }
 

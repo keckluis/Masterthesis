@@ -9,8 +9,8 @@ public class Cannon : MonoBehaviour
     public Transform Tracker;
     public Transform Horizontal;
     public Transform Vertical;
-    public Transform CanonBallsHolder;
-    public GameObject CanonBall;
+    public Transform CannonBallsHolder;
+    public GameObject CannonBall;
     public Rigidbody Ship;
 
     public ParticleSystem MuzzleFlash;
@@ -18,7 +18,7 @@ public class Cannon : MonoBehaviour
     public Transform[] FusePath = new Transform[4];
     [SerializeField]private int currentFusePos = 0;
 
-    bool coolDown = false;
+    public bool coolDown = false;
     public Animator ShakeAnimator;
 
     private void Update()
@@ -103,7 +103,7 @@ public class Cannon : MonoBehaviour
         MuzzleFlash.Play();
         ShakeAnimator.SetTrigger("ShakeSmall");
 
-        GameObject cb = Instantiate(CanonBall, CanonBallsHolder);
+        GameObject cb = Instantiate(CannonBall, CannonBallsHolder);
         cb.transform.position = Vertical.position;
 
         cb.GetComponent<Rigidbody>().velocity = (Vertical.forward * 40f) + Ship.velocity;
