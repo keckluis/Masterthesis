@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
-using TMPro;
+using System;
 
 public class NetworkManagerUI : MonoBehaviour
 {
@@ -20,7 +20,6 @@ public class NetworkManagerUI : MonoBehaviour
     [SerializeField] private GameObject Sailor1Head;
     [SerializeField] private GameObject Sailor2Head;
 
-    [SerializeField] private TextMeshProUGUI IPText;
 
     [SerializeField] private NetworkDataCharacters NDCharacters;
 
@@ -28,7 +27,6 @@ public class NetworkManagerUI : MonoBehaviour
     {
         HostBtn.onClick.AddListener(() =>
         {
-            GetComponent<UnityTransport>().ConnectionData.Address = IPText.text;
             NDCharacters.Character = Character.Captain;
             NetworkManager.Singleton.StartHost();
             Host.SetActive(true);
@@ -39,7 +37,6 @@ public class NetworkManagerUI : MonoBehaviour
         Client1Btn.onClick.AddListener(() =>
         {
             NDCharacters.Character = Character.Sailor1;
-            GetComponent<UnityTransport>().ConnectionData.Address = IPText.text;
             ClientButton();
             Sailor1.SetActive(true);
             Sailor2.SetActive(false);
@@ -50,7 +47,6 @@ public class NetworkManagerUI : MonoBehaviour
 
         Client2Btn.onClick.AddListener(() =>
         {
-            GetComponent<UnityTransport>().ConnectionData.Address = IPText.text;
             NDCharacters.Character = Character.Sailor2;
             ClientButton();
             Sailor1.SetActive(false);
