@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wind : MonoBehaviour
 {
-    public SailsManager SailsManager;
+    [SerializeField] private SailsManager SailsManager;
 
     void Update()
     {

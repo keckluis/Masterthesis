@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class XRRigBody : MonoBehaviour
 {
-    public Transform Body;
-    
+    [SerializeField] private Transform Body;
     void Update()
     {
         Body.position = transform.position;

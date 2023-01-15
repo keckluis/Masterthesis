@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 
 public class WaterCollider : MonoBehaviour
 {
-    public GameObject SplashParticle;
-    public Transform CannonSplashHolder;
+    [SerializeField] private GameObject SplashParticle;
+    [SerializeField] private Transform CannonSplashHolder;
 
     private Vector3 HitPosition = Vector3.zero;
 

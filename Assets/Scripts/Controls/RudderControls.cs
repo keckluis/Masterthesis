@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class RudderControls : MonoBehaviour
 {
-    public Transform Rudder;
+    [SerializeField] private Transform Rudder;
     public Transform SteeringWheel;
-    public Rigidbody Ship;
+    [SerializeField] private Rigidbody Ship;
     private float Speed;
     public float Degrees = 0f;
 

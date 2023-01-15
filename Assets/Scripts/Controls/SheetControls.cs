@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SheetControls : MonoBehaviour
 {
-    
-    public SailsManager SailsManager;
+
+    [SerializeField] private SailsManager SailsManager;
 
     void LateUpdate()
     {

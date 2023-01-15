@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResetXRRig : MonoBehaviour
 {
-    public Transform ResetPosition;
+    [SerializeField] private Transform ResetPosition;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))

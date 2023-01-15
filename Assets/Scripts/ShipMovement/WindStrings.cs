@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class WindStrings : MonoBehaviour
 {
-    public Transform[] Positions;
-    public float WiggleAmount = 0.1f;
-    public float WiggleSpeed = 0.5f;
-    public float StringLength = 7.5f;
+    [SerializeField] private Transform[] Positions;
+    [SerializeField] private float WiggleAmount = 0.1f;
+    [SerializeField] private float WiggleSpeed = 0.5f;
+    [SerializeField] private float StringLength = 7.5f;
     private LineRenderer LR;
 
     private void Start()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LookAround : MonoBehaviour
 {
-    public Vector2 Speed = new Vector2(5, 5);
+    [SerializeField] private Vector2 Speed = new Vector2(5, 5);
     private float RotationX = 0.0f;
     private Camera Camera;
 

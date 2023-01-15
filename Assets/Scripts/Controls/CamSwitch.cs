@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CamSwitch : MonoBehaviour
 {
-    public GameObject[] Cams;
+    [SerializeField] private GameObject[] Cams;
     private int current = 0;
 
     private void Start()
@@ -15,6 +15,7 @@ public class CamSwitch : MonoBehaviour
             Cams[i].SetActive(false);
         }
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SheetRope : MonoBehaviour
 {
-    public GameObject RopePrefab;
-    public int Size;
+    [SerializeField] private GameObject RopePrefab;
+    [SerializeField] private int Size;
 
     private List<GameObject> RopeSegments = new List<GameObject>();
 

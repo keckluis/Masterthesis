@@ -6,20 +6,20 @@ using UnityEngine;
 public class NetworkDataCannons : NetworkBehaviour
 {
     //CANNON ROTATION
-    public Transform HostPortHorizontal;
-    public Transform HostPortVertical;
-    public Transform HostStarboardHorizontal;
-    public Transform HostStarboardVertical;
+    [SerializeField] private Transform HostPortHorizontal;
+    [SerializeField] private Transform HostPortVertical;
+    [SerializeField] private Transform HostStarboardHorizontal;
+    [SerializeField] private Transform HostStarboardVertical;
 
     private NetworkVariable<float> PortHorizontal = new NetworkVariable<float>();
     private NetworkVariable<float> PortVertical = new NetworkVariable<float>();
     private NetworkVariable<float> StarboardHorizontal = new NetworkVariable<float>();
     private NetworkVariable<float> StarboardVertical = new NetworkVariable<float>();
 
-    public Transform ClientPortHorizontal;
-    public Transform ClientPortVertical;
-    public Transform ClientStarboardHorizontal;
-    public Transform ClientStarboardVertical;
+    [SerializeField] private Transform ClientPortHorizontal;
+    [SerializeField] private Transform ClientPortVertical;
+    [SerializeField] private Transform ClientStarboardHorizontal;
+    [SerializeField] private Transform ClientStarboardVertical;
 
     //CANNON SHOOT
     private NetworkVariable<bool> PortCoolDown = new NetworkVariable<bool>(false);

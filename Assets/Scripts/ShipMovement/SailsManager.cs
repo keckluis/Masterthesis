@@ -9,45 +9,42 @@ using UnityEngine;
 public class SailsManager : MonoBehaviour
 {
     public Vector2 WindVector = new Vector2(1f, 0f);
-    //public Transform Wind;
     public float WindDegrees;
     public float WindStrength = 1;
-    public Rigidbody Ship;
-    public Transform WindIndicator;
-    public Transform FrontSailRing, FrontSail, FrontSailRopeRings;
+    [SerializeField] private Rigidbody Ship;
+    [SerializeField] private Transform WindIndicator;
+    [SerializeField] private Transform FrontSailRing, FrontSail, FrontSailRopeRings;
 
     public Transform BackSailRing, BackSail;
-    public Transform SheetRoll2;
-    public Transform FrontSailPort, FrontSailStarboard;
-    public Transform FrontMast;
+    [SerializeField] private Transform SheetRoll2;
+    [SerializeField] private Transform FrontSailPort, FrontSailStarboard;
+    [SerializeField] private Transform FrontMast;
 
-    //public Rigidbody Map;
-    
     public float ShipDegrees;
-    public float BackSailDegrees;
-    public Vector2 ShipVector;
+    [SerializeField] private float BackSailDegrees;
+    [SerializeField] private Vector2 ShipVector;
 
     public float SheetLength = 80f;
     public float HalyardLength = 10f;
 
-    public bool WindFromFront = false;
+    [SerializeField] private bool WindFromFront = false;
 
-    public float WindShipAngle;
+    [SerializeField] private float WindShipAngle;
 
     public float ForwardForce = -1f;
 
     public float ShipSpeed = 0f;
 
-    private Vector3 FrontMastPos, FrontMastRot;
+    [SerializeField] private Vector3 FrontMastPos, FrontMastRot;
 
-    public Transform WindString;
+    [SerializeField] private Transform WindString;
 
-    bool FrontSailSwitch = false;
+    private bool FrontSailSwitch = false;
 
-    public Transform Port, BackBoom, Starboard;
+    [SerializeField] private Transform Port, BackBoom, Starboard;
     public bool SailOnPort = false;
 
-    float backSailRingPrev = 0f;
+    private float backSailRingPrev = 0f;
 
     private void Start()
     {

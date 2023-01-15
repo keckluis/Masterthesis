@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SeagullSpawner : MonoBehaviour
 {
-    public int Height = 40;
-    public float Speed = 0.1f;
+    [SerializeField] private int Height = 40;
+    [SerializeField] private float Speed = 0.1f;
 
-    Vector3 From;
+    private Vector3 From;
 
     private void Start()
     {

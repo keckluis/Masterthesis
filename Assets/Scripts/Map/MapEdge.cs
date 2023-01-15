@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapEdge : MonoBehaviour
 {
-    public Transform Ship;
+    [SerializeField] private Transform Ship;
     private void Update()
     {
         float x = Ship.transform.position.x;

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Floating : MonoBehaviour
 {
-    float startY;
-    public float FloatingAmount;
-    public float FloatingSpeed;
+    private float startY;
+    [SerializeField] private float FloatingAmount;
+    [SerializeField] private float FloatingSpeed;
 
     private void Start()
     {

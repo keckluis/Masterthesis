@@ -8,15 +8,18 @@ public class ReadMicrocontrollers : MonoBehaviour
     List<SerialPort> SPs = new List<SerialPort>();
     List<Microcontroller> MicroControllers = new List<Microcontroller>();
 
-    public SailsManager SailsManager;
-    public RudderControls RudderControls;
-    public Transform SheetRoll;
-    public float Wheel = 0f, Sheet = 0f, Halyard = 0f;
+    [SerializeField] private SailsManager SailsManager;
+    [SerializeField] private RudderControls RudderControls;
+    [SerializeField] private Transform SheetRoll;
+    [SerializeField] private float Wheel = 0f, Sheet = 0f, Halyard = 0f;
     public float WheelSpeed = 0.25f, SheetSpeed = 0.1f, HalyardSpeed = 0.5f;
 
     bool FoundAllMicrocontrollers = false;
 
     float sheetPrev = 0;
+
+    public bool SheetRollSound = false;
+
 
     void Start()
     {
@@ -92,9 +95,15 @@ public class ReadMicrocontrollers : MonoBehaviour
                     SheetRoll.localEulerAngles = new Vector3(-((mc.Value / 1_200f) * 360f), 0f, 0f);
 
                     if (Mathf.Abs(SheetRoll.localEulerAngles.x - sheetPrev) > 0.1f)
+                    {
                         SheetRoll.GetComponent<AudioSource>().enabled = true;
+                        SheetRollSound = true;
+                    }
                     else
+                    {
                         SheetRoll.GetComponent<AudioSource>().enabled = false;
+                        SheetRollSound = false;
+                    }
 
                     sheetPrev = SheetRoll.localEulerAngles.x;
                     break;

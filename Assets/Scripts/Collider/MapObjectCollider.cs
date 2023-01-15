@@ -1,18 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapObjectCollider : MonoBehaviour
 {
-    public GameObject Particle;
-    private Transform CannonBallsHolder;
-    public List<Transform> CrashingShips = new List<Transform>();
-
-    private void Start()
-    {
-        CannonBallsHolder = GameObject.Find("CannonBallsHolder").transform;
-    }
+    [SerializeField] private GameObject Particle;
+    [SerializeField] private List<Transform> CrashingShips = new List<Transform>();
 
     private void FixedUpdate()
     {

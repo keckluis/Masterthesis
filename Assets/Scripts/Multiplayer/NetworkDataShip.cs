@@ -6,60 +6,68 @@ using UnityEngine;
 public class NetworkDataShip : NetworkBehaviour
 {
     //SHIP MOVEMENT
-    public Rigidbody HostShip;
+    [SerializeField] private Rigidbody HostShip;
     [SerializeField] private SailsManager SailsManager;
 
     private NetworkVariable<Vector2> ShipPosition = new NetworkVariable<Vector2>();
     private NetworkVariable<float> ForwardForce = new NetworkVariable<float>();
     private NetworkVariable<float> ShipRotation = new NetworkVariable<float>();
 
-    public Rigidbody ClientShip;
+    [SerializeField] private Rigidbody ClientShip;
 
     //SAIL ROTATION
-    public Transform HostBackBoomRing; 
-    public Transform HostFrontBoomRing;
+    [SerializeField] private Transform HostBackBoomRing;
+    [SerializeField] private Transform HostFrontBoomRing;
 
     private NetworkVariable<float> BackSailDegrees = new NetworkVariable<float>();
     private NetworkVariable<float> FrontSailDegrees= new NetworkVariable<float>();
 
-    public Transform ClientBackBoomRing;
-    public Transform ClientFrontBoomRing;
+    [SerializeField] private Transform ClientBackBoomRing;
+    [SerializeField] private Transform ClientFrontBoomRing;
 
     //SAIL SCALE
-    public Transform HostBackSail;
-    public Transform HostFrontSail;
-    public Transform HostFrontSailRings;
+    [SerializeField] private Transform HostBackSail;
+    [SerializeField] private Transform HostFrontSail;
+    [SerializeField] private Transform HostFrontSailRings;
 
     private NetworkVariable<float> BackSailScaleX = new NetworkVariable<float>();
     private NetworkVariable<Vector2> FrontSailScaleYZ = new NetworkVariable<Vector2>();
     private NetworkVariable<float> FrontSailRingsPosY = new NetworkVariable<float>();
 
-    public Transform ClientBackSail;
-    public Transform ClientFrontSail;
-    public Transform ClientFrontSailRings;
+    [SerializeField] private Transform ClientBackSail;
+    [SerializeField] private Transform ClientFrontSail;
+    [SerializeField] private Transform ClientFrontSailRings;
 
     //WIND HELPERS
-    public Transform HostWindIndicator;
-    public Transform HostWindString;
+    [SerializeField] private Transform HostWindIndicator;
+    [SerializeField] private Transform HostWindString;
 
     private NetworkVariable<float> WindIndicator = new NetworkVariable<float>();
     private NetworkVariable<float> WindString = new NetworkVariable<float>();
 
-    public Transform ClientWindIndicator;
-    public Transform ClientWindString;
+    [SerializeField] private Transform ClientWindIndicator;
+    [SerializeField] private Transform ClientWindString;
 
     //SHIP CONTROLS
-    public Transform HostRudder;   
-    public Transform HostWheel; 
-    public Transform HostSheetRoll;
+    [SerializeField] private Transform HostRudder;
+    [SerializeField] private Transform HostWheel;
+    [SerializeField] private Transform HostSheetRoll;
 
     private NetworkVariable<float> Rudder = new NetworkVariable<float>();
     private NetworkVariable<float> Wheel = new NetworkVariable<float>();
     private NetworkVariable<float> SheetRoll = new NetworkVariable<float>();
 
-    public Transform ClientRudder;
-    public Transform ClientWheel;
-    public Transform ClientSheetRoll;
+    [SerializeField] private Transform ClientRudder;
+    [SerializeField] private Transform ClientWheel;
+    [SerializeField] private Transform ClientSheetRoll;
+
+    //SHEET
+    private NetworkVariable<float> SheetLength = new NetworkVariable<float>();
+    [SerializeField] private List<MovingRope> ClientSheetRopes;
+
+    [SerializeField] private ReadMicrocontrollers ReadMicrocontrollers;
+    private NetworkVariable<bool> SheetRollSound = new NetworkVariable<bool>(false);
+    [SerializeField] private AudioSource ClientSheetRollAudio;
 
     public override void OnNetworkSpawn()
     {
@@ -151,6 +159,25 @@ public class NetworkDataShip : NetworkBehaviour
             }
         };
 
+        SheetLength.OnValueChanged += (float prev, float current) =>
+        {
+            if (!IsOwner)
+            {
+                foreach (MovingRope mr in ClientSheetRopes)
+                {
+                    mr.ClientSheetLength = SheetLength.Value;
+                }
+            }
+        };
+
+        SheetRollSound.OnValueChanged += (bool prev, bool current) =>
+        {
+            if (!IsOwner)
+            {
+                ClientSheetRollAudio.enabled = SheetRollSound.Value;
+            }
+        };
+
         if (!IsOwner)
         {
             InvokeRepeating("SyncShip", Time.time, 5);
@@ -178,11 +205,16 @@ public class NetworkDataShip : NetworkBehaviour
             Rudder.Value = HostRudder.localEulerAngles.y;
             Wheel.Value = HostWheel.localEulerAngles.z;
             SheetRoll.Value = HostSheetRoll.localEulerAngles.x;
+
+            SheetLength.Value = SailsManager.SheetLength;
+            SheetRollSound.Value = ReadMicrocontrollers.SheetRollSound;
         }
-        else
-        {
+    }
+
+    private void FixedUpdate()
+    {
+        if (!IsOwner)
             ClientShip.GetComponent<Rigidbody>().AddForce(ClientShip.transform.forward * ForwardForce.Value);
-        }
     }
 
     void SyncShip()

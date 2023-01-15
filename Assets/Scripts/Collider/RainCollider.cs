@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RainCollider : MonoBehaviour
 {
-    public Transform Ship;
+    [SerializeField] private Transform Ship;
     private void OnTriggerExit()
     {        
         transform.position = new Vector3(Ship.position.x, 0, Ship.position.z);

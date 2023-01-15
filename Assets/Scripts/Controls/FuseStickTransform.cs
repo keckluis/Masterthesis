@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FuseStickTransform : MonoBehaviour
 {
-    public Transform XROrigin;
+    [SerializeField] private Transform XROrigin;
     void LateUpdate()
     {
         transform.position -= XROrigin.position;

@@ -5,14 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyShipCollider : MonoBehaviour
 {
-    public GameObject Particle;
-    public GameObject Fire;
-    public GameObject CannonPort;
-    public GameObject CannonStarboard;
+    [SerializeField] private GameObject Particle;
+    [SerializeField] private GameObject Fire;
+    [SerializeField] private GameObject CannonPort;
+    [SerializeField] private GameObject CannonStarboard;
     private bool Destroyed = false;
     private Transform Ship;
-    public int Health = 2;
-    public GameObject BackSailring;
+    [SerializeField] private int Health = 2;
+    [SerializeField] private GameObject BackSailring;
 
     private void FixedUpdate()
     {

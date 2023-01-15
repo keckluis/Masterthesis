@@ -5,11 +5,13 @@ using UnityEngine.Rendering;
 
 public class MovingRope : MonoBehaviour
 {
-    public Transform StartPoint;
-    public Transform MiddlePoint1, MiddlePoint2;
-    public Transform EndPoint;
+    [SerializeField] private Transform StartPoint;
+    [SerializeField] private Transform MiddlePoint1, MiddlePoint2;
+    [SerializeField] private Transform EndPoint;
     private LineRenderer LR;
-    public SailsManager SailsManager;
+    [SerializeField] private SailsManager SailsManager;
+    [SerializeField] private Transform ClientBackSailRing;
+    public float ClientSheetLength;
 
     void Awake()
     {
@@ -35,12 +37,24 @@ public class MovingRope : MonoBehaviour
             MiddlePoint1.position = StartPoint.position + startToEnd * (1f/3f);
             MiddlePoint2.position = StartPoint.position + startToEnd * (2f/3f);
 
-            float sailDegrees = SailsManager.BackSailRing.localEulerAngles.y;
+            float sailDegrees;
+            float sheetLength;
+            if (SailsManager!= null) 
+            {
+                sailDegrees = SailsManager.BackSailRing.localEulerAngles.y;
+                
+                sheetLength = SailsManager.SheetLength;
+            }
+            else
+            {
+                sailDegrees = ClientBackSailRing.localEulerAngles.y;
+                sheetLength = ClientSheetLength;
+            }
+
             if (sailDegrees > 180f)
                 sailDegrees = 360f - sailDegrees;
             sailDegrees = Mathf.Abs(sailDegrees);
-            float sheetLength = SailsManager.SheetLength;
-            
+
             if (sailDegrees < sheetLength - 1f)
             {
                 float ratio = 1 - (sailDegrees / sheetLength); 

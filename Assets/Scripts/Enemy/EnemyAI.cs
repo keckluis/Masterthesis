@@ -6,17 +6,17 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform TargetParent;
-    public List<Transform> Targets;
-    public int Current;
+    [SerializeField] private Transform TargetParent;
+    [SerializeField] private List<Transform> Targets;
+    [SerializeField] private int Current;
 
-    public bool FightMode = false;
+    [SerializeField] private bool FightMode = false;
     private bool FollowPath = true;
 
-    public SailsManager SailsManager;
-    public Transform BackSail;
-    public Transform Forward;
-    public EnemyCannon CannonPort, CannonStarboard;
+    [SerializeField] private SailsManager SailsManager;
+    [SerializeField] private Transform BackSail;
+    [SerializeField] private Transform Forward;
+    [SerializeField] private EnemyCannon CannonPort, CannonStarboard;
 
     public NavMeshAgent Agent;
 

@@ -7,13 +7,13 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public List<GameObject> Prefabs;
+    [SerializeField] private List<GameObject> Prefabs;
 
-    public List<Vector2> Blocked;
+    [SerializeField] private List<Vector2> Blocked;
 
-    public int EmptynessFactor;
+    [SerializeField] private int EmptynessFactor;
 
-    public Transform MapColliders;
+    [SerializeField] private Transform MapColliders;
 
     public void CreateMap()
     {

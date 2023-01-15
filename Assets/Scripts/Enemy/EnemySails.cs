@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class EnemySails : MonoBehaviour
 {
-    public SailsManager SailsManager;
-    public Transform FrontSailRing, BackSailRing;
-    public Transform BackSailPort, BackSailStarboard;
-    public Transform FrontSail, BackSail, Jib;
-    public Transform FrontSailRopeRings, BackSailRopeRings;
+    [SerializeField] private SailsManager SailsManager;
+    [SerializeField] private Transform FrontSailRing, BackSailRing;
+    [SerializeField] private Transform BackSailPort, BackSailStarboard;
+    [SerializeField] private Transform FrontSail, BackSail, Jib;
+    [SerializeField] private Transform FrontSailRopeRings, BackSailRopeRings;
     private float FrontRingsY, BackRingsY;
 
-    float ShipDegrees;
-    Vector2 ShipVector;
-    float WindShipAngle;
+    private float ShipDegrees;
+    private Vector2 ShipVector;
+    private float WindShipAngle;
     private Vector3 JibStartRotation;
 
     private void Start()

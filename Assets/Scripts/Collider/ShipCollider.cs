@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipCollider : MonoBehaviour
 {
-    public GameObject Particle;
+    [SerializeField] private GameObject Particle;
 
     void OnTriggerEnter(Collider collision)
     {

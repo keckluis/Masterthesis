@@ -5,8 +5,8 @@ using UnityEngine;
 public class AnimationTest : MonoBehaviour
 {
     Animator Animator;
-    public Transform Camera;
-    public float RotationSpeed = 1;
+    [SerializeField] private Transform Camera;
+    [SerializeField] private float RotationSpeed = 1;
 
     void Start()
     {

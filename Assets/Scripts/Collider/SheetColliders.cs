@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SheetColliders : MonoBehaviour
-{ 
-    public Transform Ship;
+{
+    [SerializeField] private Transform Ship;
 
     void Update()
     {

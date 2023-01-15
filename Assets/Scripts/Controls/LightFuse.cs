@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightFuse : MonoBehaviour
 {
-    public Cannon Cannon;
+    [SerializeField] private Cannon Cannon;
 
     void OnCollisionEnter(Collision collision)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HalyardControls : MonoBehaviour
 {
-    public SailsManager SailsManager;
+    [SerializeField] private SailsManager SailsManager;
 
     void Start()
     {

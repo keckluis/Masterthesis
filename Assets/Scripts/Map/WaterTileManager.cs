@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class WaterTileManager : MonoBehaviour
 {
-    public GameObject StartTile;
+    [SerializeField] private GameObject StartTile;
 
     private List<WaterTile> Tiles = new List<WaterTile>();
-    public Transform Ship;
+    [SerializeField] private Transform Ship;
 
     void Start()
     {

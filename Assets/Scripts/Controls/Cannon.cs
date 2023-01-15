@@ -6,20 +6,20 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Cannon : MonoBehaviour
 {
-    public Transform Tracker;
-    public Transform Horizontal;
-    public Transform Vertical;
-    public Transform CannonBallsHolder;
-    public GameObject CannonBall;
-    public Rigidbody Ship;
+    [SerializeField] private Transform Tracker;
+    [SerializeField] private Transform Horizontal;
+    [SerializeField] private Transform Vertical;
+    [SerializeField] private Transform CannonBallsHolder;
+    [SerializeField] private GameObject CannonBall;
+    [SerializeField] private Rigidbody Ship;
 
-    public ParticleSystem MuzzleFlash;
-    public GameObject Fuse;
-    public Transform[] FusePath = new Transform[4];
-    [SerializeField]private int currentFusePos = 0;
+    [SerializeField] private ParticleSystem MuzzleFlash;
+    [SerializeField] private GameObject Fuse;
+    [SerializeField] private Transform[] FusePath = new Transform[4];
+    [SerializeField] private int currentFusePos = 0;
 
     public bool coolDown = false;
-    public Animator ShakeAnimator;
+    [SerializeField] private Animator ShakeAnimator;
 
     private void Update()
     {

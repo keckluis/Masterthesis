@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EdgeFogGenerator : MonoBehaviour
 {
-    public GameObject EdgeFog;
+    [SerializeField] private GameObject EdgeFog;
 
     public void CreateFog()
     {

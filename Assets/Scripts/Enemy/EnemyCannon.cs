@@ -1,38 +1,35 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class EnemyCannon : MonoBehaviour
 {
-    public Transform Horizontal;
-    public Transform Vertical;
-    public Transform PlayerShip;
+    [SerializeField] private Transform Horizontal;
+    [SerializeField] private Transform Vertical;
+    [SerializeField] private Transform PlayerShip;
 
     private float SightDistance = 135f;
 
-    public Transform CanonBallsHolder;
-    public GameObject CanonBall;
-    public NavMeshAgent EnemyShipAgent;
+    [SerializeField] private Transform CanonBallsHolder;
+    [SerializeField] private GameObject CanonBall;
+    [SerializeField] private NavMeshAgent EnemyShipAgent;
 
-    public ParticleSystem MuzzleFlash;
+    [SerializeField] private ParticleSystem MuzzleFlash;
 
 
-    public bool isPort;
-    public Vector2 PlayerDirection;
-    bool coolDown = false;
-    public bool playerInRange = false;
+    [SerializeField] private bool isPort;
+    [SerializeField] private Vector2 PlayerDirection;
+    private bool coolDown = false;
+    [SerializeField] private bool playerInRange = false;
     public bool FightMode = false;
 
-    public float MaxError = 3f;
+    [SerializeField] private float MaxError = 3f;
     float hError = 0f;
     float vError = 0f;
 
-    public EnemyCannon OtherCannon;
-    public Animator ShakeAnimator;
+    [SerializeField] private EnemyCannon OtherCannon;
+    [SerializeField] private Animator ShakeAnimator;
 
     void FixedUpdate()
     {
