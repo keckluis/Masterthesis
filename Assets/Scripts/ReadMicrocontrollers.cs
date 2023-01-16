@@ -16,10 +16,16 @@ public class ReadMicrocontrollers : MonoBehaviour
 
     bool FoundAllMicrocontrollers = false;
 
+    float wheelPrev = 0;
     float sheetPrev = 0;
+    float halyardPrev = 0;
 
+    [SerializeField] private AudioSource WheelAudio;
+    [SerializeField] private AudioSource SheetRollAudio;
+    [SerializeField] private AudioSource HalyardAudio;
+    public bool WheelSound = false;
     public bool SheetRollSound = false;
-
+    public bool HalyardSound = false;
 
     void Start()
     {
@@ -83,6 +89,19 @@ public class ReadMicrocontrollers : MonoBehaviour
                     Wheel = mc.Value;
                     RudderControls.Degrees = Mathf.Clamp(RudderControls.Degrees, -45f, 45f);
                     RudderControls.SteeringWheel.localEulerAngles = new Vector3(0f, 0f, (mc.Value / 1_200f) * 360f);
+
+                    if (Mathf.Abs(RudderControls.SteeringWheel.localEulerAngles.z - wheelPrev) > 0.1f)
+                    {
+                        WheelAudio.enabled = true;
+                        WheelSound = true;
+                    }
+                    else
+                    {
+                        WheelAudio.enabled = false;
+                        WheelSound = false;
+                    }
+
+                    wheelPrev = RudderControls.SteeringWheel.localEulerAngles.z;
                     break;
 
                 case 'S':
@@ -96,12 +115,12 @@ public class ReadMicrocontrollers : MonoBehaviour
 
                     if (Mathf.Abs(SheetRoll.localEulerAngles.x - sheetPrev) > 0.1f)
                     {
-                        SheetRoll.GetComponent<AudioSource>().enabled = true;
+                        SheetRollAudio.enabled = true;
                         SheetRollSound = true;
                     }
                     else
                     {
-                        SheetRoll.GetComponent<AudioSource>().enabled = false;
+                        SheetRollAudio.enabled = false;
                         SheetRollSound = false;
                     }
 
@@ -115,6 +134,19 @@ public class ReadMicrocontrollers : MonoBehaviour
                         SailsManager.HalyardLength -= HalyardSpeed * 0.75f;
                     Halyard = mc.Value;
                     SailsManager.HalyardLength = Mathf.Clamp(SailsManager.HalyardLength, 10f, 100f);
+
+                    if (Mathf.Abs(SailsManager.HalyardLength - halyardPrev) > 0.1f)
+                    {
+                        HalyardAudio.enabled = true;
+                        HalyardSound = true;
+                    }
+                    else
+                    {
+                        HalyardAudio.enabled = false;
+                        HalyardSound = false;
+                    }
+
+                    halyardPrev = SailsManager.HalyardLength;
                     break;
 
                 default: 

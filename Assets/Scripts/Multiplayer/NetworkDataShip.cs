@@ -65,121 +65,73 @@ public class NetworkDataShip : NetworkBehaviour
     private NetworkVariable<float> SheetLength = new NetworkVariable<float>();
     [SerializeField] private List<MovingRope> ClientSheetRopes;
 
-    [SerializeField] private ReadMicrocontrollers ReadMicrocontrollers;
-    private NetworkVariable<bool> SheetRollSound = new NetworkVariable<bool>(false);
-    [SerializeField] private AudioSource ClientSheetRollAudio;
-
     public override void OnNetworkSpawn()
     {
-        ShipRotation.OnValueChanged += (float prev, float current) =>
+        if (!IsOwner)
         {
-            if (!IsOwner)
+            ShipRotation.OnValueChanged += (float prev, float current) =>
             {
                 ClientShip.transform.eulerAngles = new Vector3(0f, ShipRotation.Value, 0f);
-            }
-        };
+            };
 
-        BackSailDegrees.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            BackSailDegrees.OnValueChanged += (float prev, float current) =>
             {
                 ClientBackBoomRing.localEulerAngles = new Vector3(0f, BackSailDegrees.Value, 0f);
-            }
-        };
+            };
 
-        FrontSailDegrees.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            FrontSailDegrees.OnValueChanged += (float prev, float current) =>
             {
                 ClientFrontBoomRing.localEulerAngles = new Vector3(0f, FrontSailDegrees.Value, 0f);
-            }
-        };
+            };
 
-        BackSailScaleX.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            BackSailScaleX.OnValueChanged += (float prev, float current) =>
             {
                 ClientBackSail.localScale = new Vector3(BackSailScaleX.Value, 1f, 1f);
-            }
-        };
+            };
 
-        FrontSailScaleYZ.OnValueChanged += (Vector2 prev, Vector2 current) =>
-        {
-            if (!IsOwner)
+            FrontSailScaleYZ.OnValueChanged += (Vector2 prev, Vector2 current) =>
             {
                 ClientFrontSail.localScale = new Vector3(1f, FrontSailScaleYZ.Value.x, FrontSailScaleYZ.Value.y);
-            }
-        };
+            };
 
-        FrontSailRingsPosY.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            FrontSailRingsPosY.OnValueChanged += (float prev, float current) =>
             {
                 ClientFrontSailRings.localPosition = new Vector3(0f, FrontSailRingsPosY.Value, 0f);
-            }
-        };
+            };
 
-        WindIndicator.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            WindIndicator.OnValueChanged += (float prev, float current) =>
             {
                 ClientWindIndicator.localEulerAngles = new Vector3(0f, WindIndicator.Value, 0f);
-            }
-        };
+            };
 
-        WindString.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            WindString.OnValueChanged += (float prev, float current) =>
             {
                 ClientWindString.localEulerAngles = new Vector3(0f, WindString.Value, 0f);
-            }
-        };
+            };
 
-        Rudder.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            Rudder.OnValueChanged += (float prev, float current) =>
             {
                 ClientRudder.localEulerAngles = new Vector3(0f, Rudder.Value, 0f);
-            }
-        };
+            };
 
-        Wheel.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            Wheel.OnValueChanged += (float prev, float current) =>
             {
                 ClientWheel.localEulerAngles = new Vector3(0f, 0f, Wheel.Value);
-            }
-        };
+            };
 
-        SheetRoll.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            SheetRoll.OnValueChanged += (float prev, float current) =>
             {
                 ClientSheetRoll.localEulerAngles = new Vector3(SheetRoll.Value, 0f, 0f);
-            }
-        };
+            };
 
-        SheetLength.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
-            {
+            SheetLength.OnValueChanged += (float prev, float current) =>
+            {          
                 foreach (MovingRope mr in ClientSheetRopes)
                 {
                     mr.ClientSheetLength = SheetLength.Value;
                 }
-            }
-        };
+            };
 
-        SheetRollSound.OnValueChanged += (bool prev, bool current) =>
-        {
-            if (!IsOwner)
-            {
-                ClientSheetRollAudio.enabled = SheetRollSound.Value;
-            }
-        };
-
-        if (!IsOwner)
-        {
             InvokeRepeating("SyncShip", Time.time, 5);
         }         
     }
@@ -206,8 +158,7 @@ public class NetworkDataShip : NetworkBehaviour
             Wheel.Value = HostWheel.localEulerAngles.z;
             SheetRoll.Value = HostSheetRoll.localEulerAngles.x;
 
-            SheetLength.Value = SailsManager.SheetLength;
-            SheetRollSound.Value = ReadMicrocontrollers.SheetRollSound;
+            SheetLength.Value = SailsManager.SheetLength;    
         }
     }
 

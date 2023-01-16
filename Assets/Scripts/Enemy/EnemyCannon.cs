@@ -30,6 +30,7 @@ public class EnemyCannon : MonoBehaviour
 
     [SerializeField] private EnemyCannon OtherCannon;
     [SerializeField] private Animator ShakeAnimator;
+    [SerializeField] private AudioSource Bell;
 
     void FixedUpdate()
     {
@@ -38,6 +39,9 @@ public class EnemyCannon : MonoBehaviour
 
         if (PlayerDirection.magnitude < SightDistance)
         {
+            if (!FightMode && !Bell.isPlaying)
+                Bell.Play();
+
             FightMode = true;
             float h = Vector2.Angle(new Vector2(transform.forward.x, transform.forward.z), PlayerDirection) - 90;
 
