@@ -25,7 +25,8 @@ public class NetworkDataCharacters : NetworkBehaviour
     private NetworkVariable<Vector3> Sailor1Rot = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Owner);
     private NetworkVariable<Vector3> Sailor2Rot = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Owner);
 
-    
+    private NetworkVariable<Vector3> FuseStickPos = new NetworkVariable<Vector3>();
+    private NetworkVariable<Vector3> FuseStickRot = new NetworkVariable<Vector3>();
 
     [SerializeField] private Transform HostSailor1Head;
     [SerializeField] private Transform HostSailor2Head;
@@ -33,6 +34,9 @@ public class NetworkDataCharacters : NetworkBehaviour
     [SerializeField] private Transform ClientCaptainHead;
     [SerializeField] private Transform ClientSailor1Head;
     [SerializeField] private Transform ClientSailor2Head;
+
+    [SerializeField] private Transform HostFuseStick;
+    [SerializeField] private Transform ClientFusestick;
 
     public override void OnNetworkSpawn()
     {
@@ -88,6 +92,16 @@ public class NetworkDataCharacters : NetworkBehaviour
                     ClientSailor1Head.eulerAngles = Sailor1Rot.Value;
                 };
             }
+
+            FuseStickPos.OnValueChanged += (Vector3 prev, Vector3 current) =>
+            {
+                ClientFusestick.position = FuseStickPos.Value;
+            };
+
+            FuseStickRot.OnValueChanged += (Vector3 prev, Vector3 current) =>
+            {
+                ClientFusestick.eulerAngles = FuseStickRot.Value;
+            };
         }
     }
 
@@ -99,6 +113,9 @@ public class NetworkDataCharacters : NetworkBehaviour
             {       
                 CaptainPos.Value = XRCaptainHead.position;
                 CaptainRot.Value = XRCaptainHead.eulerAngles;
+
+                FuseStickPos.Value = HostFuseStick.position;
+                FuseStickRot.Value = HostFuseStick.eulerAngles;
             }
             else if (Character == Character.Sailor1)
             {            
