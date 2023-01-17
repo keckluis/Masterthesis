@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemySails : MonoBehaviour
 {
     [SerializeField] private SailsManager SailsManager;
+    [SerializeField] private NetworkDataEnemies NetworkDataEnemies;
     [SerializeField] private Transform FrontSailRing, BackSailRing;
     [SerializeField] private Transform BackSailPort, BackSailStarboard;
     [SerializeField] private Transform FrontSail, BackSail, Jib;
@@ -27,8 +28,19 @@ public class EnemySails : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
-        Vector2 windVector = SailsManager.WindVector;
-        float windStrength = SailsManager.WindStrength;
+        Vector2 windVector;
+        float windStrength;
+
+        if (SailsManager != null)
+        {
+            windVector = SailsManager.WindVector;
+            windStrength = SailsManager.WindStrength;
+        }
+        else
+        {
+            windVector = NetworkDataEnemies.ClientWindVector;
+            windStrength = NetworkDataEnemies.ClientWindStrength;
+        } 
 
         ShipDegrees = transform.eulerAngles.y;
 

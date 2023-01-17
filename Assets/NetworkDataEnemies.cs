@@ -22,6 +22,12 @@ public class NetworkDataEnemies : NetworkBehaviour
 
     [SerializeField] private List<Rigidbody> ClientEnemyShips;
 
+    [SerializeField] private SailsManager SailsManager;
+    private NetworkVariable<Vector2> WindVector = new NetworkVariable<Vector2>();
+    private NetworkVariable<float> WindStrength = new NetworkVariable<float>();
+    public Vector2 ClientWindVector;
+    public float ClientWindStrength;
+
     public override void OnNetworkSpawn()
     {
         if (!IsOwner)
@@ -67,6 +73,15 @@ public class NetworkDataEnemies : NetworkBehaviour
             {
                 ClientEnemyShips[4].transform.eulerAngles = new Vector3(0f, Enemy4Rot.Value, 0f);
             };
+
+            WindVector.OnValueChanged += (Vector2 prev, Vector2 current) =>
+            {
+                ClientWindVector = WindVector.Value;
+            };
+            WindStrength.OnValueChanged += (float prev, float current) =>
+            {
+                ClientWindStrength = WindStrength.Value;
+            };
         }
     }
 
@@ -85,6 +100,9 @@ public class NetworkDataEnemies : NetworkBehaviour
             Enemy2Rot.Value = HostEnemyShips[2].transform.eulerAngles.y;
             Enemy3Rot.Value = HostEnemyShips[3].transform.eulerAngles.y;
             Enemy4Rot.Value = HostEnemyShips[4].transform.eulerAngles.y;
+
+            WindVector.Value = SailsManager.WindVector;
+            WindStrength.Value = SailsManager.WindStrength;
         }
     }
 }
