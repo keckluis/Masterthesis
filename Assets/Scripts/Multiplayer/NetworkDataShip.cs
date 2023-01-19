@@ -46,7 +46,8 @@ public class NetworkDataShip : NetworkBehaviour
     private NetworkVariable<float> WindString = new NetworkVariable<float>();
 
     [SerializeField] private Transform ClientWindIndicator;
-    [SerializeField] private Transform ClientWindString;
+    [SerializeField] private Transform ClientWindStringPort;
+    [SerializeField] private Transform ClientWindStringStarboard;
 
     //SHIP CONTROLS
     [SerializeField] private Transform HostRudder;
@@ -106,7 +107,8 @@ public class NetworkDataShip : NetworkBehaviour
 
             WindString.OnValueChanged += (float prev, float current) =>
             {
-                ClientWindString.localEulerAngles = new Vector3(0f, WindString.Value, 0f);
+                ClientWindStringPort.localEulerAngles = new Vector3(0f, WindString.Value, 0f);
+                ClientWindStringStarboard.localEulerAngles = new Vector3(0f, WindString.Value, 0f);
             };
 
             Rudder.OnValueChanged += (float prev, float current) =>

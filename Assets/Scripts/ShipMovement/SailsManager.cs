@@ -37,7 +37,7 @@ public class SailsManager : MonoBehaviour
 
     [SerializeField] private Vector3 FrontMastPos, FrontMastRot;
 
-    [SerializeField] private Transform WindString;
+    [SerializeField] private Transform WindStringPort, WindStringStarboard;
 
     private bool FrontSailSwitch = false;
 
@@ -243,14 +243,23 @@ public class SailsManager : MonoBehaviour
             if (sailWindRatio < 1f && sailWindRatio > -1f)
             {
                 ForwardForce += 1f - Mathf.Abs(sailWindRatio);
-                WindString.localEulerAngles = new Vector3(0f, sailWindRatio * 45f, 0f);
+                WindStringPort.localEulerAngles = new Vector3(0f, sailWindRatio * 45f, 0f);
+                WindStringStarboard.localEulerAngles = new Vector3(0f, sailWindRatio * 45f, 0f);
             }
             else
             {
                 if (sailWindRatio > 0f)
-                    WindString.localEulerAngles = new Vector3(0f, +45f, 0f);
+                {
+                    WindStringPort.localEulerAngles = new Vector3(0f, +45f, 0f);
+                    WindStringStarboard.localEulerAngles = new Vector3(0f, +45f, 0f);
+                }
+                    
                 else
-                    WindString.localEulerAngles = new Vector3(0f, -45f, 0f);
+                {
+                    WindStringPort.localEulerAngles = new Vector3(0f, -45f, 0f);
+                    WindStringStarboard.localEulerAngles = new Vector3(0f, -45f, 0f);
+                }
+                    
             }         
         }
 
