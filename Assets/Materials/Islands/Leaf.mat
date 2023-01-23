@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Leaf
-  m_Shader: {fileID: -6465566751694194690, guid: 77cfd2cc77685ff49805a5e5c39a67f9,
+  m_Shader: {fileID: -6465566751694194690, guid: 734f79e080249934391186e37e82f196,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -117,6 +117,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _WindSpeed: 1.5
+    - _WindStrength: 0.077
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
@@ -124,4 +126,5 @@ Material:
     - _Color: {r: 0.14117995, g: 0.38999996, b: 0.14506775, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _WIndDirection: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

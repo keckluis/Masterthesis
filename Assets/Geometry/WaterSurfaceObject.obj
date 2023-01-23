@@ -1,0 +1,17 @@
+# Blender v3.2.2 OBJ File: 'WaterSurfaceObject.blend'
+# www.blender.org
+mtllib WaterSurfaceObject.mtl
+o Plane
+v 3.992065 -0.000001 3.992035
+v 3.992065 0.000000 0.000000
+v 0.000031 -0.000001 3.992035
+v 0.000031 0.000000 0.000000
+vt 0.652695 0.355290
+vt 0.650699 0.357286
+vt 0.650699 0.355290
+vt 0.652695 0.357286
+vn 0.0000 1.0000 0.0000
+usemtl Default_OBJ
+s 1
+f 1/1/1 4/2/1 3/3/1
+f 1/1/1 2/4/1 4/2/1
