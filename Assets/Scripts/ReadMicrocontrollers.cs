@@ -12,6 +12,7 @@ public class ReadMicrocontrollers : MonoBehaviour
     [SerializeField] private RudderControls RudderControls;
     [SerializeField] private Transform SheetRoll;
     [SerializeField] private float Wheel = 0f, Sheet = 0f, Halyard = 0f;
+    private float SheetNew = 1f;
     public float WheelSpeed = 0.25f, SheetSpeed = 0.1f, HalyardSpeed = 0.5f;
 
     bool FoundAllMicrocontrollers = false;
@@ -105,11 +106,23 @@ public class ReadMicrocontrollers : MonoBehaviour
                     break;
 
                 case 'S':
-                    if (Sheet > mc.Value + 2f)
+                    /*if (Sheet > mc.Value + 2f)
                         SailsManager.SheetLength += SheetSpeed;
                     else if (Sheet < mc.Value - 2f)
                         SailsManager.SheetLength -= SheetSpeed;
-                    Sheet = mc.Value;
+                    Sheet = mc.Value;*/
+
+                    if (mc.Value > Sheet + 1100f && mc.Value < Sheet + 1300f) 
+                    {
+                        SheetNew += SheetSpeed;
+                        Sheet = mc.Value;
+                    }
+                    else if (mc.Value < Sheet - 1100f && mc.Value > Sheet - 1300f)
+                    {
+                        SheetNew -= SheetSpeed;
+                        Sheet = mc.Value;
+                    }
+                    SheetNew = Mathf.Clamp(SheetNew, 1f, 80f);
                     SailsManager.SheetLength = Mathf.Clamp(SailsManager.SheetLength, 1f, 80f);
                     SheetRoll.localEulerAngles = new Vector3(-((mc.Value / 1_200f) * 360f), 0f, 0f);
 
@@ -152,6 +165,18 @@ public class ReadMicrocontrollers : MonoBehaviour
                 default: 
                     break;
             }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (SailsManager.SheetLength > SheetNew)
+        {
+            SailsManager.SheetLength -= 0.1f;
+        }
+        else if (SailsManager.SheetLength < SheetNew)
+        {
+            SailsManager.SheetLength += 0.1f;
         }
     }
 

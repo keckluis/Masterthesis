@@ -40,11 +40,11 @@ public class Cannon : MonoBehaviour
 
         if  (Tracker != null)
         {
-            float h = Tracker.localEulerAngles.z;
-            float v = Tracker.localEulerAngles.x;
-
-            Horizontal.localEulerAngles = new Vector3(0f, h, 0f);
-            Vertical.localEulerAngles = new Vector3(v, 0f, 0f);
+            Horizontal.LookAt(Tracker.position);
+            Horizontal.localEulerAngles = new Vector3(0f, Horizontal.localEulerAngles.y, 0f);
+            
+            Vertical.LookAt(Tracker.position);
+            Vertical.localEulerAngles = new Vector3(Vertical.localEulerAngles.x, 0f, 0f);
         }
 
         if (Fuse.activeSelf)
