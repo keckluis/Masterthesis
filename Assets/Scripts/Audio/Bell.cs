@@ -12,7 +12,7 @@ public class Bell : MonoBehaviour
     }
     void Update()
     {
-        while (AS.isPlaying)
+        if (AS.isPlaying)
         {
             transform.localEulerAngles = new Vector3(Mathf.PingPong(Time.time * 100f, 60f) - 30f, 0f, 0f);
         }

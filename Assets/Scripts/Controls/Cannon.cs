@@ -38,12 +38,17 @@ public class Cannon : MonoBehaviour
             RotateVertical(1f);*/
         
 
-        if  (Tracker != null)
+        if  (Tracker.localEulerAngles != Vector3.zero)
         {
             Horizontal.LookAt(Tracker.position);
             Horizontal.localEulerAngles = new Vector3(0f, Horizontal.localEulerAngles.y, 0f);
             
             Vertical.LookAt(Tracker.position);
+            Vertical.localEulerAngles = new Vector3(Vertical.localEulerAngles.x, 0f, 0f);
+        }
+        else
+        {
+            Horizontal.localEulerAngles = new Vector3(0f, Horizontal.localEulerAngles.y, 0f);
             Vertical.localEulerAngles = new Vector3(Vertical.localEulerAngles.x, 0f, 0f);
         }
 
@@ -61,7 +66,7 @@ public class Cannon : MonoBehaviour
         }
     }
 
-    void RotateHorizontal(float direction)
+    /*void RotateHorizontal(float direction)
     {
         Horizontal.Rotate(new Vector3(0, direction, 0));
     }
@@ -78,7 +83,7 @@ public class Cannon : MonoBehaviour
         {
            Vertical.localEulerAngles = new Vector3(335f, 0f, 0f);
         }
-    }   
+    }*/   
 
     public void Shoot()
     {
