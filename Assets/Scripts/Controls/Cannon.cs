@@ -38,7 +38,7 @@ public class Cannon : MonoBehaviour
             RotateVertical(1f);*/
         
 
-        if  (Tracker.localEulerAngles != Vector3.zero)
+        if  (Tracker.parent.localEulerAngles != Vector3.zero)
         {
             Horizontal.LookAt(Tracker.position);
             Horizontal.localEulerAngles = new Vector3(0f, Horizontal.localEulerAngles.y, 0f);

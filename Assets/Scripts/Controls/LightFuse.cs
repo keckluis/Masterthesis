@@ -6,12 +6,19 @@ public class LightFuse : MonoBehaviour
 {
     [SerializeField] private Cannon Cannon;
 
-    void OnCollisionEnter(Collision collision)
+    /*void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Fuse")
-        {
-            Debug.Log(Cannon.gameObject.name + " fired!");
-            Cannon.Shoot();
-        }
+        print("AAAAAA");
+        Debug.Log(Cannon.gameObject.name + " fired!");
+        Cannon.Shoot();
+        
+    }*/
+
+    void OnTriggerEnter(Collider collider)
+    {
+        print("AAAAAA");
+        Debug.Log(Cannon.gameObject.name + " fired!");
+        Cannon.Shoot();
+        
     }
 }

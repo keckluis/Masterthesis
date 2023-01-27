@@ -106,13 +106,13 @@ public class ReadMicrocontrollers : MonoBehaviour
                     break;
 
                 case 'S':
-                    /*if (Sheet > mc.Value + 2f)
+                    if (Sheet > mc.Value + 2f)
                         SailsManager.SheetLength += SheetSpeed;
                     else if (Sheet < mc.Value - 2f)
                         SailsManager.SheetLength -= SheetSpeed;
-                    Sheet = mc.Value;*/
+                    Sheet = mc.Value;
 
-                    if (mc.Value > Sheet + 1100f && mc.Value < Sheet + 1300f) 
+                    /*if (mc.Value > Sheet + 1100f && mc.Value < Sheet + 1300f) 
                     {
                         SheetNew += SheetSpeed;
                         Sheet = mc.Value;
@@ -122,7 +122,7 @@ public class ReadMicrocontrollers : MonoBehaviour
                         SheetNew -= SheetSpeed;
                         Sheet = mc.Value;
                     }
-                    SheetNew = Mathf.Clamp(SheetNew, 1f, 80f);
+                    SheetNew = Mathf.Clamp(SheetNew, 1f, 80f);*/
                     SailsManager.SheetLength = Mathf.Clamp(SailsManager.SheetLength, 1f, 80f);
                     SheetRoll.localEulerAngles = new Vector3(-((mc.Value / 1_200f) * 360f), 0f, 0f);
 
@@ -168,7 +168,7 @@ public class ReadMicrocontrollers : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         if (SailsManager.SheetLength > SheetNew)
         {
@@ -178,7 +178,7 @@ public class ReadMicrocontrollers : MonoBehaviour
         {
             SailsManager.SheetLength += 0.1f;
         }
-    }
+    }*/
 
     void LookForMicroController(SerialPort sp)
     {
