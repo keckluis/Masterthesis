@@ -6,7 +6,7 @@ using UnityEngine;
 public class NetworkDataEnemies : NetworkBehaviour
 {
 
-    [SerializeField] private List<Rigidbody> HostEnemyShips;
+    [SerializeField] private List<Transform> HostEnemyShips;
 
     private NetworkVariable<Vector2> Enemy0Pos = new NetworkVariable<Vector2>();
     private NetworkVariable<Vector2> Enemy1Pos = new NetworkVariable<Vector2>();
@@ -20,7 +20,7 @@ public class NetworkDataEnemies : NetworkBehaviour
     private NetworkVariable<float> Enemy3Rot = new NetworkVariable<float>();
     private NetworkVariable<float> Enemy4Rot = new NetworkVariable<float>();
 
-    [SerializeField] private List<Rigidbody> ClientEnemyShips;
+    [SerializeField] private List<Transform> ClientEnemyShips;
 
     [SerializeField] private SailsManager SailsManager;
     private NetworkVariable<Vector2> WindVector = new NetworkVariable<Vector2>();

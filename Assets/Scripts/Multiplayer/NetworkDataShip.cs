@@ -6,14 +6,14 @@ using UnityEngine;
 public class NetworkDataShip : NetworkBehaviour
 {
     //SHIP MOVEMENT
-    [SerializeField] private Rigidbody HostShip;
+    [SerializeField] private Transform HostShip;
     [SerializeField] private SailsManager SailsManager;
 
-    private NetworkVariable<Vector2> ShipPosition = new NetworkVariable<Vector2>();
+    private NetworkVariable<Vector3> ShipPosition = new NetworkVariable<Vector3>();
     private NetworkVariable<float> ForwardForce = new NetworkVariable<float>();
     private NetworkVariable<float> ShipRotation = new NetworkVariable<float>();
 
-    [SerializeField] private Rigidbody ClientShip;
+    [SerializeField] private Transform ClientShip;
 
     //SAIL ROTATION
     [SerializeField] private Transform HostBackBoomRing;
@@ -70,9 +70,9 @@ public class NetworkDataShip : NetworkBehaviour
     {
         if (!IsOwner)
         {
-            ShipPosition.OnValueChanged += (Vector2 prev, Vector2 current) => 
+            ShipPosition.OnValueChanged += (Vector3 prev, Vector3 current) => 
             {
-                ClientShip.position = new Vector3(ShipPosition.Value.x, ClientShip.position.y, ShipPosition.Value.y);
+                ClientShip.position = ShipPosition.Value;
             };
 
             ShipRotation.OnValueChanged += (float prev, float current) =>
@@ -147,7 +147,7 @@ public class NetworkDataShip : NetworkBehaviour
     {
         if (IsOwner)
         {
-            ShipPosition.Value = new Vector2(HostShip.position.x, HostShip.position.z);
+            ShipPosition.Value = HostShip.position;
             ForwardForce.Value = SailsManager.ForwardForce * SailsManager.WindStrength;
             ShipRotation.Value = HostShip.transform.eulerAngles.y;
 
@@ -169,18 +169,18 @@ public class NetworkDataShip : NetworkBehaviour
         }
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
-        //if(IsOwner)
-            //ClientShip.GetComponent<Rigidbody>().AddForce(ClientShip.transform.forward * ForwardForce.Value);
+        if(IsOwner)
+            ClientShip.GetComponent<Rigidbody>().AddForce(ClientShip.transform.forward * ForwardForce.Value);
     }
 
     void SyncShip()
     {
         if (!IsOwner)
         {
-            ClientShip.position = new Vector3(ShipPosition.Value.x, ClientShip.position.y, ShipPosition.Value.y);
+            ClientShip.MovePosition(new Vector3(ShipPosition.Value.x, ClientShip.position.y, ShipPosition.Value.y));
             ClientShip.transform.eulerAngles = new Vector3(0f, ShipRotation.Value, 0f);  
         }
-    }
+    }*/
 }
