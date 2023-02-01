@@ -70,6 +70,11 @@ public class NetworkDataShip : NetworkBehaviour
     {
         if (!IsOwner)
         {
+            ShipPosition.OnValueChanged += (Vector2 prev, Vector2 current) => 
+            {
+                ClientShip.position = new Vector3(ShipPosition.Value.x, ClientShip.position.y, ShipPosition.Value.y);
+            };
+
             ShipRotation.OnValueChanged += (float prev, float current) =>
             {
                 ClientShip.transform.eulerAngles = new Vector3(0f, ShipRotation.Value, 0f);
@@ -134,7 +139,7 @@ public class NetworkDataShip : NetworkBehaviour
                 }
             };
 
-            InvokeRepeating("SyncShip", Time.time, 5);
+            //InvokeRepeating("SyncShip", Time.time, 5);
         }         
     }
 
@@ -166,8 +171,8 @@ public class NetworkDataShip : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (!IsOwner)
-            ClientShip.GetComponent<Rigidbody>().AddForce(ClientShip.transform.forward * ForwardForce.Value);
+        //if(IsOwner)
+            //ClientShip.GetComponent<Rigidbody>().AddForce(ClientShip.transform.forward * ForwardForce.Value);
     }
 
     void SyncShip()
