@@ -189,7 +189,7 @@ public class SailsManager : MonoBehaviour
         }
 
         float sailCurvature = (359f - BackSailDegrees) / 79f;
-        sailCurvature = Mathf.Clamp(sailCurvature, 0.1f, 1f);
+        sailCurvature = Mathf.Clamp(sailCurvature, 0.1f, .9f);
         
         if (BackSailRing.localEulerAngles.y > 180)
         {
@@ -244,20 +244,20 @@ public class SailsManager : MonoBehaviour
             {
                 ForwardForce += 1f - Mathf.Abs(sailWindRatio);
                 WindStringPort.localEulerAngles = new Vector3(0f, sailWindRatio * 45f, 0f);
-                WindStringStarboard.localEulerAngles = new Vector3(0f, sailWindRatio * 45f, 0f);
+                WindStringStarboard.localEulerAngles = new Vector3(0f, sailWindRatio * -45f, 0f);
             }
             else
             {
                 if (sailWindRatio > 0f)
                 {
                     WindStringPort.localEulerAngles = new Vector3(0f, +45f, 0f);
-                    WindStringStarboard.localEulerAngles = new Vector3(0f, +45f, 0f);
+                    WindStringStarboard.localEulerAngles = new Vector3(0f, -45f, 0f);
                 }
                     
                 else
                 {
                     WindStringPort.localEulerAngles = new Vector3(0f, -45f, 0f);
-                    WindStringStarboard.localEulerAngles = new Vector3(0f, -45f, 0f);
+                    WindStringStarboard.localEulerAngles = new Vector3(0f, +45f, 0f);
                 }
                     
             }         
