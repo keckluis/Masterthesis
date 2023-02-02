@@ -42,7 +42,7 @@ public class SeagullSpawner : MonoBehaviour
     {
         transform.Translate(Vector3.forward * Speed, Space.Self);
 
-        if (Mathf.Abs(transform.localPosition.x) > 3000f || Mathf.Abs(transform.localPosition.z) > 3000f)
+        if (Mathf.Abs(transform.position.x) > 3000f || Mathf.Abs(transform.position.z) > 3000f)
         {
             Start();
         }
