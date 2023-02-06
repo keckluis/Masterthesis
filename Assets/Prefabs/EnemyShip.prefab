@@ -50,6 +50,8 @@ MonoBehaviour:
   MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 45590881}
   SailsManager: {fileID: 0}
+  ClientBackSailRing: {fileID: 0}
+  ClientSheetLength: 0
 --- !u!120 &17191597
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -357,6 +359,8 @@ MonoBehaviour:
   MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 1772427566}
   SailsManager: {fileID: 0}
+  ClientBackSailRing: {fileID: 0}
+  ClientSheetLength: 0
 --- !u!120 &360442776
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -621,6 +625,8 @@ MonoBehaviour:
   MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 1886517884}
   SailsManager: {fileID: 0}
+  ClientBackSailRing: {fileID: 0}
+  ClientSheetLength: 0
 --- !u!120 &913269736
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1046,6 +1052,8 @@ MonoBehaviour:
   MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 1549681864}
   SailsManager: {fileID: 0}
+  ClientBackSailRing: {fileID: 0}
+  ClientSheetLength: 0
 --- !u!120 &1677967132
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3229,6 +3237,8 @@ MonoBehaviour:
   MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 3020068684058492388}
   SailsManager: {fileID: 0}
+  ClientBackSailRing: {fileID: 0}
+  ClientSheetLength: 0
 --- !u!120 &2664657692066176967
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -9387,6 +9397,8 @@ MonoBehaviour:
   MiddlePoint2: {fileID: 0}
   EndPoint: {fileID: 765237634548623606}
   SailsManager: {fileID: 0}
+  ClientBackSailRing: {fileID: 0}
+  ClientSheetLength: 0
 --- !u!120 &6657701780004590168
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -11283,7 +11295,7 @@ MonoBehaviour:
   CanonBallsHolder: {fileID: 0}
   CanonBall: {fileID: 4930838721638824396, guid: e5fbf2a280a14d347b5519cb2523005c,
     type: 3}
-  EnemyShip: {fileID: 8013754031473180064}
+  EnemyShipAgent: {fileID: 0}
   MuzzleFlash: {fileID: 6320933787560814073}
   isPort: 1
   PlayerDirection: {x: 0, y: 0}
@@ -11292,6 +11304,7 @@ MonoBehaviour:
   MaxError: 0.25
   OtherCannon: {fileID: 1110465686}
   ShakeAnimator: {fileID: 1355586265718288484}
+  Bell: {fileID: 0}
 --- !u!4 &3876399375678280521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2129134467388968758, guid: f539b317dfe42044e8fc83de83ddbb70,
@@ -11380,7 +11393,7 @@ MonoBehaviour:
   CanonBallsHolder: {fileID: 0}
   CanonBall: {fileID: 4930838721638824396, guid: e5fbf2a280a14d347b5519cb2523005c,
     type: 3}
-  EnemyShip: {fileID: 8013754031473180064}
+  EnemyShipAgent: {fileID: 0}
   MuzzleFlash: {fileID: 1276373046928166288}
   isPort: 0
   PlayerDirection: {x: 0, y: 0}
@@ -11389,6 +11402,7 @@ MonoBehaviour:
   MaxError: 0.25
   OtherCannon: {fileID: 1937653417}
   ShakeAnimator: {fileID: 1355586265718288484}
+  Bell: {fileID: 0}
 --- !u!4 &5778908558390821992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f539b317dfe42044e8fc83de83ddbb70,
@@ -11436,6 +11450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SailsManager: {fileID: 0}
+  NetworkDataEnemies: {fileID: 0}
   FrontSailRing: {fileID: 7764625731940893250}
   BackSailRing: {fileID: 5388564729849588491}
   BackSailPort: {fileID: 338491199}
@@ -11445,7 +11460,6 @@ MonoBehaviour:
   Jib: {fileID: 4132305439998919252}
   FrontSailRopeRings: {fileID: 3239741881295644296}
   BackSailRopeRings: {fileID: 3876399375678280521}
-  Path: {fileID: 0}
 --- !u!114 &2177870870526913930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11465,6 +11479,7 @@ MonoBehaviour:
   CannonStarboard: {fileID: 5424274502421538618}
   Health: 2
   BackSailring: {fileID: 2696390209724274072}
+  Plunder: {fileID: 7437409788108167743, guid: 7f58df7f725262d42bf157c7eb047251, type: 3}
 --- !u!114 &5030096099782553217
 MonoBehaviour:
   m_ObjectHideFlags: 0

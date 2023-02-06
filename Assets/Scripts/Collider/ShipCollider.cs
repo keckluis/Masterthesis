@@ -6,8 +6,12 @@ public class ShipCollider : MonoBehaviour
 {
     [SerializeField] private GameObject Particle;
 
+    public GameObject[] Plunder = new GameObject[5];
+    public int PlunderAmount = 0;
+
     void OnTriggerEnter(Collider collision)
     {
+        print(collision.name);
         if (collision.gameObject.tag == "CannonBallEnemy")
         {
             GameObject ship = gameObject;
@@ -27,11 +31,22 @@ public class ShipCollider : MonoBehaviour
 
             GetComponent<AudioSource>().Play();
         }
-
-        IEnumerator DestroyParticle(GameObject particle)
+        else if (collision.gameObject.tag == "Plunder")
         {
-            yield return new WaitForSeconds(1);
-            Destroy(particle);
+            Destroy(collision.gameObject);
+
+            if (PlunderAmount < 5)
+            {
+                Plunder[PlunderAmount].SetActive(true);
+
+                PlunderAmount++;
+            }    
         }
+    }
+
+    IEnumerator DestroyParticle(GameObject particle)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(particle);
     }
 }

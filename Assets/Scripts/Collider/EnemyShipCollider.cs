@@ -13,6 +13,7 @@ public class EnemyShipCollider : MonoBehaviour
     private Transform Ship;
     [SerializeField] private int Health = 2;
     [SerializeField] private GameObject BackSailring;
+    [SerializeField] private GameObject Plunder;
 
     private void FixedUpdate()
     {
@@ -30,7 +31,11 @@ public class EnemyShipCollider : MonoBehaviour
             }
             else
             {
+                Vector3 shipPos = Ship.position;
                 Destroy(Ship.transform.parent.gameObject);
+                GameObject plunder = Instantiate(Plunder);
+                plunder.transform.position = new Vector3(shipPos.x, 0f, shipPos.z);
+                plunder.transform.localEulerAngles = new Vector3(0f, Random.Range(0f, 360f), 0f);
             }
         }
     }
@@ -54,7 +59,8 @@ public class EnemyShipCollider : MonoBehaviour
             particle.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DestroyParticle(particle));
 
-            GetComponent<AudioSource>().Play();
+            if (GetComponent<AudioSource>() != null)
+                GetComponent<AudioSource>().Play();
             
             if (Health <= 0)
             {

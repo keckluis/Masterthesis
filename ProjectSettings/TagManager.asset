@@ -13,6 +13,7 @@ TagManager:
   - MapObject
   - MapCollider
   - CannonBallEnemy
+  - Plunder
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Captain
   - Sailor1
   - Sailor2
-  - 
+  - Plunder
   - 
   - 
   - 
