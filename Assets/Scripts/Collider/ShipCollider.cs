@@ -11,7 +11,6 @@ public class ShipCollider : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        print(collision.name);
         if (collision.gameObject.tag == "CannonBallEnemy")
         {
             GameObject ship = gameObject;

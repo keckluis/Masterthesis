@@ -11,8 +11,8 @@ public class ReadMicrocontrollers : MonoBehaviour
     [SerializeField] private SailsManager SailsManager;
     [SerializeField] private RudderControls RudderControls;
     [SerializeField] private Transform SheetRoll;
-    [SerializeField] private float Wheel = 0f, Sheet = 0f, Halyard = 0f;
-    //private float SheetNew = 1f;
+    [SerializeField] private float Wheel = 0f, /*Sheet = 0f,*/ Halyard = 0f;
+    private int SheetRotations = 0;
     public float WheelSpeed = 0.25f, SheetSpeed = 0.1f, HalyardSpeed = 0.5f;
 
     bool FoundAllMicrocontrollers = false;
@@ -106,23 +106,23 @@ public class ReadMicrocontrollers : MonoBehaviour
                     break;
 
                 case 'S':
-                    if (Sheet > mc.Value + 2f)
+                    /*if (Sheet > mc.Value + 2f)
                         SailsManager.SheetLength += SheetSpeed;
                     else if (Sheet < mc.Value - 2f)
                         SailsManager.SheetLength -= SheetSpeed;
-                    Sheet = mc.Value;
+                    Sheet = mc.Value;*/
 
-                    /*if (mc.Value > Sheet + 1100f && mc.Value < Sheet + 1300f) 
+
+                    if (Mathf.FloorToInt(mc.Value / 1_200f) > SheetRotations)
                     {
-                        SheetNew += SheetSpeed;
-                        Sheet = mc.Value;
+                        SailsManager.SheetLength += SheetSpeed;
                     }
-                    else if (mc.Value < Sheet - 1100f && mc.Value > Sheet - 1300f)
+                    else if (Mathf.FloorToInt(mc.Value / 1_200f) < SheetRotations)
                     {
-                        SheetNew -= SheetSpeed;
-                        Sheet = mc.Value;
+                        SailsManager.SheetLength -= SheetSpeed;
                     }
-                    SheetNew = Mathf.Clamp(SheetNew, 1f, 80f);*/
+                    SheetRotations = Mathf.FloorToInt(mc.Value / 1_200f);
+
                     SailsManager.SheetLength = Mathf.Clamp(SailsManager.SheetLength, 1f, 80f);
                     SheetRoll.localEulerAngles = new Vector3(-((mc.Value / 1_200f) * 360f), 0f, 0f);
 
@@ -203,7 +203,7 @@ public class ReadMicrocontrollers : MonoBehaviour
 
                 if (!alreadyFound)
                 {
-                    MicroControllers.Add(new Microcontroller(input[0], sp, 0f, 0f, 0f));
+                    MicroControllers.Add(new Microcontroller(input[0], sp, 0f));
                     Debug.Log(sp.PortName + " is input " + input[0]);
                 }
 
@@ -226,12 +226,10 @@ public class Microcontroller
     public float OffsetPos;
     public float OffsetNeg;
 
-    public Microcontroller(char name, SerialPort serialPort, float value, float offsetPos, float offsetNeg)
+    public Microcontroller(char name, SerialPort serialPort, float value)
     {
         Name = name;
         SerialPort = serialPort;
         Value = value;
-        OffsetPos = offsetPos;
-        OffsetNeg = offsetNeg;
     }
 }

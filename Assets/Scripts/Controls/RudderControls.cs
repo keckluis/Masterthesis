@@ -10,6 +10,7 @@ public class RudderControls : MonoBehaviour
     [SerializeField] private Rigidbody Ship;
     private float Speed;
     public float Degrees = 0f;
+    [SerializeField] private Transform RotationPoint;
 
     void FixedUpdate()
     {
@@ -19,16 +20,11 @@ public class RudderControls : MonoBehaviour
 
         Rudder.localEulerAngles = new Vector3(0f, -Degrees, 0f);
 
-        Ship.transform.Rotate(Ship.transform.up, Degrees * Speed * 0.0005f);
+        Ship.transform.RotateAround(RotationPoint.position, Ship.transform.up, Degrees * Speed * 0.0005f);
 
         if (Degrees > 0f)
             Degrees -= GetComponent<ReadMicrocontrollers>().WheelSpeed * 0.5f;
         else if (Degrees < 0f)
             Degrees += GetComponent<ReadMicrocontrollers>().WheelSpeed * 0.5f;
-    }
-
-    public void SteerTEMP(float direction)
-    {
-        Degrees += direction;
     }
 }
