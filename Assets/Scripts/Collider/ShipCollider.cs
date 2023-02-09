@@ -6,7 +6,7 @@ public class ShipCollider : MonoBehaviour
 {
     [SerializeField] private GameObject Particle;
 
-    public GameObject[] Plunder = new GameObject[5];
+    public GameObject[] Plunder;
     public int PlunderAmount = 0;
 
     void OnTriggerEnter(Collider collision)
@@ -34,7 +34,7 @@ public class ShipCollider : MonoBehaviour
         {
             Destroy(collision.gameObject);
 
-            if (PlunderAmount < 5)
+            if (PlunderAmount < Plunder.Length)
             {
                 Plunder[PlunderAmount].SetActive(true);
 
