@@ -1,2 +1,6 @@
 # Masterthesis
  
+Diese Arbeit behandelt die Konzeption und Entwicklung von „Plunder Hunt VR“, eines kooperativen VR-Games für drei Spieler. In diesem Spiel übernehmen die Spieler die Rollen einer Piratencrew und steuern zusammen ein Segelschiff. In der Spielwelt befinden sich außerdem computergesteuerte gegnerische Schiffe, die sich in Kanonengefechten versenken lassen.
+Gespielt wird in einer für das Projekt entwickelten raumfüllenden VR-Installation mit verschiedenen, anfassbaren Steuerungselementen, deren Inputs über verschiedene Sensorik an das Spiel übermittelt werden. Der Raum simuliert hierbei das Deck des Piratenschiffs. Die Spieler können sich frei bewegen und die Steuerungselemente benutzen, um das Schiff zu steuern, die Segel zu manipulieren und um die Kanonen zu feuern.
+Neben der Verwendung einer VR-Installation, hebt sich das Spiel auch dadurch ab, dass die Funktionsweise von Segeln zumindest in den Grundzügen realistisch abgebildet wird. Dadurch müssen Spieler die Segel passend zum Winkelverhältnis von Schiff und Windrichtung einstellen, um optimale Geschwindigkeiten zu erreichen.  
+Die Spieler verwenden in der Installation keine klassischen VR-Controller, um die Trennung von Virtualität und Realität möglichst gering zu halten. Stattdessen sind alle Inputmethoden anfassbare Steuerungselemente in der VR-Installation. 
