@@ -12,7 +12,7 @@ public class ReadMicrocontrollers : MonoBehaviour
     [SerializeField] private RudderControls RudderControls;
     [SerializeField] private Transform SheetRoll;
     [SerializeField] private float Wheel = 0f, /*Sheet = 0f,*/ Halyard = 0f;
-    private int SheetRotations = 0;
+    [SerializeField] private int SheetRotations = 0;
     public float WheelSpeed = 0.25f, SheetSpeed = 0.1f, HalyardSpeed = 0.5f;
 
     bool FoundAllMicrocontrollers = false;
