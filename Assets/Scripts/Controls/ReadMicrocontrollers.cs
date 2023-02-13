@@ -113,15 +113,15 @@ public class ReadMicrocontrollers : MonoBehaviour
                     Sheet = mc.Value;*/
 
 
-                    if (Mathf.FloorToInt(mc.Value / 1_200f) > SheetRotations)
+                    if (Mathf.RoundToInt(mc.Value / 1_200f) > SheetRotations)
                     {
                         SailsManager.SheetLength += SheetSpeed;
                     }
-                    else if (Mathf.FloorToInt(mc.Value / 1_200f) < SheetRotations)
+                    else if (Mathf.RoundToInt(mc.Value / 1_200f) < SheetRotations)
                     {
                         SailsManager.SheetLength -= SheetSpeed;
                     }
-                    SheetRotations = Mathf.FloorToInt(mc.Value / 1_200f);
+                    SheetRotations = Mathf.RoundToInt(mc.Value / 1_200f);
 
                     SailsManager.SheetLength = Mathf.Clamp(SailsManager.SheetLength, 1f, 80f);
                     SheetRoll.localEulerAngles = new Vector3(-((mc.Value / 1_200f) * 360f), 0f, 0f);

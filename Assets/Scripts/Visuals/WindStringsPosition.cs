@@ -9,6 +9,6 @@ public class WindStringsPosition : MonoBehaviour
 
     void Update()
     {
-        transform.localPosition = new Vector3(StartPosX * BackSail.localScale.x, 0f, 0f);
+        transform.localPosition = new Vector3(StartPosX * BackSail.localScale.x * 0.85f, 0f, 0f);
     }
 }
