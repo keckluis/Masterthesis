@@ -13,7 +13,7 @@ public class MapGenerator : MonoBehaviour
 
     [SerializeField] private int EmptynessFactor;
 
-    [SerializeField] private Transform MapColliders;
+    //[SerializeField] private Transform MapColliders;
 
     public void CreateMap()
     {
