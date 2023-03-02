@@ -11,7 +11,7 @@ public class ReadMicrocontrollers : MonoBehaviour
     [SerializeField] private SailsManager SailsManager;
     [SerializeField] private RudderControls RudderControls;
     [SerializeField] private Transform SheetRoll;
-    [SerializeField] private float Wheel = 0f, /*Sheet = 0f,*/ Halyard = 0f;
+    [SerializeField] private float Wheel = 0f, Sheet = 1f, Halyard = 10f;
     [SerializeField] private int SheetRotations = 0;
     public float WheelSpeed = 0.25f, SheetSpeed = 0.1f, HalyardSpeed = 0.5f;
 
@@ -115,11 +115,11 @@ public class ReadMicrocontrollers : MonoBehaviour
 
                     if (Mathf.RoundToInt(mc.Value / 1_200f) > SheetRotations)
                     {
-                        SailsManager.SheetLength += SheetSpeed;
+                        Sheet += SheetSpeed;
                     }
                     else if (Mathf.RoundToInt(mc.Value / 1_200f) < SheetRotations)
                     {
-                        SailsManager.SheetLength -= SheetSpeed;
+                        Sheet -= SheetSpeed;
                     }
                     SheetRotations = Mathf.RoundToInt(mc.Value / 1_200f);
 
@@ -168,17 +168,17 @@ public class ReadMicrocontrollers : MonoBehaviour
         }
     }
 
-    /*void FixedUpdate()
+    void FixedUpdate()
     {
-        if (SailsManager.SheetLength > SheetNew)
+        if (SailsManager.SheetLength > Sheet)
         {
-            SailsManager.SheetLength -= 0.1f;
+            SailsManager.SheetLength -= 0.01f * SailsManager.WindStrength;
         }
-        else if (SailsManager.SheetLength < SheetNew)
+        else if (SailsManager.SheetLength < Sheet)
         {
-            SailsManager.SheetLength += 0.1f;
+            SailsManager.SheetLength += 0.01f * SailsManager.WindStrength;
         }
-    }*/
+    }
 
     void LookForMicroController(SerialPort sp)
     {

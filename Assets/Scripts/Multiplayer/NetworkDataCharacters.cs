@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.Networking;
 using UnityEngine;
 
 public enum Character
@@ -18,12 +19,12 @@ public class NetworkDataCharacters : NetworkBehaviour
     [SerializeField] private Transform XRSailor2Head;
 
     private NetworkVariable<Vector3> CaptainPos = new NetworkVariable<Vector3>();
-    private NetworkVariable<Vector3> Sailor1Pos = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Owner);
-    private NetworkVariable<Vector3> Sailor2Pos = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<Vector3> Sailor1Pos = new NetworkVariable<Vector3>();
+    private NetworkVariable<Vector3> Sailor2Pos = new NetworkVariable<Vector3>();
 
     private NetworkVariable<Vector3> CaptainRot = new NetworkVariable<Vector3>();
-    private NetworkVariable<Vector3> Sailor1Rot = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Owner);
-    private NetworkVariable<Vector3> Sailor2Rot = new NetworkVariable<Vector3>(writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<Vector3> Sailor1Rot = new NetworkVariable<Vector3>();
+    private NetworkVariable<Vector3> Sailor2Rot = new NetworkVariable<Vector3>();
 
     private NetworkVariable<Vector3> FuseStickPos = new NetworkVariable<Vector3>();
     private NetworkVariable<Vector3> FuseStickRot = new NetworkVariable<Vector3>();
@@ -107,26 +108,38 @@ public class NetworkDataCharacters : NetworkBehaviour
 
     void Update()
     {
-        if (IsOwner)
-        {
-            if (Character == Character.Captain)
-            {       
-                CaptainPos.Value = XRCaptainHead.position;
-                CaptainRot.Value = XRCaptainHead.eulerAngles;
+        if (Character == Character.Captain)
+        {       
+            CaptainPos.Value = XRCaptainHead.position;
+            CaptainRot.Value = XRCaptainHead.eulerAngles;
 
-                FuseStickPos.Value = HostFuseStick.position;
-                FuseStickRot.Value = HostFuseStick.eulerAngles;
-            }
-            else if (Character == Character.Sailor1)
-            {            
-                Sailor1Pos.Value = XRSailor1Head.position;
-                Sailor1Rot.Value = XRSailor1Head.eulerAngles;
+            FuseStickPos.Value = HostFuseStick.position;
+            FuseStickRot.Value = HostFuseStick.eulerAngles;
+        }
+        else
+            if (Character == Character.Sailor1)
+            {       
+                Sailor1ClientRpc(XRSailor1Head.position, XRSailor1Head.eulerAngles);    
+                
             }
             else if (Character == Character.Sailor2)
             {     
-                Sailor2Pos.Value = XRSailor2Head.position; 
-                Sailor2Rot.Value = XRSailor2Head.eulerAngles;
+                Sailor2ClientRpc(XRSailor2Head.position, XRSailor2Head.eulerAngles);    
             }
-        }
+    }
+
+    [ClientRpc]
+    void Sailor1ClientRpc(Vector3 pos, Vector3 rot)
+    {
+        print("CLIENT1");
+        //Sailor1Pos.Value = pos;
+        //Sailor1Rot.Value = rot;
+    }
+    
+    [ClientRpc]
+    void Sailor2ClientRpc(Vector3 pos, Vector3 rot)
+    {
+        Sailor2Pos.Value = pos;
+        Sailor2Rot.Value = rot;
     }
 }
