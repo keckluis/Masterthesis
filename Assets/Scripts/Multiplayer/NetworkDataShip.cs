@@ -74,62 +74,75 @@ public class NetworkDataShip : NetworkBehaviour
             {
                 ClientShip.position = ShipPosition.Value;
             };
+            ClientShip.position = ShipPosition.Value;
 
             ShipRotation.OnValueChanged += (float prev, float current) =>
             {
                 ClientShip.transform.eulerAngles = new Vector3(0f, ShipRotation.Value, 0f);
             };
+            ClientShip.transform.eulerAngles = new Vector3(0f, ShipRotation.Value, 0f);
 
             BackSailDegrees.OnValueChanged += (float prev, float current) =>
             {
                 ClientBackBoomRing.localEulerAngles = new Vector3(0f, BackSailDegrees.Value, 0f);
             };
+            ClientBackBoomRing.localEulerAngles = new Vector3(0f, BackSailDegrees.Value, 0f);
 
             FrontSailDegrees.OnValueChanged += (float prev, float current) =>
             {
                 ClientFrontBoomRing.localEulerAngles = new Vector3(0f, FrontSailDegrees.Value, 0f);
             };
+            ClientFrontBoomRing.localEulerAngles = new Vector3(0f, FrontSailDegrees.Value, 0f);
 
             BackSailScaleX.OnValueChanged += (float prev, float current) =>
             {
                 ClientBackSail.localScale = new Vector3(BackSailScaleX.Value, 1f, 1f);
             };
+            ClientBackSail.localScale = new Vector3(BackSailScaleX.Value, 1f, 1f);
 
             FrontSailScaleYZ.OnValueChanged += (Vector2 prev, Vector2 current) =>
             {
                 ClientFrontSail.localScale = new Vector3(1f, FrontSailScaleYZ.Value.x, FrontSailScaleYZ.Value.y);
             };
+            ClientFrontSail.localScale = new Vector3(1f, FrontSailScaleYZ.Value.x, FrontSailScaleYZ.Value.y);
 
             FrontSailRingsPosY.OnValueChanged += (float prev, float current) =>
             {
                 ClientFrontSailRings.localPosition = new Vector3(0f, FrontSailRingsPosY.Value, 0f);
             };
+            ClientFrontSailRings.localPosition = new Vector3(0f, FrontSailRingsPosY.Value, 0f);
 
             WindIndicator.OnValueChanged += (float prev, float current) =>
             {
                 ClientWindIndicator.localEulerAngles = new Vector3(0f, WindIndicator.Value, 0f);
             };
+            ClientWindIndicator.localEulerAngles = new Vector3(0f, WindIndicator.Value, 0f);
 
             WindString.OnValueChanged += (float prev, float current) =>
             {
                 ClientWindStringPort.localEulerAngles = new Vector3(0f, WindString.Value, 0f);
                 ClientWindStringStarboard.localEulerAngles = new Vector3(0f, WindString.Value, 0f);
             };
+            ClientWindStringPort.localEulerAngles = new Vector3(0f, WindString.Value, 0f);
+            ClientWindStringStarboard.localEulerAngles = new Vector3(0f, WindString.Value, 0f);
 
             Rudder.OnValueChanged += (float prev, float current) =>
             {
                 ClientRudder.localEulerAngles = new Vector3(0f, Rudder.Value, 0f);
             };
+            ClientRudder.localEulerAngles = new Vector3(0f, Rudder.Value, 0f);
 
             Wheel.OnValueChanged += (float prev, float current) =>
             {
                 ClientWheel.localEulerAngles = new Vector3(0f, 0f, Wheel.Value);
             };
+            ClientWheel.localEulerAngles = new Vector3(0f, 0f, Wheel.Value);
 
             SheetRoll.OnValueChanged += (float prev, float current) =>
             {
                 ClientSheetRoll.localEulerAngles = new Vector3(SheetRoll.Value, 0f, 0f);
             };
+            ClientSheetRoll.localEulerAngles = new Vector3(SheetRoll.Value, 0f, 0f);
 
             SheetLength.OnValueChanged += (float prev, float current) =>
             {          
@@ -138,8 +151,10 @@ public class NetworkDataShip : NetworkBehaviour
                     mr.ClientSheetLength = SheetLength.Value;
                 }
             };
-
-            //InvokeRepeating("SyncShip", Time.time, 5);
+            foreach (MovingRope mr in ClientSheetRopes)
+            {
+                mr.ClientSheetLength = SheetLength.Value;
+            }
         }         
     }
 
@@ -168,19 +183,4 @@ public class NetworkDataShip : NetworkBehaviour
             SheetLength.Value = SailsManager.SheetLength;    
         }
     }
-
-    /*private void FixedUpdate()
-    {
-        if(IsOwner)
-            ClientShip.GetComponent<Rigidbody>().AddForce(ClientShip.transform.forward * ForwardForce.Value);
-    }
-
-    void SyncShip()
-    {
-        if (!IsOwner)
-        {
-            ClientShip.MovePosition(new Vector3(ShipPosition.Value.x, ClientShip.position.y, ShipPosition.Value.y));
-            ClientShip.transform.eulerAngles = new Vector3(0f, ShipRotation.Value, 0f);  
-        }
-    }*/
 }

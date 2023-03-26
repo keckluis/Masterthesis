@@ -27,59 +27,49 @@ public class NetworkDataCannons : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        PortHorizontal.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+        if (!IsOwner) 
+        { 
+            PortHorizontal.OnValueChanged += (float prev, float current) =>
             {
                 ClientPortHorizontal.localEulerAngles = new Vector3(0f, PortHorizontal.Value, 0f);
-            }
-        };
+            };
+            ClientPortHorizontal.localEulerAngles = new Vector3(0f, PortHorizontal.Value, 0f);
 
-        PortVertical.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            PortVertical.OnValueChanged += (float prev, float current) =>
             {
                 ClientPortVertical.localEulerAngles = new Vector3(PortVertical.Value, 0f, 0f);
-            }
-        };
+            };
+            ClientPortVertical.localEulerAngles = new Vector3(PortVertical.Value, 0f, 0f);
 
-        StarboardHorizontal.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            StarboardHorizontal.OnValueChanged += (float prev, float current) =>
             {
                 ClientStarboardHorizontal.localEulerAngles = new Vector3(0f, StarboardHorizontal.Value, 0f);
-            }
-        };
+            };
+            ClientStarboardHorizontal.localEulerAngles = new Vector3(0f, StarboardHorizontal.Value, 0f);
 
-        StarboardVertical.OnValueChanged += (float prev, float current) =>
-        {
-            if (!IsOwner)
+            StarboardVertical.OnValueChanged += (float prev, float current) =>
             {
                 ClientStarboardVertical.localEulerAngles = new Vector3(StarboardVertical.Value, 0f, 0f);
-            }
-        };
+            };
+            ClientStarboardVertical.localEulerAngles = new Vector3(StarboardVertical.Value, 0f, 0f);
 
-        PortCoolDown.OnValueChanged += (bool prev, bool current) =>
-        {
-            if (!IsOwner)
+            PortCoolDown.OnValueChanged += (bool prev, bool current) =>
             {
                 if (PortCoolDown.Value)
                 {
                     ClientPortHorizontal.parent.GetComponent<ClientCannon>().Shoot();
                 }
-            }
-        };
+            };
 
-        StarboardCoolDown.OnValueChanged += (bool prev, bool current) =>
-        {
-            if (!IsOwner)
+            StarboardCoolDown.OnValueChanged += (bool prev, bool current) =>
             {
                 if (PortCoolDown.Value)
                 {
                     ClientStarboardHorizontal.parent.GetComponent<ClientCannon>().Shoot();
                 }
-            }
-        };
+                ClientStarboardHorizontal.parent.GetComponent<ClientCannon>().Shoot();
+            };
+        }
     }
 
     void Update()

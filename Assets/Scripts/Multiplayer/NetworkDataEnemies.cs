@@ -36,52 +36,73 @@ public class NetworkDataEnemies : NetworkBehaviour
             {
                 ClientEnemyShips[0].position = new Vector3(Enemy0Pos.Value.x, ClientEnemyShips[0].position.y, Enemy0Pos.Value.y);
             };
+            ClientEnemyShips[0].position = new Vector3(Enemy0Pos.Value.x, ClientEnemyShips[0].position.y, Enemy0Pos.Value.y);
+
             Enemy1Pos.OnValueChanged += (Vector2 prev, Vector2 current) =>
             {
                 ClientEnemyShips[1].position = new Vector3(Enemy1Pos.Value.x, ClientEnemyShips[1].position.y, Enemy1Pos.Value.y);
             };
+            ClientEnemyShips[1].position = new Vector3(Enemy1Pos.Value.x, ClientEnemyShips[1].position.y, Enemy1Pos.Value.y);
+
             Enemy2Pos.OnValueChanged += (Vector2 prev, Vector2 current) =>
             {
                 ClientEnemyShips[2].position = new Vector3(Enemy2Pos.Value.x, ClientEnemyShips[2].position.y, Enemy2Pos.Value.y);
             };
+            ClientEnemyShips[2].position = new Vector3(Enemy2Pos.Value.x, ClientEnemyShips[2].position.y, Enemy2Pos.Value.y);
+
             Enemy3Pos.OnValueChanged += (Vector2 prev, Vector2 current) =>
             {
                 ClientEnemyShips[3].position = new Vector3(Enemy3Pos.Value.x, ClientEnemyShips[3].position.y, Enemy3Pos.Value.y);
             };
+            ClientEnemyShips[3].position = new Vector3(Enemy3Pos.Value.x, ClientEnemyShips[3].position.y, Enemy3Pos.Value.y);
+
             Enemy4Pos.OnValueChanged += (Vector2 prev, Vector2 current) =>
             {
                 ClientEnemyShips[4].position = new Vector3(Enemy4Pos.Value.x, ClientEnemyShips[4].position.y, Enemy4Pos.Value.y);
             };
+            ClientEnemyShips[4].position = new Vector3(Enemy4Pos.Value.x, ClientEnemyShips[4].position.y, Enemy4Pos.Value.y);
 
             Enemy0Rot.OnValueChanged += (float prev, float current) =>
             {
                 ClientEnemyShips[0].transform.eulerAngles = new Vector3(0f, Enemy0Rot.Value, 0f);
             };
+            ClientEnemyShips[0].transform.eulerAngles = new Vector3(0f, Enemy0Rot.Value, 0f);
+
             Enemy1Rot.OnValueChanged += (float prev, float current) =>
             {
                 ClientEnemyShips[1].transform.eulerAngles = new Vector3(0f, Enemy1Rot.Value, 0f);
             };
+            ClientEnemyShips[1].transform.eulerAngles = new Vector3(0f, Enemy1Rot.Value, 0f);
+
             Enemy2Rot.OnValueChanged += (float prev, float current) =>
             {
                 ClientEnemyShips[2].transform.eulerAngles = new Vector3(0f, Enemy2Rot.Value, 0f);
             };
+            ClientEnemyShips[2].transform.eulerAngles = new Vector3(0f, Enemy2Rot.Value, 0f);
+
             Enemy3Rot.OnValueChanged += (float prev, float current) =>
             {
                 ClientEnemyShips[3].transform.eulerAngles = new Vector3(0f, Enemy3Rot.Value, 0f);
             };
+            ClientEnemyShips[3].transform.eulerAngles = new Vector3(0f, Enemy3Rot.Value, 0f);
+
             Enemy4Rot.OnValueChanged += (float prev, float current) =>
             {
                 ClientEnemyShips[4].transform.eulerAngles = new Vector3(0f, Enemy4Rot.Value, 0f);
             };
+            ClientEnemyShips[4].transform.eulerAngles = new Vector3(0f, Enemy4Rot.Value, 0f);
 
             WindVector.OnValueChanged += (Vector2 prev, Vector2 current) =>
             {
                 ClientWindVector = WindVector.Value;
             };
+            ClientWindVector = WindVector.Value;
+
             WindStrength.OnValueChanged += (float prev, float current) =>
             {
                 ClientWindStrength = WindStrength.Value;
             };
+            ClientWindStrength = WindStrength.Value;
         }
     }
 

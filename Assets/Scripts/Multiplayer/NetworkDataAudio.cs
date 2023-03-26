@@ -25,6 +25,7 @@ public class NetworkDataAudio : NetworkBehaviour
                 ClientWheelAudio.enabled = WheelSound.Value;
             }
         };
+        ClientWheelAudio.enabled = WheelSound.Value;
 
         SheetRollSound.OnValueChanged += (bool prev, bool current) =>
         {
@@ -33,6 +34,7 @@ public class NetworkDataAudio : NetworkBehaviour
                 ClientSheetRollAudio.enabled = SheetRollSound.Value;
             }
         };
+        ClientSheetRollAudio.enabled = SheetRollSound.Value;
 
         HalyardSound.OnValueChanged += (bool prev, bool current) =>
         {
@@ -41,6 +43,7 @@ public class NetworkDataAudio : NetworkBehaviour
                 ClientHalyardAudio.enabled = HalyardSound.Value;
             }
         };
+        ClientHalyardAudio.enabled = HalyardSound.Value;
     }
 
     private void Update()

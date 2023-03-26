@@ -47,6 +47,7 @@ public class NetworkDataCharacters : NetworkBehaviour
             {
                 HostSailor1Head.position = Sailor1Pos.Value;
             };
+            HostSailor1Head.position = Sailor1Pos.Value;
             Sailor1Rot.OnValueChanged += (Vector3 prev, Vector3 current) =>
             {
                 HostSailor1Head.eulerAngles = Sailor1Rot.Value;
@@ -55,10 +56,12 @@ public class NetworkDataCharacters : NetworkBehaviour
             {
                 HostSailor2Head.position = Sailor2Pos.Value;
             };
+            HostSailor1Head.eulerAngles = Sailor1Rot.Value;
             Sailor2Rot.OnValueChanged += (Vector3 prev, Vector3 current) =>
             {
                 HostSailor2Head.eulerAngles = Sailor2Rot.Value;
             };
+            HostSailor2Head.eulerAngles = Sailor2Rot.Value;
         }
         else
         {
@@ -66,10 +69,12 @@ public class NetworkDataCharacters : NetworkBehaviour
             {
                 ClientCaptainHead.position = CaptainPos.Value;
             };
+            ClientCaptainHead.position = CaptainPos.Value;
             CaptainRot.OnValueChanged += (Vector3 prev, Vector3 current) =>
             {
                 ClientCaptainHead.eulerAngles = CaptainRot.Value;
             };
+            ClientCaptainHead.eulerAngles = CaptainRot.Value;
 
             if (Character == Character.Sailor1)
             {
@@ -77,10 +82,12 @@ public class NetworkDataCharacters : NetworkBehaviour
                 {
                     ClientSailor2Head.position = Sailor2Pos.Value;
                 };
+                ClientSailor2Head.position = Sailor2Pos.Value;
                 Sailor2Rot.OnValueChanged += (Vector3 prev, Vector3 current) =>
                 {
                     ClientSailor2Head.eulerAngles = Sailor2Rot.Value;
                 };
+                ClientSailor2Head.eulerAngles = Sailor2Rot.Value;
             }
             else if (Character == Character.Sailor2)
             {
@@ -88,21 +95,25 @@ public class NetworkDataCharacters : NetworkBehaviour
                 {
                     ClientSailor1Head.position = Sailor1Pos.Value;
                 };
+                ClientSailor1Head.position = Sailor1Pos.Value;
                 Sailor1Rot.OnValueChanged += (Vector3 prev, Vector3 current) =>
                 {
                     ClientSailor1Head.eulerAngles = Sailor1Rot.Value;
                 };
+                ClientSailor1Head.eulerAngles = Sailor1Rot.Value;
             }
 
             FuseStickPos.OnValueChanged += (Vector3 prev, Vector3 current) =>
             {
                 ClientFusestick.position = FuseStickPos.Value;
             };
+            ClientFusestick.position = FuseStickPos.Value;
 
             FuseStickRot.OnValueChanged += (Vector3 prev, Vector3 current) =>
             {
                 ClientFusestick.eulerAngles = FuseStickRot.Value;
             };
+            ClientFusestick.eulerAngles = FuseStickRot.Value;
         }
     }
 
@@ -118,26 +129,25 @@ public class NetworkDataCharacters : NetworkBehaviour
         }
         else
             if (Character == Character.Sailor1)
-            {       
-                Sailor1ClientRpc(XRSailor1Head.position, XRSailor1Head.eulerAngles);    
+            {
+                Sailor1ServerRpc(XRSailor1Head.position, XRSailor1Head.eulerAngles);    
                 
             }
             else if (Character == Character.Sailor2)
-            {     
-                Sailor2ClientRpc(XRSailor2Head.position, XRSailor2Head.eulerAngles);    
+            {
+                Sailor2ServerRpc(XRSailor2Head.position, XRSailor2Head.eulerAngles);    
             }
     }
 
-    [ClientRpc]
-    void Sailor1ClientRpc(Vector3 pos, Vector3 rot)
+    [ServerRpc(RequireOwnership = false)]
+    void Sailor1ServerRpc(Vector3 pos, Vector3 rot)
     {
-        print("CLIENT1");
-        //Sailor1Pos.Value = pos;
-        //Sailor1Rot.Value = rot;
+        Sailor1Pos.Value = pos;
+        Sailor1Rot.Value = rot;
     }
-    
-    [ClientRpc]
-    void Sailor2ClientRpc(Vector3 pos, Vector3 rot)
+
+    [ServerRpc(RequireOwnership = false)]
+    void Sailor2ServerRpc(Vector3 pos, Vector3 rot)
     {
         Sailor2Pos.Value = pos;
         Sailor2Rot.Value = rot;
