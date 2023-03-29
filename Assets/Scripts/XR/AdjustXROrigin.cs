@@ -13,6 +13,9 @@ public class AdjustXROrigin : MonoBehaviour
             float x = PlayerPrefs.GetFloat("x");
             float z = PlayerPrefs.GetFloat("z");
             transform.localPosition = new Vector3(x, transform.localPosition.y, z);
+
+            float r = PlayerPrefs.GetFloat("r");
+            transform.localEulerAngles = new Vector3(0f, r, 0f);
         }
             
     }
@@ -23,6 +26,7 @@ public class AdjustXROrigin : MonoBehaviour
         {
             PlayerPrefs.SetFloat("x", transform.localPosition.x);
             PlayerPrefs.SetFloat("z", transform.localPosition.z);
+            PlayerPrefs.SetFloat("r", transform.localEulerAngles.y);
         }
     }
 
@@ -46,6 +50,15 @@ public class AdjustXROrigin : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - Speed);
+        }
+
+        if (Input.GetKey(KeyCode.O))
+        {
+            transform.Rotate(new Vector3(0f, -90f, 0f));
+        }
+        if (Input.GetKey(KeyCode.P))
+        {
+            transform.Rotate(new Vector3(0f, 90f, 0f));
         }
     }
 }

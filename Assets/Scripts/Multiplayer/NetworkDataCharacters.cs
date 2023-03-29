@@ -46,6 +46,7 @@ public class NetworkDataCharacters : NetworkBehaviour
             Sailor1Pos.OnValueChanged += (Vector3 prev, Vector3 current) =>
             {
                 HostSailor1Head.position = Sailor1Pos.Value;
+                HostSailor1Head.Translate(Vector3.Normalize(Sailor1Pos.Value - HostSailor1Head.position) * 0.1f);
             };
             HostSailor1Head.position = Sailor1Pos.Value;
             Sailor1Rot.OnValueChanged += (Vector3 prev, Vector3 current) =>

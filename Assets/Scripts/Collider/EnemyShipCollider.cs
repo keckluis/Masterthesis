@@ -9,7 +9,7 @@ public class EnemyShipCollider : MonoBehaviour
     [SerializeField] private GameObject Fire;
     [SerializeField] private GameObject CannonPort;
     [SerializeField] private GameObject CannonStarboard;
-    private bool Destroyed = false;
+    public bool Destroyed = false;
     private Transform Ship;
     [SerializeField] private int Health = 2;
     [SerializeField] private GameObject BackSailring;

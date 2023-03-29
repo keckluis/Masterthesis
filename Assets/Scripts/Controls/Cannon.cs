@@ -111,7 +111,7 @@ public class Cannon : MonoBehaviour
         GameObject cb = Instantiate(CannonBall, CannonBallsHolder);
         cb.transform.position = Vertical.position;
 
-        cb.GetComponent<Rigidbody>().velocity = (Vertical.forward * 40f) + Ship.velocity;
+        cb.GetComponent<Rigidbody>().velocity = (Vertical.forward * 80f) + Ship.velocity;
 
         if(GetComponent<AudioSource>())
             GetComponent<AudioSource>().Play();

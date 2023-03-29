@@ -9,7 +9,7 @@ public class EnemyCannon : MonoBehaviour
     [SerializeField] private Transform Vertical;
     [SerializeField] private Transform PlayerShip;
 
-    private float SightDistance = 135f;
+    private float SightDistance = 270f;
 
     [SerializeField] private Transform CanonBallsHolder;
     [SerializeField] private GameObject CanonBall;
@@ -134,9 +134,9 @@ public class EnemyCannon : MonoBehaviour
         cb.transform.position = Vertical.position;
 
         if (isPort)
-            cb.GetComponent<Rigidbody>().velocity = (-Vertical.right * 40f) + EnemyShipAgent.velocity;
+            cb.GetComponent<Rigidbody>().velocity = (-Vertical.right * 80f) + EnemyShipAgent.velocity;
         else
-            cb.GetComponent<Rigidbody>().velocity = (Vertical.right * 40f) + EnemyShipAgent.velocity;
+            cb.GetComponent<Rigidbody>().velocity = (Vertical.right * 80f) + EnemyShipAgent.velocity;
 
         GetComponent<AudioSource>().Play();
 
