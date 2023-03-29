@@ -83,7 +83,7 @@ public class EnemyAI : MonoBehaviour
         sailSize = Mathf.Clamp(sailSize, 0.5f, 1f);
         Agent.speed = (SailsManager.WindStrength * sailSize) * 0.75f;
         Agent.acceleration = SailsManager.WindStrength * 0.5f;
-        Agent.angularSpeed = Agent.speed * 0.25f;
+        Agent.angularSpeed = Agent.speed * 0.5f;
 
         transform.position = Agent.transform.position;
         transform.rotation = Agent.transform.rotation;
