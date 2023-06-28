@@ -5,10 +5,14 @@ using UnityEngine.UI;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using System;
+using TMPro;
+using static Unity.Netcode.Transports.UTP.UnityTransport;
+using System.Net;
 
 public class NetworkManagerUI : MonoBehaviour
 {
     [SerializeField] private Button HostBtn;
+    [SerializeField] private TextMeshProUGUI IP;
     [SerializeField] private Button Client1Btn;
     [SerializeField] private Button Client2Btn;
 
@@ -25,9 +29,23 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void Awake()
     {
+
         HostBtn.onClick.AddListener(() =>
         {
             NDCharacters.Character = Character.Captain;
+            if (IP.text != "")
+            {
+                GetComponent<UnityTransport>().SetConnectionData(IP.text, 7777, "0.0.0.0");
+                PlayerPrefs.SetString("IP", IP.text);
+            }
+            else
+            {
+                if (PlayerPrefs.GetString("IP") != null)
+                    GetComponent<UnityTransport>().SetConnectionData(PlayerPrefs.GetString("IP"), 7777, "0.0.0.0");
+                else
+                    PlayerPrefs.SetString("IP", GetComponent<UnityTransport>().ConnectionData.Address);
+            }
+                
             NetworkManager.Singleton.StartHost();
             Host.SetActive(true);
             Client.SetActive(false);
